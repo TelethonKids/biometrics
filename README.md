@@ -15,9 +15,10 @@ available.
 
 ### Installing
 
-The Telethon Kids Institute biometrics package can be installed with:
+The Telethon Kids Institute biometrics package can be installed
+    with:
 
-    devtools::install_github("TelethonKids/biometrics")
+    devtools::install_github("TelethonKids/biometrics", build_vignettes = TRUE)
 
 ### Creating an new document
 
@@ -32,12 +33,12 @@ in default documents. A cheat-sheet explaining how to use markdown in R
 has been prepared by [R
 Studio](https://www.rstudio.com/resources/cheatsheets/).
 
-<center>
+<p align="center">
 
 <img src="man/figures/ioslides.png"  width="50%" height="50%">
 <img src="man/figures/report.png"  width="50%" height="50%">
 
-</center>
+</p>
 
 ## Authors
 
@@ -66,8 +67,8 @@ expert Professor Jonathan Carapetis AM, with Founding Director Professor
 Fiona Stanley AC now Patron. Telethon Kids is independent and
 not-for-profit.
 
-<center>
+<p align="center">
 
 <img src="man/figures/logo800.jpg"  width="40%" height="40%">
 
-</center>
+</p>
