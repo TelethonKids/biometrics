@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+README.Rmd
+
+# Ignore data files
+/archive
+/data-raw
+inst/doc
