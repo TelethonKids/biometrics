@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    $for(author-meta)$
+      <meta name="author" content="$author-meta$" />
+    $endfor$
+    $if(date-meta)$
+      <meta name="dcterms.date" content="$date-meta$" />
+    $endif$
+    $if(keywords)$
+      <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+    $endif$
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css -->
+    <link rel="stylesheet" href="assets/css/fonts.css"><!-- http://fast.fonts.net/cssapi/ef39b127-8f57-44b6-b5c1-574306354a61.css -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$ | Telethon Kids Institute</title>
+    $if(highlighting-css)$
+      <style type="text/css">
+        $highlighting-css$
+      </style>
+    $endif$
+    $for(css)$
+      <link rel="stylesheet" href="$css$">
+    $endfor$
+    $if(math)$
+      $math$
+    $endif$
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+    <!--$for(header-includes)$
+      $header-includes$
+    $endfor$-->
+  </head>
+  <body>
+    $if(title)$
+      <div class="container-fluid">
+        <div class="row middle $header-background$" id="header">
+          <div class="d-none d-xl-block col-xl-1"></div>
+          <div class="d-xs-none d-lg-block col-lg-3 col-xl-3">
+            <img class="img-fluid rounded d-none d-lg-block logo" src=$logo$>
+          </div>
+          <div class="col-lg-9 col-xl-7">
+            <div class="$header-breakout$ rounded header">
+              <h1 class="proxima-nova-soft-semibold white">$title$</h1>
+              $if(subtitle)$
+                <h3 class="proxima-nova-soft-medium white">$subtitle$</h3>
+              $endif$
+              $for(author)$
+                <h3 class="white">$author$</h3>
+              $endfor$
+              $for(affiliation)$
+                <h5 class="white">$affiliation$</h5>
+              $endfor$
+              $if(date)$
+                <h5 class="white">$date$</h5>
+              $endif$
+              </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-1"></div>
+        </div>
+      </div>
+    $endif$
+    <span id="nav_logo" hidden><img src=$nav_logo$ class="img-fluid nav-logo" /></span>
+    <span id="nav"></span>
+    <div class="container-fluid">
+      <div class="row" id="body">
+        <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+        <div class="col col-lg-10 col-xl-10 translucent rounded">
+          $if(instructions)$
+            <h1>Template Instructions</h1>
+            <p>These instructions can be disabled by changing the markdown front-matter to <code>instructions: false</code>. </p>
+            <p>By default, all assets (e.g. images, css style sheets and templates) are found in the assets directory and will need to be linked to using their path from the  markdown document directory; the final HTML output is a self contained file.</p>
+            <h2>Logo</h2>
+            <p>The logo can be changed by updating the value of <code>logo: <em>new logo</em></code> in the front-matter. The default logo is <code>assets/images/logo800.jpg</code>. </p>
+            <h2>Navigation Bar</h2>
+            <p>The table of contents can be displayed as a navigation bar or in traditional paper style. To display a sticky bootstrap navigation bar, both toc and toc-float should be set to true in the front-matter: i.e. <code>toc:&nbsp;true</code> and <code>toc_float:&nbsp;true</code>; the nav bar will only display the first level of headings. To display the headings as a more traditional table of contents change to <code>toc_float:&nbsp;false</code>. Setting <code>toc:&nbsp;false</code> will remove both navigation tools. </p>
+            <h2>Header Themes</h2>
+            <p>There are also several themes that that are based on Telethon Kids' style guide and website. The header background image and break-out box colours can be changed by replacing the appropriate lines of front-matter with the following code:</p>
+            <div class="row">
+              <div class="col-xl-2"></div>
+              <div class="col-xl-8">
+                <div class="row middle blue-triangles-darker">
+                  <div class="d-none d-md-block col-md-2 col-lg-4 col-xl-4">
+                    <img class="img-fluid rounded d-none d-md-block" src="assets/images/logo800.jpg">
+                  </div>
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                    <div class="pms370-breakout rounded header">
+                      <h4 class="white">header-background: blue-triangles-darker</h4>
+                      <h4 class="white">header-breakout: pms370-breakout</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row vertical-spacer middle"></div>
+                <div class="row middle purple-dots-darker">
+                  <div class="d-none d-md-block col-md-2 col-lg-4 col-xl-4">
+                    <img class="img-fluid rounded d-none d-md-block" src="assets/images/logo800.jpg">
+                  </div>
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                    <div class="pms144-breakout rounded header">
+                      <h4 class="white">header-background: purple-dots-darker</h4>
+                      <h4 class="white">header-breakout: pms144-breakout</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row vertical-spacer"></div>
+                <div class="row middle green-circles-darker">
+                  <div class="d-none d-md-block col-md-2 col-lg-4 col-xl-4">
+                    <img class="img-fluid rounded d-none d-md-block" src="assets/images/logo800.jpg">
+                  </div>
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                    <div class="pms2395-breakout rounded header">
+                      <h4 class="white">header-background: green-circles-darker</h4>
+                      <h4 class="white">header-breakout: pms2395-breakout</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="row vertical-spacer"></div>
+                <div class="row middle yellow-stripes-darker">
+                  <div class="d-none d-md-block col-md-2 col-lg-4 col-xl-4">
+                    <img class="img-fluid rounded d-none d-md-block" src="assets/images/logo800.jpg">
+                  </div>
+                  <div class="col-sm-12 col-md-10 col-lg-8 col-xl-8">
+                    <div class="pms205-breakout rounded header">
+                      <h4 class="white">header-background: yellow-stripes-darker</h4>
+                      <h4 class="white">header-breakout: pms205-breakout</h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2"></div>
+            </div>
+            <div class="row vertical-spacer"></div>
+          $endif$
+          $for(include-before)$
+            $include-before$
+          $endfor$
+          $if(toc)$
+            <span id="toc">
+              <h1>Table of Contents</h1>
+              <p>$toc$</p>
+            </span>
+          $endif$
+          $body$
+          $for(include-after)$
+            $include-after$
+          $endfor$
+        </div>
+        <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+      </div>
+      <div class="row" id="footer"></div>
+      <script type="text/javascript" src="assets/js/jquery.min.js"></script><!-- https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js -->
+      <script type="text/javascript" src="assets/js/popper.min.js"></script><!-- https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js -->
+      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js -->
+      <script type="text/javascript" src="assets/js/navbar.js"></script>
+      <script type="text/javascript">
+        $if(toc)$
+          $if(toc_float)$
+            navbar();
+          $endif$
+        $endif$
+        window.addEventListener("hashchange", function () {
+          window.scrollTo(window.scrollX, window.scrollY - 75);
+        });
+      </script>
+    </div>
+  </body>
+</html>

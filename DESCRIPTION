@@ -1,0 +1,41 @@
+Package: biometrics
+Title: Report Templates for the Telethon Kids Institute
+Version: 1.0.0
+Authors@R: person("Paul", "Stevenson",
+    email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre"))
+Date: 2018-08-20
+Description: A pair of templates have been created that incorporate styling
+    themes present throughout Telethon Kids Institute?s style guide, web page
+    and template documents. Currently, templates are available to produce
+    stand-alone HTML reports and ioslides presentations. These templates also
+    include colour palates that will automatically reproduce Telethon Kids style
+    in R graphics. A number of helper functions and data-sets are also available.
+License: GPL-3 + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 2.10)
+Imports:
+    dplyr (>= 0.7.6),
+    ggplot2 (>= 3.0.0),
+    readr (>= 1.1.1),
+    tibble (>= 1.4.2),
+    tidyr (>= 0.8.1),
+    purrr (>= 0.2.5),
+    magrittr (>= 1.5),
+    tidyverse (>= 1.2.1),
+    lubridate (>= 1.7.4),
+    yaml (>= 2.1.18),
+    XML (>= 3.98-1.11),
+    data.table (>= 1.11.4),
+    knitr (>= 1.20),
+    kableExtra (>= 0.9.0),
+    GGally (>= 1.4.0),
+    broom (>= 0.5.0),
+    lme4 (>= 1.1-17),
+    repmis (>= 0.5),
+    ProjectTemplate (>= 0.8.2)
+Suggests:
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.0

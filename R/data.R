@@ -1,0 +1,35 @@
+#' @title ICD-10 hash table
+#' @description A data.table that maps ICD-10 classification code to the disease
+#'   name, disease category, parent category and disease group. Codes were
+#'   sourced from GNU Health (downloaded June-2018).
+#'
+#' @format A data frame with 6820 rows and 5 variables:
+#' \describe{
+#'   \item{\code{id}}{(character key ICD-10 codes WITHOUT decimal points}
+#'   \item{\code{name}}{character disease name}
+#'   \item{\code{disease_category}}{character disease category}
+#'   \item{\code{parent_category}}{character parent disease category}
+#'   \item{\code{disease_group}}{character Infections/notifiable}
+#'}
+#' @source \url{http://health.gnu.org/}
+"ICD10"
+
+#' @title ICD-10-AM hash table
+#' @description A data.table that maps ICD-10-AM classification code to the
+#'   disease name, disease category, parent category and disease group. ICD-10
+#'   codes were sourced from GNU Health (downloaded June 2018) and mappings to
+#'   ICD-10-AM were sourced from the Australian Consortium for Classification
+#'   Development (downloaded 8-June-2018).
+#'
+#' @format A data frame with 10680 rows and 7 variables:
+#' \describe{
+#'   \item{\code{id}}{character key ICD-10-AM codes WITHOUT decimal points}
+#'   \item{\code{name}}{character disease name}
+#'   \item{\code{disease_category}}{character disease category}
+#'   \item{\code{parent_category}}{character parent disease category}
+#'   \item{\code{disease_group}}{character Infections/notifiable}
+#'   \item{\code{record_type}}{character record type ICD-10/ICD-10-AM}
+#'   \item{\code{mapping}}{character ICD-10 equivalent to the ICD-10-AM code}
+#'}
+#' @source \url{https://www.accd.net.au/Downloads.aspx}
+"ICD10AM"
