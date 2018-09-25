@@ -149,9 +149,9 @@ augment(model) %>%
 ```
 
 ## Example Plots
-The <code>GGPairs::ggpairs</code> function may be used to produce a visual summary of the input data:
+The <code>GGally::ggpairs</code> function may be used to produce a visual summary of the input data:
 
-```{r, out.extra = 'class="img-fluid center"'}
+```{r, out.extra = 'class="img-fluid center"', message = FALSE}
 ggpairs(iris, mapping=ggplot2::aes(colour = Species), diag = list(continuous = "densityDiag"),
         axisLabels = "show")
 
