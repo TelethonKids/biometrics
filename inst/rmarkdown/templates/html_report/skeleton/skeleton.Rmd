@@ -18,6 +18,10 @@ output:
     template: assets/templates/html_report.html
     css: assets/css/html_report.css
     self_contained: true
+vignette: >
+  %\VignetteIndexEntry{Telethon Kids Institute markdown HTML template}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 bibliography:
   - assets/bib/packages.bib
   - assets/bib/bibliography.bib

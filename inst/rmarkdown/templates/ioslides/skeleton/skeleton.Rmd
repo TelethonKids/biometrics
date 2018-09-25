@@ -10,6 +10,10 @@ output:
     css: assets/css/ioslides.css
     widescreen: true
     incremental: true
+vignette: >
+  %\VignetteIndexEntry{Telethon Kids Institute markdown ioslides template}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r init, include = FALSE, echo = FALSE}
