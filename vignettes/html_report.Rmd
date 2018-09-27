@@ -25,7 +25,6 @@ vignette: >
 bibliography:
   - assets/bib/packages.bib
   - assets/bib/bibliography.bib
-instructions: true
 
 ---
 
@@ -33,24 +32,26 @@ instructions: true
 # Load packages and add citation information to packages.bib
 # By default, packages listed in global.dcf are ignored and environment initiation is handled by .RProfile.
 library(repmis)
-LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "kableExtra", "broom", "GGally", "lme4"),
+LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "lme4"),
             file = "assets/bib/packages.bib")
+
+# loads in template hooks
+source("assets/R/hooks.R")
 
 ```
 
 # Summary
-<mark>The following text under each **# heading** should be removed from the final document and **instructions: false** is to be updated in the front-matter.</mark>
 
-This is a markdown template to produce HTML files. The template is a part of the biometrics package developed by Paul&nbsp;Stevenson at Telethon Kids Institute. The default template 'biometrics.html' is built on bootstrap and the associated formatting tags *should* be available.
-
-# Paragraph
-This is where the paragraph that would be copied into a publication manuscript is placed.
+This is a markdown template to produce HTML files. The template is a part of the biometrics package developed by Paul&nbsp;Stevenson at Telethon Kids Institute. The template is built on bootstrap and the associated formatting tags *should* be available.
 
 # Introduction
+
 ## Markdown Cheat Sheet
+
 The [markdown RStudio cheat sheat is here](https://www.rstudio.com/resources/cheatsheets/). Various information can be found here, including **shortcuts** to *modify the text*. [Bootstrap typography codes](https://www.w3schools.com/bootstrap4/bootstrap_typography.asp) also seem to be available to format markdown HTML documents; this feature has not been thoroughly tested by the author.
 
 ## Referencing
+
 Referencing important previous work and the scientific principles that underpin research is a vital aspect of any report. The default bibliography list that is used by this template is found in <code>assets/bib/bibliography.bib</code>. The author has included these references in the document for illustrative purposes [-@STEVENSON2017119]; however, they have nothing to do with anything that is written here [@CiteR; @R-lubridate].
 
 Bibliographic information for R packages are automatically generated (and loaded) with LoadandCite [@R-repmis]. By default, the package bibliography is stored in <code>assets/bib/packages.bib</code>, which is overwritten on each Knit and should not be manually altered.
@@ -59,11 +60,12 @@ References are automatically placed at the end of the document, so it is importa
 
 ## Adding R Script to Markdown
 R chunks are added through the following blocks of code:
-<code></br>
-\`\`\`{r chunk_name, include = FALSE}</br>
-&nbsp;&nbsp;print("Hello World!")</br>
+
+<code>
+\`\`\`{r chunk_name, include = FALSE}<br />
+&nbsp;&nbsp;print("Hello World!")<br />
 \`\`\`
-</code></br>
+</code><br />
 
 The above code produces the following in the markdown document:
 ```{r, include = TRUE}
@@ -80,25 +82,46 @@ The <code>echo = FALSE</code> argument can be used if you do not want the source
 Output can be suppressed entirely by changing <code>include = FALSE</code>, or by removing the argument.
 
 # Methods
+
 This template is built with the ProjectTemplate package in mind. By default, all data in the "cache" directories will be loaded. Files in the data directory are note loaded by default, but can be by setting <code>data_loading = TRUE</code> in the initialisation markdown chunk. Similarly, by default <code>munge = FALSE</code> and scripts in the munge directory will not be executed.
 
 R's included Iris data set will be used to illustrate how to include graphics and to use the colour palettes defined at the start of the document:
 
 ```{r load_data}
-  library(datasets)
-  data(iris)
+data(iris)
+
 ```
 
 # Results
-## Example Tables
-### Basic data
-Kable is a very simple table generator that takes input as either a matrix or data frame [@R-kableExtra]. See the [Kable documentation](https://www.rdocumentation.org/packages/kableExtra/versions/0.8.0/topics/kable_styling) for styling options available for the default tables used in this template. This example uses the <code>hover</code> style with <code>full_width = FALSE</code>.
 
+## Example Tables
+
+### Basic data
+
+Kable is a very simple table generator that takes input as either a matrix or data frame [@R-kableExtra]; see the [Kable documentation](https://www.rdocumentation.org/packages/kableExtra/versions/0.8.0/topics/kable_styling) for styling options available.
+
+In this template the kable formatting is applied automatically when using the chunk option <code>chunk option "table = T"</code>. By default, this template uses the <code>hover</code> style with <code>full_width = FALSE</code>. (Technical info: automatic formatting is implemented by <code>kintr::knit_hooks()</code> [@R-knitr] *via* the chunk source and optimal results are achieved when including the option <code>results = "hide"</code>; the source code cannot be shown when the kable formatting is automatically applied.)
+
+For example:
+
+<code>
+\`\`\`{r, table = T, results = "hide"}<br />
+&nbsp;&nbsp;head(iris)<br />
+\`\`\`<br />
+</code>
+
+will output:
+
+```{r, table = T, results = "hide"}
+head(iris)
+
+```
+
+If custom table options are needed, then the kable formatting can be applied as normal:
 ```{r}
-iris %>%
-  head(5) %>%
+head(iris) %>%
   kable("html") %>%
-  kable_styling("hover", full_width = FALSE)
+  kable_styling("hover", full_width = TRUE)
 
 ```
 
@@ -107,7 +130,7 @@ The <code>broom::tidy</code> [@R-broom] function may be used to convert the outp
 
 For example, the summary output of a linear mixed effects model (<code>lmr4::lmer</code>) looks like:
 
-```{r}
+```{r, comment = ""}
 model <- lmer(Sepal.Length ~ Sepal.Width + Petal.Width + (1|Species), data = iris)
 
 summary(model)
@@ -120,35 +143,30 @@ Broom defines tidying methods for extracting three kinds of statistics from an o
 * augment(): observation-level statistics
 * glance(): model-level statistics
 
-tidy():
+**tidy():**
 
-```{r}
-tidy(model) %>%
-  kable("html") %>%
-  kable_styling("hover", full_width = FALSE)
+```{r, table = T, results = "hide", warning = F}
+tidy(model)
 
 ```
 
-glance():
+**glance():**
 
-```{r}
-glance(model) %>%
-  kable("html") %>%
-  kable_styling("hover", full_width = FALSE)
+```{r, table = T, results = "hide"}
+glance(model)
 
 ```
 
-augment():
+**augment():**
 
-```{r}
+```{r, table = T, results = "hide"}
 augment(model) %>%
-  head() %>%
-  kable("html") %>%
-  kable_styling("hover", full_width = FALSE)
+  head()
 
 ```
 
 ## Example Plots
+
 The <code>GGally::ggpairs</code> function may be used to produce a visual summary of the input data:
 
 ```{r, out.extra = 'class="img-fluid center"', message = FALSE}
@@ -157,11 +175,13 @@ ggpairs(iris, mapping=ggplot2::aes(colour = Species), diag = list(continuous = "
 
 ```
 
-<mark>TO DO: Apply Telethon Kids' colour scheme to ggpairs plot.</mark>
+<!--<mark>TO DO: Apply Telethon Kids' colour scheme to ggpairs plot.</mark>-->
+
+### Colour schemes
 
 There are three colour schemes built into this theme: <code>scale_colour_telethonkids("light")</code>, <code>scale_colour_telethonkids("dark")</code> and <code>scale_colour_telethonkids("grey")</code>. These colour themes are implemented by adding the appropriate theme to the ggplot code:
 
-```{r, out.extra = 'class="img-fluid center"'}
+```{r, out.extra = "figure"}
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
   labs(title = "Iris Dataset", x = "Petal Width", y = "Petal Length") +
   geom_point(size = 4) +
@@ -172,7 +192,7 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
 
 A continuous colour theme can be implemented by adding the argument <code>discrete = FALSE</code> the <code>scale_colour_telethonkids()</code>:
 
-```{r scale, out.extra = 'class="img-fluid center"'}
+```{r scale, out.extra = "figure"}
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
   geom_point(size = 4, alpha = .6) +
   scale_color_telethonkids(discrete = FALSE, palette = "dark") +
@@ -182,13 +202,7 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
 
 Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code>scale_fill_telethonkids(palette = "mixed", guide = "none")</code>.
 
-To ensure the image is responsive on different sized screens, the code <code>out.extra = 'class="img-fluid center"'</code> must be included in the R chunk options.
-
-# Discussion
-Some discussion text.
-
-# Conclusion
-Some concluding text.
+To ensure the image is responsive on different sized screens, the code <code>out.extra = "figure"</code> should be included in the R chunk options (this calls an option hook defined in <code>hooks.R</code>).
 
 # References
 

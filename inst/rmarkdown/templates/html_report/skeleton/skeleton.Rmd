@@ -41,8 +41,11 @@ setwd(wd)
 # Load packages and add citation information to packages.bib
 # By default, packages listed in global.dcf are ignored and environment initiation is handled by .RProfile.
 library(repmis)
-LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "kableExtra", "broom", "GGally", "lme4"),
+LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "lme4"),
             file = "assets/bib/packages.bib")
+
+# loads in template hooks
+source("assets/R/hooks.R")
 
 ```
 
