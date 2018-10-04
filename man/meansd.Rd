@@ -2,9 +2,11 @@
 \alias{meansd}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
+Mean and SD
 %%  ~~function to do ... ~~
 }
 \description{
+asd
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
@@ -13,6 +15,7 @@ meansd(x)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
+  asdfas
 %%     ~~Describe \code{x} here~~
 }
 }
