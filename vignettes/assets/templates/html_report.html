@@ -2,7 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="generator" content="pandoc" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     $for(author-meta)$
       <meta name="author" content="$author-meta$" />
@@ -19,6 +21,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
     <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$ | Telethon Kids Institute</title>
     $if(highlighting-css)$
+
+    $for(header-includes)$
+      $header-includes$
+    $endfor$
+
       <style type="text/css">
         $highlighting-css$
       </style>

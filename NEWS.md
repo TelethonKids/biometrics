@@ -1,3 +1,6 @@
+# biometrics 1.0.2
+* Fixed issue that prevented HTML widgets from working in the HTML report template.
+
 # biometrics 1.0.1
 
 * Updated html report css heading styles (h1 - h3) - issue #1 closed
