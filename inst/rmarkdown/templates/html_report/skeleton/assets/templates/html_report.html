@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="generator" content="pandoc" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     $for(author-meta)$
       <meta name="author" content="$author-meta$" />
     $endfor$
@@ -15,33 +18,38 @@
     $if(keywords)$
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
     $endif$
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css -->
-    <link rel="stylesheet" href="assets/css/fonts.css"><!-- http://fast.fonts.net/cssapi/ef39b127-8f57-44b6-b5c1-574306354a61.css -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
-    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$ | Telethon Kids Institute</title>
-    $if(highlighting-css)$
 
     $for(header-includes)$
       $header-includes$
     $endfor$
 
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css -->
+    <link rel="stylesheet" href="assets/css/fonts.css"><!-- http://fast.fonts.net/cssapi/ef39b127-8f57-44b6-b5c1-574306354a61.css -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+    <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$ | Telethon Kids Institute</title>
+
+    $if(highlighting-css)$
       <style type="text/css">
         $highlighting-css$
       </style>
     $endif$
+
     $for(css)$
       <link rel="stylesheet" href="$css$">
     $endfor$
+
     $if(math)$
       $math$
     $endif$
+
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
     <![endif]-->
     <!--$for(header-includes)$
       $header-includes$
     $endfor$-->
+
   </head>
   <body>
     $if(title)$
