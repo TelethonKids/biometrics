@@ -1,10 +1,10 @@
 Package: biometrics
 Title: Report Templates for the Telethon Kids Institute
-Version: 1.0.4M
+Version: 1.0.4
 Authors@R: c(person("Paul", "Stevenson",
     email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")),
     person("Matthew", "Cooper",
-    email = "Matt.Cooper@telethonkids.org.au", role = c("aut"))
+    email = "Matt.Cooper@telethonkids.org.au", role = c("aut")))
 Date: 2018-11-06
 Description: A pair of templates have been created that incorporate styling
     themes present throughout the Telethon Kids Institute style guide, web page
