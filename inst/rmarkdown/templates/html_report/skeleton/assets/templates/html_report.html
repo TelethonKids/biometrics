@@ -2,8 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
   <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="generator" content="pandoc" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     $for(author-meta)$
       <meta name="author" content="$author-meta$" />
     $endfor$
@@ -13,28 +18,36 @@
     $if(keywords)$
       <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
     $endif$
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css -->
-    <link rel="stylesheet" href="assets/css/fonts.css"><!-- http://fast.fonts.net/cssapi/ef39b127-8f57-44b6-b5c1-574306354a61.css -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
-    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$ | Telethon Kids Institute</title>
+
+    <!-- manually include header-includes, leaving out bootstrap 3.3.5 (issue #5) -->
+    <link href="assets/header-includes/bootstrap-4.1.3/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/header-includes/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+    <link href="assets/header-includes/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+    <link href="assets/header-includes/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+
+    <link href="assets/css/fonts.css" rel="stylesheet"><!-- http://fast.fonts.net/cssapi/ef39b127-8f57-44b6-b5c1-574306354a61.css -->
+    <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$ | Telethon Kids Institute</title>
+
     $if(highlighting-css)$
       <style type="text/css">
         $highlighting-css$
       </style>
     $endif$
+
     $for(css)$
       <link rel="stylesheet" href="$css$">
     $endfor$
+
     $if(math)$
       $math$
     $endif$
+
     <!--[if lt IE 9]>
       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
     <![endif]-->
-    <!--$for(header-includes)$
-      $header-includes$
-    $endfor$-->
+
   </head>
   <body>
     $if(title)$
@@ -153,9 +166,21 @@
         <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
       </div>
       <div class="row" id="footer"></div>
-      <script type="text/javascript" src="assets/js/jquery.min.js"></script><!-- https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js -->
-      <script type="text/javascript" src="assets/js/popper.min.js"></script><!-- https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js -->
-      <script type="text/javascript" src="assets/js/bootstrap.min.js"></script><!-- https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js -->
+      <!-- manually include header-includes, leaving out bootstrap 3.3.5 (issue #5) -->
+      <script src="assets/header-includes/jquery-3.3.1/jquery-3.3.1.min.js"></script>
+      <script src="assets/header-includes/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+      <script src="assets/header-includes/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+      <script src="assets/header-includes/bootstrap-3.3.5/shim/respond.min.js"></script>
+      <script src="assets/header-includes/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+      <script src="assets/header-includes/tocify-1.9.1/jquery.tocify.js"></script>
+      <script src="assets/header-includes/navigation-1.1/tabsets.js"></script>
+      <script src="assets/header-includes/htmlwidgets-1.2/htmlwidgets.js"></script>
+      <script src="assets/header-includes/plotly-binding-4.8.0/plotly.js"></script>
+      <script src="assets/header-includes/typedarray-0.1/typedarray.min.js"></script>
+      <script src="assets/header-includes/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+      <script src="assets/header-includes/plotly-main-1.39.2/plotly-latest.min.js"></script>
+
+      <!-- other scripts -->
       <script type="text/javascript" src="assets/js/navbar.js"></script>
       <script type="text/javascript">
         $if(toc)$
