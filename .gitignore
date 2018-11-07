@@ -1,3 +1,5 @@
+Meta
+doc
 .Rproj.user
 .Rhistory
 .RData
@@ -7,4 +9,3 @@ README.Rmd
 # Ignore data files
 /archive
 /data-raw
-
