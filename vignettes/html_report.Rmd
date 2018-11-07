@@ -33,10 +33,10 @@ bibliography:
 # By default, packages listed in global.dcf are ignored and environment initiation is handled by .RProfile.
 library(repmis)
 LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "lme4"),
-            file = "assets/bib/packages.bib")
+            file = file.path("assets", "bib", "packages.bib"))
 
 # loads in template hooks
-source("assets/R/hooks.R")
+source(file.path("assets", "R", "hooks.R"))
 
 ```
 
