@@ -2,30 +2,33 @@
 % Please edit documentation in R/group_interval.R
 \name{group_interval}
 \alias{group_interval}
-\title{Group by Interval}
+\title{Group by date interval}
 \usage{
-group_interval(x, b, start, end, debug = F)
+group_interval(dat, buffer, start, end, .view_mat = F, .view_graph = F)
 }
 \arguments{
-\item{x}{the data frame to be grouped, must be sorted by start date column}
+\item{dat}{the data frame to be grouped, must be sorted by start date column}
 
-\item{b}{the buffer interval i.e . /{lubridate::days(14)}}
+\item{buffer}{the buffer interval e.g. days(14)}
 
 \item{start, end}{the column name (as a character) containing the records'
 start and end dates, respectively}
 
-\item{debug}{passing debug = T (default is F) will mutate the input data frame
-with the group number and intermediate calculated value and write to the
-global variable group_interval_checking (not active)}
+\item{.view_mat}{when TRUE (defult FALSE) creates an overlap matrix and applies
+View()}
+
+\item{.view_graph}{when TRUE (default FALSE) plots the graph of crouped records}
 }
 \value{
 an integer vector of group numbers
 }
 \description{
-Group records in a data frame by date intervals and proximity
+Group records in a data frame by date that intervals including a buffer period.
 }
 \examples{
+
 \dontrun{
+
 dat <- data_frame(
   name = c("Paul", "Jess", "Ben", "Josie", "Damien", "Hayley"),
   start = ymd(c("2018-05-25", "2018-05-29", NA, "2018-06-25",
@@ -36,6 +39,7 @@ dat <- data_frame(
 dat <- arrange(dat, start, end)
 
 group_interval(dat, days(2), "start", "end")
+
 }
 
 }

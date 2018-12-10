@@ -1,3 +1,7 @@
+# biometrics 1.0.999
+* Changed the logic behind group_interval, which should now be more robust
+* Added abbreviator function that creates Bootstrap 4 tooltip with an abbreviation and its definition
+
 # biometrics 1.0.2
 * Fixed issue that prevented HTML widgets from working in the HTML report template.
 

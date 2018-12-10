@@ -1,9 +1,11 @@
 Package: biometrics
 Title: Report Templates for the Telethon Kids Institute
 Version: 1.0.2-999
-Authors@R: person("Paul", "Stevenson",
-    email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre"))
-Date: 2018-10-30
+Authors@R: c(person("Paul", "Stevenson",
+    email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")),
+    person("Matt", "Cooper",
+    email = "Matt.Cooper@telethonkids.org.au", role = "aut"))
+Date: 2018-12-10
 Description: A pair of templates have been created that incorporate styling
     themes present throughout the Telethon Kids Institute style guide, web page
     and template documents. Currently, templates are available to produce
@@ -14,28 +16,29 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 2.10)
+    R (>= 3.5.0)
 Imports:
-    dplyr (>= 0.7.6),
+    data.table (>= 1.11.4),
     ggplot2 (>= 3.0.0),
-    readr (>= 1.1.1),
-    tibble (>= 1.4.2),
+    dplyr (>= 0.7.6),
     tidyr (>= 0.8.1),
+    readr (>= 1.1.1),
     purrr (>= 0.2.5),
-    magrittr (>= 1.5),
-    tidyverse (>= 1.2.1),
+    tibble (>= 1.4.2),
+    stringr (>= 1.3.1),
+    forcats (>= 0.3.0),
     lubridate (>= 1.7.4),
     yaml (>= 2.1.18),
     XML (>= 3.98-1.11),
-    data.table (>= 1.11.4),
     knitr (>= 1.20),
     kableExtra (>= 0.9.0),
     GGally (>= 1.4.0),
     broom (>= 0.5.0),
     lme4 (>= 1.1-18-1),
     repmis (>= 0.5),
-    ProjectTemplate (>= 0.8.2)
+    ProjectTemplate (>= 0.8.2),
+    igraph (>= 1.2.2)
 Suggests:
-    rmarkdown
+    rmarkdown (>= 1.10)
 VignetteBuilder: knitr
 RoxygenNote: 6.1.0
