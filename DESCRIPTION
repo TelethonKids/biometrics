@@ -41,4 +41,4 @@ Imports:
 Suggests:
     rmarkdown (>= 1.10)
 VignetteBuilder: knitr
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

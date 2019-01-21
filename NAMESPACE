@@ -3,6 +3,7 @@
 export(abbreviator)
 export(group_interval)
 export(roll_up)
+export(round_df)
 export(scale_color_telethonkids)
 export(scale_fill_telethonkids)
 export(telethonkids_colours)
