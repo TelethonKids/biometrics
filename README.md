@@ -42,8 +42,9 @@ Studio](https://www.rstudio.com/resources/cheatsheets/).
 
 ## Authors
 
-**Paul Stevenson** - *Initial development* -
-[pgstevenson](https://github.com/pgstevenson)
+  - **Paul Stevenson** - *creator* -
+    [pgstevenson](https://github.com/pgstevenson)
+  - **Matt Cooper** - *author* - [nzcoops](https://github.com/nzcoops)
 
 ## License
 
