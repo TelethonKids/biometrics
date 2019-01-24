@@ -8,3 +8,4 @@ README.Rmd
 /archive
 /data-raw
 inst/doc
+inst/rmarkdown/templates/docx_letter
