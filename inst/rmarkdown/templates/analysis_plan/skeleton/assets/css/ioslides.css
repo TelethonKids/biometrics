@@ -18,14 +18,14 @@ em {
 }
 
 .col2 {
-  columns: 2 200px;         /* number of columns and width in pixels*/
   -webkit-columns: 2 200px; /* chrome, safari */
   -moz-columns: 2 200px;    /* firefox */
+  columns: 2 200px;         /* number of columns and width in pixels*/
 }
 .col3 {
-  columns: 3 100px;
   -webkit-columns: 3 100px;
   -moz-columns: 3 100px;
+  columns: 3 100px;
 }
 
 .footer-logo img {
@@ -38,8 +38,8 @@ em {
 
 .footer-strip {
   position: absolute;
-  left: 0px;
-  bottom: 0px;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 50px;
 }
@@ -83,35 +83,25 @@ article {
 }
 
 slide::after {
-  position: absolute !important;
-  left: 100px !important;
-  bottom: 80px !important;
-}
-
-.title-slide {
-  background-color: #6CACE4;
+  position: absolute;
+  left: 100px;
+  bottom: 80px;
 }
 
 .title-container {
   position: absolute;
   top: 40px;
-  left: 0px;
-  width: 75%;
-}
-
-.title-container h2 {
-  color: white !important;
-  font-weight: bold !important;
+  left: 0;
 }
 
 .title-container p {
-  color: #53565A !important;
-  font-weight: bold !important;
+  color: #53565A;
+  font-weight: bold;
 }
 
 .gdbar img {
-  width: 267px !important;
-  height: 199px !important;
+  width: 187px;
+  height: 139px;
 }
 
 .gdbar p {
@@ -125,9 +115,8 @@ slide::after {
   display: inline-block;
   position: absolute;
   left: 50px;
-  right: 50px;
+  right: 200px;
   bottom: 40px;
-  background-color: white;
 }
 
 .middle {
