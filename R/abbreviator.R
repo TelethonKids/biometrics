@@ -7,14 +7,13 @@
 #'
 #' @return a html anchor (i.e. <a ...>KEY</a>) defining a tooltip with the abbreviation's definition (defined in data.table column "def").
 #'
-#' @import data.table
-#'
 #' @examples
 #' \dontrun{
+#' library(data.table)
+#'
 #' abbrv <- data.table(abbrv = c("PGS"), def = c("Paul G Stevenson"), key = "abbrv")
 #'
 #' abbreviator("PGS", abbrv)
-#'
 #' }
 #'
 #' @export

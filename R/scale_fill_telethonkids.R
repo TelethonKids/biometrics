@@ -5,6 +5,7 @@
 #' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_fill_gradientn(), used respectively when discrete is TRUE or FALSE
+#'
 #' @export
 scale_fill_telethonkids <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
   pal <- telethonkids_pal(palette = palette, reverse = reverse)

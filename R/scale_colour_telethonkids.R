@@ -5,7 +5,9 @@
 #' @param reverse Boolean indicating whether the palette should be reversed
 #' @param ... Additional arguments passed to discrete_scale() or
 #'            scale_color_gradientn(), used respectively when discrete is TRUE or FALSE
+#'
 #' @import ggplot2
+#'
 #' @export
 scale_color_telethonkids <- function(palette = "light", discrete = TRUE, reverse = FALSE, ...) {
   pal <- telethonkids_pal(palette = palette, reverse = reverse)

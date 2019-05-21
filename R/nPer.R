@@ -1,4 +1,17 @@
-#' @title printing N and percentage
+#' nPer
+#'
+#' Printing N and percentage
+#'
+#' @param vec numeric vector
+#' @param intGroup xxxx
+#' @param dp (default 1)
+#'
+#' @return xxxx
+#'
+#' @examples
+#' \dontrun{
+#'   nPer(xxx)
+#' }
 #'
 #' @export
 

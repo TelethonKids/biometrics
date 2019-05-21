@@ -10,7 +10,6 @@
 #'
 #' @return A single row data table.\cr\cr NAs are removed and output strings are not factors.
 #'
-#'@importFrom magrittr %>%
 #' @import dplyr
 #' @import tibble
 #'

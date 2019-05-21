@@ -13,11 +13,8 @@ recoder(x)
 Recode a Text File as UTF-8
 }
 \examples{
-
 \dontrun{
-
 recoder("packages.bib")
-
 }
 
 }

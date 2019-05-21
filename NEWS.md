@@ -1,8 +1,19 @@
+# biometrics v1.0.4
+* Updated HTML report template to better align with current workflow
+  - created analysis plan
+  - added markdown hooks to template
+  - plotly works 'out of the box'
+  - added 'recoder' to the templates
+* Added format_model function
+* Added excel_ref package data
+* Moved telethonkids_colours and telethonkids_palletes in to package data
+* Documentation updates
+
 # biometrics v1.0.3
 * Changed the logic behind group_interval, which should now be more robust
 * Added abbreviator function that creates Bootstrap 4 tooltip with an abbreviation and its definition
 * Added recoder function that reads a text files and saves with UTF-8 encoding
-* Added round_df function that rounds dataframes to a specified number of decimal points
+* Added round_df function that rounds data frames to a specified number of decimal points
 * Some minor updates to html_report
 
 # biometrics v1.0.2

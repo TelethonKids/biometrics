@@ -32,7 +32,7 @@ bibliography:
 #### Load packages and add citation information to packages.bib ----
 
 library(repmis)
-LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner", "jtools"),
+LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner", "jtools"),
             file = "assets/bib/packages.bib")
 recoder("assets/bib/packages.bib")
 
@@ -97,7 +97,7 @@ models <- list(
   m2 = format_model(m3)
 )
 
-# print coefficients: `r select(models$m1, term, estimate, conf.low, conf.hi) %>% round_df(2)`
+# print coefficients: `r select(models$m1, term, estimate, conf.low, conf.high) %>% round_df(2)`
 # in-text citation: `r filter(models$m1, term == "Sepal.Width")$text1`
 
 ```
@@ -134,7 +134,8 @@ head(iris)
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
   labs(title = "Iris Dataset", x = "Petal Width", y = "Petal Length") +
   geom_point(size = 4) +
-  scale_color_telethonkids(discrete = T, palette = "light") + # scale_fill_telethonkids(discrete = T, palette = "light")
+  scale_color_telethonkids(discrete = T, palette = "light") +
+  # scale_fill_telethonkids(discrete = T, palette = "light") +
   theme_classic()
 
 ```
@@ -170,7 +171,7 @@ plot_summs(m1, m2, m3,
 ```{r model_1, table = T, results = "hide", eval = F}
 models$m1 %>%
   select(term, estimate, conf.low, conf.high) %>%
-  round_df(2)
+  round_df()
 
 ```
 

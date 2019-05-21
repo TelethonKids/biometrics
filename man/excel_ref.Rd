@@ -10,12 +10,15 @@
   \item{\code{numbers}}{integer corresponding column number}
 }}
 \usage{
-excel_ref
+data(excel_ref)
 }
 \description{
 A data table of alpha/numeric key/value pairs, where key is the
 letter sequence of the excel column. Range of letter sequence is A - ZZZ.
-Usage: excel_ref["ABC"]$numbers that return the column number of that letter
-sequence.
+}
+\examples{
+\donttest{
+  excel_ref["ABC"]$numbers
+}
 }
 \keyword{datasets}

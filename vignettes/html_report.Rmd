@@ -32,8 +32,9 @@ bibliography:
 # Load packages and add citation information to packages.bib
 # By default, packages listed in global.dcf are ignored and environment initiation is handled by .RProfile.
 library(repmis)
-LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "lme4"),
+LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally"),
             file = file.path("assets", "bib", "packages.bib"))
+recoder("assets/bib/packages.bib")
 
 # loads in template hooks
 source(file.path("assets", "R", "hooks.R"))
@@ -128,10 +129,10 @@ head(iris) %>%
 ### Model output
 The <code>broom::tidy</code> [@R-broom] function may be used to convert the output into a data frame that is compatible with kable When data is supplied from a model, which may be more appropraite for a report or publication.
 
-For example, the summary output of a linear mixed effects model (<code>lmr4::lmer</code>) looks like:
+For example, the summary output of a linear model looks like:
 
 ```{r model_summary, comment = ""}
-model <- lmer(Sepal.Length ~ Sepal.Width + Petal.Width + (1|Species), data = iris)
+model <- lm(Sepal.Length ~ Sepal.Width + Petal.Width, data = iris)
 
 summary(model)
 

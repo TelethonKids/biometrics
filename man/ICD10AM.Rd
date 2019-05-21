@@ -18,13 +18,13 @@
 \url{https://www.accd.net.au/Downloads.aspx}
 }
 \usage{
-ICD10AM
+data(ICD10AM)
 }
 \description{
 A data.table that maps ICD-10-AM classification code to the
-  disease name, disease category, parent category and disease group. ICD-10
-  codes were sourced from GNU Health (downloaded June 2018) and mappings to
-  ICD-10-AM were sourced from the Australian Consortium for Classification
-  Development (downloaded 8-June-2018).
+disease name, disease category, parent category and disease group. ICD-10
+codes were sourced from GNU Health (downloaded June 2018) and mappings to
+ICD-10-AM were sourced from the Australian Consortium for Classification
+Development (downloaded 8-June-2018).
 }
 \keyword{datasets}

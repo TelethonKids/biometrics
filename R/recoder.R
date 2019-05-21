@@ -2,12 +2,11 @@
 #'
 #' @param x path to the file
 #'
+#' @importFrom utils read.delim write.table
+#'
 #' @examples
-#'
 #' \dontrun{
-#'
 #' recoder("packages.bib")
-#'
 #' }
 #'
 #' @export

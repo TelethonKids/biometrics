@@ -32,7 +32,7 @@ bibliography:
 #### Load packages and add citation information to packages.bib ----
 
 library(repmis)
-LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner"),
+LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner"),
             file = "assets/bib/packages.bib")
 recoder("assets/bib/packages.bib")
 

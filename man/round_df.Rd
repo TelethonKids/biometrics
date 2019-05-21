@@ -2,29 +2,6 @@
 % Please edit documentation in R/round_df.R
 \name{round_df}
 \alias{round_df}
-<<<<<<< HEAD
-\title{Rounds the double columns in a data frame}
-\usage{
-round_df(df, digits)
-}
-\arguments{
-\item{df}{a data frame object}
-
-\item{digits}{the number of digits after the decimal point}
-}
-\value{
-the data frame with rounded numbers
-}
-\description{
-All columns in a data frame with class double will be rounded to the sepecified
-number of digits. Integer classes will be left unchanged.
-}
-\examples{
-
-df <- data.frame(a = "a", b = 0.025, c = 15.34234, d = T)
-
-round_df(df, 2)
-=======
 \title{Round data frame decimal points}
 \usage{
 round_df(df, dp = 2)
@@ -47,6 +24,5 @@ data(mtcars)
 
 head( round_df(mtcars, 1) )
 }
->>>>>>> 5f675318c758311140ae387150324351c1da0776
 
 }

@@ -10,7 +10,6 @@
 #'
 #' @return A data frame is returned with a id variable (matching the first column of the input data frame) and columns for values.
 #'
-#' @importFrom magrittr %>%
 #' @import dplyr
 #'
 #' @examples

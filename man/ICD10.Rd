@@ -16,11 +16,11 @@
 \url{http://health.gnu.org/}
 }
 \usage{
-ICD10
+data(ICD10)
 }
 \description{
 A data.table that maps ICD-10 classification code to the disease
-  name, disease category, parent category and disease group. Codes were
-  sourced from GNU Health (downloaded June-2018).
+name, disease category, parent category and disease group. Codes were
+sourced from GNU Health (downloaded June-2018).
 }
 \keyword{datasets}

@@ -13,9 +13,11 @@
 #' @return an integer vector of group numbers
 #'
 #' @import dplyr
-#' @importFrom igraph components graph_from_data_frame
-#' @importFrom lubridate interval
+#' @importFrom igraph components graph_from_data_frame layout_with_fr
+#' @importFrom lubridate interval int_overlaps
 #' @importFrom tidyr spread
+#' @importFrom utils View
+#' @importFrom graphics plot
 #'
 #' @examples
 #'
@@ -45,12 +47,12 @@ group_interval <- function(dat, buffer, start, end, .view_mat = F, .view_graph =
 
   dat <- dat %>%
     mutate(rid = 1:nrow(dat),# add in row id
-           intervals = interval(interval_lower, interval_upper)) # define admissions as intervals incorporating buffer
+           intervals = interval(.data$interval_lower, .data$interval_upper)) # define admissions as intervals incorporating buffer
 
   df_overlap <- bind_cols(
     expand.grid(dat$rid, dat$rid), # make a 2 col table with every combination of id numbers
     expand.grid(dat$intervals, dat$intervals)) %>% # make a combination of every interval
-    mutate(overlap = int_overlaps(Var11, Var21)) %>% # determine if intervals overlap
+    mutate(overlap = int_overlaps(.data$Var11, .data$Var21)) %>% # determine if intervals overlap
     rename("row" = "Var1", "col" = "Var2")
 
   # Find groups via graph theory See igraph package
@@ -59,15 +61,15 @@ group_interval <- function(dat, buffer, start, end, .view_mat = F, .view_graph =
 
   # create a 2 column df with row (index) and group number, arrange on row number and return distinct values
   df_groups <- data_frame(row = as.integer(names(groups)), group = groups) %>%
-    arrange(row) %>%
+    arrange(.data$row) %>%
     distinct()
 
   # View df
   if (.view_mat) {
     df_view <- df_overlap %>%
-      select(row, col, overlap) %>%
-      spread(key = col, value = overlap) %>% # turn into a n x n data_frame
-      select(-row)
+      select(.data$row, .data$col, .data$overlap) %>%
+      spread(key = .data$col, value = .data$overlap) %>% # turn into a n x n data_frame
+      select(-.data$row)
     df_view[lower.tri(df_view, diag = F)] <- F # set lower triangle to FALSE (keep diagonals as TRUE)
     apply(df_view, 2, function(x) ifelse(!x, NA, x)) %>% # change FALSE to NA
       View()

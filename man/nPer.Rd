@@ -2,10 +2,26 @@
 % Please edit documentation in R/nPer.R
 \name{nPer}
 \alias{nPer}
-\title{printing N and percentage}
+\title{nPer}
 \usage{
 nPer(vec, intGroup, dp = 1)
 }
+\arguments{
+\item{vec}{numeric vector}
+
+\item{intGroup}{xxxx}
+
+\item{dp}{(default 1)}
+}
+\value{
+xxxx
+}
 \description{
-printing N and percentage
+Printing N and percentage
+}
+\examples{
+\dontrun{
+  nPer(xxx)
+}
+
 }

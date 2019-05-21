@@ -18,6 +18,15 @@ vignette: >
 
 ```{r init, include = FALSE, echo = FALSE}
 library(biometrics)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(purrr)
+library(tibble)
+library(stringr)
+library(forcats)
+library(lubridate)
 
 ```
 

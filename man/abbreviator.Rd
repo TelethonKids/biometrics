@@ -19,10 +19,11 @@ Create Bootstrap 4 tooltip with an abbreviation and its definition
 }
 \examples{
 \dontrun{
+library(data.table)
+
 abbrv <- data.table(abbrv = c("PGS"), def = c("Paul G Stevenson"), key = "abbrv")
 
 abbreviator("PGS", abbrv)
-
 }
 
 }
