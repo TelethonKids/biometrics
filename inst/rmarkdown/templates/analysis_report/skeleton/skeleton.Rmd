@@ -4,7 +4,7 @@ subtitle: "Biometrics Analysis Report"
 author:
   - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
 affiliation:
-  - "<sup>1</sup>Telethon Kids Institute, Biometrics Group"
+  - "<sup>1</sup>Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
   - "<sup>2</sup>Other Affiliation(s)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 logo: assets/images/logo800.jpg
@@ -56,35 +56,6 @@ source("assets/R/hooks.R")
 
 # source("../R/99-helper.R")
 
-mod_to_tab <- function(x, effects = NULL, tails = 0.975) {
-  x %>% 
-    tidy(effects = effects) %>% 
-    mutate(ci.lo = estimate - std.error * qnorm(tails),
-           ci.hi = estimate + std.error * qnorm(tails))
-}
-
-round_df <- function(df, digits) {
-  mutate_at(df,
-            names(df)[vapply(df, is.numeric, FUN.VALUE = logical(1), USE.NAMES = F)],
-            .funs = list(~sprintf(paste0("%0.", digits, "f"), .)))
-}
-
-library(data.table) # maybe just add as a data object to package
-excel_ref <- bind_rows(
-  tibble(letters = LETTERS),
-  expand.grid(LETTERS, LETTERS, stringsAsFactors = F) %>%
-    as_tibble() %>%
-    mutate(letters = paste0(Var2, Var1)) %>%
-    select(letters),
-  expand.grid(LETTERS, LETTERS, LETTERS, stringsAsFactors = F) %>%
-    as_tibble() %>%
-    mutate(letters = paste0(Var3, Var2, Var1)) %>%
-    select(letters)
-) %>%
-  mutate(numbers = 1:nrow(.)) %>%
-  as.data.table()
-setkey(excel_ref, numbers)
-
 #### Load data ----
 
 # load("../cache/dat.RData")
@@ -93,15 +64,24 @@ setkey(excel_ref, numbers)
 
 figures <- captioner(prefix = "Figure")
 tables <- captioner(prefix = "Table")
+models <- captioner(prefix = "Model")
 
 tables(name = "tab1", caption = "Caption")
+
 figures(name = "fig1", caption = "Caption.")
 figures(name = "fig2", caption = "Example of 'jtools::plot_summs()'.")
+
+models(name = "mod1", caption = "Caption.")
 
 # Cite in text with (replacing tab1 with the relevant table/figure name:
 #   Full caption: `r tables("tab1")`
 #   In-text reference (e.g. Table 1): `r tables("tab1", display = "cite")`
 #   Caption number only (e.g. 1): `r tables("tab1", display = "num")`
+
+#### Data wrangling ----
+
+# All data wrangling should be done in the munge directory, but any further data
+# manipulation can be done here.
 
 #### Models ----
 
@@ -111,22 +91,20 @@ m1 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "setosa"))
 m2 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "versicolor"))
 m3 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "virginica"))
 
-models <- bind_rows(
-  mod_to_tab(m1) %>% mutate(Species = "setosa"),
-  mod_to_tab(m2) %>% mutate(Species = "versicolor"),
-  mod_to_tab(m3) %>% mutate(Species = "virginica")
+models <- list(
+  m1 = format_model(m1),
+  m2 = format_model(m2),
+  m2 = format_model(m3)
 )
 
-#### Data wrangling ----
-
-# All data wrangling should be done in the munge directory, but any further data
-# manipulation can be done here.
+# print coefficients: `r select(models$m1, term, estimate, conf.low, conf.hi) %>% round_df(2)`
+# in-text citation: `r filter(models$m1, term == "Sepal.Width")$text1`
 
 ```
 
 # Overview
 
-XXX from the XXX Research Team is looking to engage in consultation with the Telethon Kids Institute's Biometrics team to undertake statistical analysis to determine ***brief project summary***.
+<mark>XXX</mark> from the <mark>XXX</mark> Research Team is looking to engage in consultation with the Telethon Kids Institute's Biometrics team to undertake statistical analysis to determine ***brief project summary***.
 
 ***Study overview to put the analysis in context.***
 
@@ -137,7 +115,7 @@ XXX from the XXX Research Team is looking to engage in consultation with the Tel
 
 # Summary of Findings
 
-<!-- Brief parragraph(s) that could be copy/pasted by the researcher into a manuscript, more detailed analysis is provided in the "commentary" section below -->
+<!-- Brief paragraph(s) that could be copy/pasted by the researcher into a manuscript, more detailed analysis is provided in the "commentary" section below -->
 
 # Tables
 
@@ -163,7 +141,7 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
 
 **`r figures("fig1")`**
 
-```{r q2_estimates_ci_fine, out.extra = "figure", echo = F, warning = F, message = F}
+```{r figure_2, out.extra = "figure", echo = F, warning = F, message = F}
 # TKI light palette (hex): c("#FED141", "#ED8B00", "#E0457B", "#C800A1", "#7566A0", "#6CACE4", "#00B2A9", "#78BE20", "#DBE442")
 # TKI dark palette (hex): c("#F1B434", "#CB6015", "#B52555", "#A12D86", "#4C4184", "#426DA9", "#008578", "#658D1B", "#BFB800")
 # TKI typography palette (hex): c("#B1B3B3", "#97999B", "#75787B", "#53565A")
@@ -190,9 +168,8 @@ plot_summs(m1, m2, m3,
 <!-- A list of models prepared during the analysis. -->
 
 ```{r model_1, table = T, results = "hide", eval = F}
-models %>%
-  filter(Species == "setosa") %>%
-  select(term, estimate, std.error, statistic, ci.lo, ci.hi) %>%
+models$m1 %>%
+  select(term, estimate, conf.low, conf.high) %>%
   round_df(2)
 
 ```

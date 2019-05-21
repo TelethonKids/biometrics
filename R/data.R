@@ -1,3 +1,15 @@
+#' @title Excel column reference map
+#' @description A data table of alpha/numeric key/value pairs, where key is the
+#' letter sequence of the excel column. Range of letter sequence is A - ZZZ.
+#' Usage: excel_ref["ABC"]$numbers that return the column number of that letter
+#' sequence.
+#' @format A data table with 18278 rows and 2 columns:
+#' \describe{
+#'   \item{\code{letters}}{character Excel column reference letters}
+#'   \item{\code{numbers}}{integer corresponding column number}
+#' }
+"excel_ref"
+
 #' @title ICD-10 hash table
 #' @description A data.table that maps ICD-10 classification code to the disease
 #'   name, disease category, parent category and disease group. Codes were
@@ -5,7 +17,7 @@
 #'
 #' @format A data frame with 6820 rows and 5 variables:
 #' \describe{
-#'   \item{\code{id}}{(character key ICD-10 codes WITHOUT decimal points}
+#'   \item{\code{id}}{character key ICD-10 codes WITHOUT decimal points}
 #'   \item{\code{name}}{character disease name}
 #'   \item{\code{disease_category}}{character disease category}
 #'   \item{\code{parent_category}}{character parent disease category}

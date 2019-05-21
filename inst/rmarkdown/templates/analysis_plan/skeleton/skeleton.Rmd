@@ -4,7 +4,7 @@ subtitle: "Biometrics Analysis Plan"
 author:
   - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
 affiliation:
-  - "<sup>1</sup>Telethon Kids Institute, Biometrics Group"
+  - "<sup>1</sup>Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
   - "<sup>2</sup>Other Affiliation(s)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 logo: assets/images/logo800.jpg
@@ -73,14 +73,14 @@ figures(name = "fig1", caption = "Caption.")
 #   In-text reference (e.g. Table 1): `r tables("tab1", display = "cite")`
 #   Caption number only (e.g. 1): `r tables("tab1", display = "num")`
 
-#### Models ----
-
-# Pre-run models here (if needed)
-
 #### Data wrangling ----
 
 # All data wrangling should be done in the munge directory, but any further data
 # manipulation can be done here.
+
+#### Models ----
+
+# Pre-run models here (if needed)
 
 ```
 

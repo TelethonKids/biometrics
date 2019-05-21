@@ -6,7 +6,7 @@
 \title{ICD-10 hash table}
 \format{A data frame with 6820 rows and 5 variables:
 \describe{
-  \item{\code{id}}{(character key ICD-10 codes WITHOUT decimal points}
+  \item{\code{id}}{character key ICD-10 codes WITHOUT decimal points}
   \item{\code{name}}{character disease name}
   \item{\code{disease_category}}{character disease category}
   \item{\code{parent_category}}{character parent disease category}
