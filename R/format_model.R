@@ -1,0 +1,35 @@
+#' Format a model for quick in-text referencing
+#'
+#' This function builds on `broom::tidy()` by adding formatted strings ready for use in text.
+#'
+#' @param x a model object
+#' @param effects (default NULL) a tidy effects option e.g. "fixed", "random"
+#' @param conf.level (default 0.95) the reported confidence interval of model estimates
+#' @param dp (default 2) the number of decimal points reported in returned strings
+#'
+#' @return a tibble with default `tidy()` parameters plus `conf.low`, `conf.high`, `text1`, and `text2`
+#'
+#' @importFrom broom tidy
+#' @importFrom dplyr mutate select left_join
+#'
+#' @examples
+#' \dontrun{
+#' data(iris)
+#' m1 <- lm(Sepal.Length ~ Sepal.Width, data = iris)
+#'
+#' format_model(m1) %>% select(term, estimate, conf.low, conf.high)
+#'
+#' format_model(m1)$text1
+#' format_model(m1)$text2
+#' }
+#'
+#' @export
+format_model <- function(x, effects = NULL, conf.level = 0.95, dp = 2) {
+  a <- broom::tidy(x, effects = effects, conf.int = T, conf.level = conf.level)
+  b <- a %>%
+    round_df(dp) %>%
+    dplyr::mutate(text1 = paste0(estimate, " (", 100 * conf.level, "% CI: ", conf.low, " to ", conf.high, ")"),
+                  text2 = paste0("(", estimate, "; , ", 100 * conf.level, "% CI: ", conf.low, " to ", conf.high, ")")) %>%
+    dplyr::select(term, text1, text2)
+  dplyr::left_join(a, b, by = "term")
+}

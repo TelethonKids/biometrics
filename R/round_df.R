@@ -1,22 +1,25 @@
-#' Rounds the double columns in a data frame
+#' Round data frame decimal points
 #'
-#' All columns in a data frame with class double will be rounded to the sepecified
-#' number of digits. Integer classes will be left unchanged.
+#' Round the numeric columns of a data frame to the specified number of decimal
+#' points using the `sprintf` function.
 #'
-#' @param df a data frame object
-#' @param digits the number of digits after the decimal point
+#' @param df the data frame to be rounded
+#' @param dp (default 2) the desired number of decimal points
 #'
-#' @return the data frame with rounded numbers
+#' @return a data frame, the rounded columns are convertd to character objects.
+#'
+#' @importFrom dplyr mutate_at
 #'
 #' @examples
+#' \dontrun{
+#' data(mtcars)
 #'
-#' df <- data.frame(a = "a", b = 0.025, c = 15.34234, d = T)
-#'
-#' round_df(df, 2)
+#' head( round_df(mtcars, 1) )
+#' }
 #'
 #' @export
-round_df <- function(df, digits) {
-  nums <- vapply(df, is.double, FUN.VALUE = logical(1))
-  df[,nums] <- round(df[,nums], digits = digits)
-  df
+round_df <- function(df, dp = 2) {
+  mutate_at(df,
+            names(df)[vapply(df, is.numeric, FUN.VALUE = logical(1), USE.NAMES = F)],
+            .funs = list(~sprintf(paste0("%0.", dp, "f"), .)))
 }

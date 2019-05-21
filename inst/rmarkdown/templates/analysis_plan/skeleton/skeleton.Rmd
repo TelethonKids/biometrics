@@ -1,0 +1,170 @@
+---
+title: "t101XX Telethon Kids Institute Analysis Plan Template"
+subtitle: "Biometrics Analysis Plan"
+author:
+  - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
+affiliation:
+  - "<sup>1</sup>Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
+  - "<sup>2</sup>Other Affiliation(s)"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+logo: assets/images/logo800.jpg
+nav_logo: assets/images/logo_plain.jpg
+header-background: green-circles-darker
+header-breakout: pms2395-breakout
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    template: assets/templates/html_report.html
+    css: assets/css/html_report.css
+    self_contained: true
+vignette: >
+  %\VignetteIndexEntry{t101XX Analysis Plan}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+bibliography:
+  - assets/bib/packages.bib
+  - assets/bib/bibliography.bib
+
+---
+
+```{r init, include = FALSE}
+#### Load packages and add citation information to packages.bib ----
+
+library(repmis)
+LoadandCite(pkgs = c("tidyverse", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner"),
+            file = "assets/bib/packages.bib")
+recoder("assets/bib/packages.bib")
+
+#### ProjectTemplate project initiation ----
+
+# see http://projecttemplate.net/configuring.html for configuration
+# (configuration also made via config/global.dcf)
+
+# Uncomment if ProjectTemplate package is being used
+
+# wd <- getwd()
+# setwd("../")
+# load.project(munging = FALSE, data_loading = TRUE)
+# setwd(wd)
+
+#### Load template hooks ----
+
+source("assets/R/hooks.R")
+
+#### Load helper functions ----
+
+# source("../R/99-helper.R")
+
+#### Load data ----
+
+# load("../cache/dat.RData")
+
+#### Captions ("captioner" package) ----
+
+figures <- captioner(prefix = "Figure")
+tables <- captioner(prefix = "Table")
+
+tables(name = "tab1", caption = "Caption")
+figures(name = "fig1", caption = "Caption.")
+
+# Cite in text with (replacing tab1 with the relevant table/figure name:
+#   Full caption: `r tables("tab1")`
+#   In-text reference (e.g. Table 1): `r tables("tab1", display = "cite")`
+#   Caption number only (e.g. 1): `r tables("tab1", display = "num")`
+
+#### Data wrangling ----
+
+# All data wrangling should be done in the munge directory, but any further data
+# manipulation can be done here.
+
+#### Models ----
+
+# Pre-run models here (if needed)
+
+```
+
+# Overview
+
+XXX from the XXX Research Team is looking to engage in consultation with the Telethon Kids Institute's Biometrics team to undertake statistical analysis to determine ***brief project summary***.
+
+Project roles:
+
+* XXX - Sponsor - XXX Research Team (XXX.XXX@telethonkids.org.au)
+* XXX - Principal Investigator - Biometrics (XXX.XXX@telethonkids.org.au)
+* XXX - Coordinating Principal Investigator - Biometrics (XXX.XXX@telethonkids.org.au)
+
+## Study Overview
+
+***Study overview to put the analysis in context.***
+
+# Data Analysis
+
+## Research Questions
+
+1. Research Question 1
+2. Research Question 2
+3. Research Question 3
+
+## Primary Dependent Variables
+
+* Primary dependent/outcome variable
+* Secondary outcome variables:
+  - A
+  - B
+   
+## Primary Independent Variables
+
+* A
+* B
+
+## Potential Covariates
+
+* A
+* B
+
+## Dataset Overview
+
+The following data files were provided by XXX:
+
+* <code>file.xlsx</code> (DD MMM YYYY)
+* <code>file.sav</code> (DD MMM YYYY)
+
+## Preliminary Data Cleaning
+
+* A
+* B
+
+## Pairs Plot
+ 
+```{r variable_matrix, out.extra = "figure", echo = F, message = F, warning = F}
+ggpairs(iris, # update with name of data frame, select important columns
+        mapping = ggplot2::aes(colour = factor(Species), alpha = 0.6),
+        diag = list(continuous = "densityDiag"),
+        axisLabels = "show") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+# Analysis Estimate
+
+Statistical models will be prepared for the dependant measures identified above with some commentary regarding their interpretation and statistical significance in terms of 95% confidence intervals. Where appropriate, figures will be prepared  to help convey the analysis findings. Descriptive statistics can also be provided in the final result/manuscript preparation upon request.
+
+Commentary around the methods and results of model creation will be provided in the form of a report that will include "copy-and-paste" paragraphs for manuscript preparation and a more detailed analysis summary. The analysis and reporting will be completed in the R programming language and all R script files associated with the analysis will be made available to the researcher upon request.
+
+Assuming the data are tidy and clean, we estimate <mark>4-6 days of analysis time</mark> (@$850 exc GST p/d), which does not include final result preparation time. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
+
+It would be worthwhile preparing a skeleton of the tables for the paper to make the most efficient use of the analysis time, as working through multiple iterations of possible tables (which we are happy to do if required) will increase the analysis time/cost.
+
+Final table prep and contribution to paper writing, within reason, is provided in-kind. Cost recovery for this function will be necessary if there are substantial edits/revisions/changes-of-mind.
+
+# End Matter
+
+## Reproducible Research Information
+
+This document was prepared using the software [R](https://www.r-project.org/), via the [RStudio](https://www.rstudio.com/) IDE, and was written in [RMarkdown](https://rmarkdown.rstudio.com/).
+
+```{r echo = T}
+sessionInfo()
+
+```

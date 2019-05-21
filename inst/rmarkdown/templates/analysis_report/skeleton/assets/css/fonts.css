@@ -1,0 +1,44 @@
+@font-face{
+  font-family: "Proxima Nova Soft Regular";
+  src:  url("../fonts/soft-regular-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/soft-regular-webfont.woff2") format("woff2"),
+        url("../fonts/soft-regular-webfont.woff") format("woff"),
+        url("../fonts/soft-regular-webfont.ttf") format("truetype"),
+        url("../fonts/soft-regular-webfont.svg") format("svg");
+}
+
+@font-face{
+  font-family: "Proxima Nova Soft Medium";
+  src:  url("../fonts/soft-medium-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/soft-medium-webfont.woff2") format("woff2"),
+        url("../fonts/soft-medium-webfont.woff") format("woff"),
+        url("../fonts/soft-medium-webfont.ttf") format("truetype"),
+        url("../fonts/soft-medium-webfont.svg") format("svg");
+}
+
+@font-face{
+  font-family: "Proxima Nova Soft Semibold";
+  src:  url("../fonts/soft-semibold-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/soft-semibold-webfont.woff2") format("woff2"),
+        url("../fonts/soft-semibold-webfont.woff") format("woff"),
+        url("../fonts/soft-semibold-webfont.ttf") format("truetype"),
+        url("../fonts/soft-semibold-webfont.svg") format("svg");
+}
+
+@font-face{
+  font-family: "Proxima Nova Soft Bold";
+  src:  url("../fonts/soft-bold-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/soft-bold-webfont.woff2") format("woff2"),
+        url("../fonts/soft-bold-webfont.woff") format("woff"),
+        url("../fonts/soft-bold-webfont.ttf") format("truetype"),
+        url("../fonts/soft-bold-webfont.svg") format("svg");
+}
+
+@font-face{
+  font-family: "Proxima Nova Light";
+  src:  url("../fonts/light-webfont.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/light-webfont.woff2") format("woff2"),
+        url("../fonts/light-webfont.woff") format("woff"),
+        url("../fonts/light-webfont.ttf") format("truetype"),
+        url("../fonts/light-webfont.svg") format("svg");
+}
