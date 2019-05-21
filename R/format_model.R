@@ -28,8 +28,8 @@ format_model <- function(x, effects = NULL, conf.level = 0.95, dp = 2) {
   a <- broom::tidy(x, effects = effects, conf.int = T, conf.level = conf.level)
   b <- a %>%
     round_df(dp) %>%
-    dplyr::mutate(text1 = paste0(.data$estimate, " (", 100 * .data$conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")"),
-                  text2 = paste0("(", .data$estimate, "; , ", 100 * .data$conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")")) %>%
+    dplyr::mutate(text1 = paste0(.data$estimate, " (", 100 * conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")"),
+                  text2 = paste0("(", .data$estimate, "; , ", 100 * conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")")) %>%
     dplyr::select(.data$term, .data$text1, .data$text2)
   dplyr::left_join(a, b, by = "term")
 }
