@@ -91,7 +91,7 @@ m1 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "setosa"))
 m2 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "versicolor"))
 m3 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "virginica"))
 
-models <- list(
+mods <- list(
   m1 = format_model(m1),
   m2 = format_model(m2),
   m2 = format_model(m3)
