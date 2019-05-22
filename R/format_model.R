@@ -25,7 +25,9 @@
 #'
 #' @export
 format_model <- function(x, effects = NULL, conf.level = 0.95, dp = 2) {
-  a <- broom::tidy(x, effects = effects, conf.int = T, conf.level = conf.level)
+  a <- broom::tidy(x, effects = effects) %>%
+    mutate(conf.low = estimate - std.error * qnorm((1 + conf.level) / 2),
+           conf.high = estimate + std.error * qnorm((1 + conf.level) / 2))
   b <- a %>%
     round_df(dp) %>%
     dplyr::mutate(text1 = paste0(.data$estimate, " (", 100 * conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")"),
