@@ -32,7 +32,7 @@ bibliography:
 #### Load packages and add citation information to packages.bib ----
 
 library(repmis)
-LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner", "jtools"),
+LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "car", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "captioner", "jtools"),
             file = "assets/bib/packages.bib")
 recoder("assets/bib/packages.bib")
 
@@ -90,11 +90,13 @@ models(name = "mod1", caption = "Caption.")
 m1 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "setosa"))
 m2 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "versicolor"))
 m3 <- lm(Sepal.Length ~ Sepal.Width, data = filter(iris, Species == "virginica"))
+m4 <- lm(Sepal.Length ~ Sepal.Width + Petal.Length + Species, data = iris)
 
 mods <- list(
   m1 = format_model(m1),
   m2 = format_model(m2),
-  m2 = format_model(m3)
+  m3 = format_model(m3),
+  m4 = format_model(m4)
 )
 
 # print coefficients: `r select(models$m1, term, estimate, conf.low, conf.high) %>% round_df(2)`
@@ -169,9 +171,74 @@ plot_summs(m1, m2, m3,
 <!-- A list of models prepared during the analysis. -->
 
 ```{r model_1, table = T, results = "hide", eval = F}
-models$m1 %>%
+mods$m4 %>%
   select(term, estimate, conf.low, conf.high) %>%
   round_df()
+
+```
+
+## Model Diagnostics
+
+### Influential Observations
+
+```{r influence_plot, out.extra = "figure", echo = F, warning = F, message = F, comment = NA}
+influencePlot(m4, id.method = "identify", main = "Influence Plot", sub = "Circle size is proportial to Cook's Distance" )
+
+```
+
+### Linearity of Relationships
+
+```{r added_variable_plot, out.extra = "figure", echo = F, warning = F, message = F}
+avPlots(m4)
+
+```
+
+```{r nonlinearity_crPlots, out.extra = "figure", echo = F, warning = F, message = F}
+crPlots(m4) # component + residual plot 
+
+```
+
+### Consitancy of Error Variance (homoscedasticity)
+
+```{r homoscedasticity_test, echo = F, comment = NA}
+ncvTest(m4) # non-constant error variance test
+
+```
+
+```{r homoscedasticity_plot, out.extra = "figure", echo = F, warning = F, message = F, comment = NA}
+# plot studentized residuals vs. fitted values 
+spreadLevelPlot(m4)
+
+```
+
+### Normality of Errors
+
+```{r qqplot, out.extra = "figure", echo = F, warning = F, message = F, comment = NA}
+qqPlot(m4, main="QQ Plot")
+
+```
+
+```{r residuals_distribution, out.extra = "figure", echo = F, warning = F, message = F}
+sresid <- MASS::studres(m4) 
+hist(sresid, freq=FALSE, 
+   main="Distribution of Studentized Residuals")
+xfit<-seq(min(sresid),max(sresid),length=40) 
+yfit<-dnorm(xfit) 
+lines(xfit, yfit)
+
+```
+
+### Collinearity
+
+```{r Collinearity, table = T, results = "hide", eval = F}
+vif(m4) %>% as_tibble() # variance inflation factors 
+
+```
+
+$$ \sqrt(model) > 2 $$
+
+```{r Collinearity_sq, table = T, results = "hide", eval = F}
+vif(m4) %>% as_tibble() %>% mutate_all(list(~sqrt(.) > 2)) # problem?
 
 ```
 
