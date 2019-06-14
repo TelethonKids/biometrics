@@ -25,13 +25,28 @@
 #'
 #' @export
 format_model <- function(x, effects = NULL, conf.level = 0.95, dp = 2) {
-  a <- broom::tidy(x, effects = effects) %>%
+  colours_3pal <- c("#8F715B", "#F1931B", "#D6618F") # negative, not significant, positive
+  broom::tidy(x, effects = effects) %>%
     mutate(conf.low = estimate - std.error * qnorm((1 + conf.level) / 2),
-           conf.high = estimate + std.error * qnorm((1 + conf.level) / 2))
-  b <- a %>%
-    round_df(dp) %>%
-    dplyr::mutate(text1 = paste0(.data$estimate, " (", 100 * conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")"),
-                  text2 = paste0("(", .data$estimate, "; ", 100 * conf.level, "% CI: ", .data$conf.low, " to ", .data$conf.high, ")")) %>%
-    dplyr::select(.data$term, .data$text1, .data$text2)
-  dplyr::left_join(a, b, by = "term")
+           conf.high = estimate + std.error * qnorm((1 + conf.level) / 2),
+           estimate_tmp = estimate,
+           conf.low_tmp = conf.low,
+           conf.high_tmp = conf.high) %>%
+    mutate_at(c("estimate_tmp", "conf.low_tmp", "conf.high_tmp"), .funs = list(~sprintf(paste0("%0.", dp, "f"), .))) %>%
+    dplyr::mutate(text1 = paste0(.data$estimate_tmp, " (", 100 * conf.level, "% CI: ", .data$conf.low_tmp, " to ", .data$conf.high_tmp, ")"),
+                  text2 = paste0("(", .data$estimate_tmp, "; ", 100 * conf.level, "% CI: ", .data$conf.low_tmp, " to ", .data$conf.high_tmp, ")")) %>%
+    select(-(estimate_tmp:conf.high_tmp)) %>%
+    mutate(conf.low_tmp = conf.low, conf.high_tmp = conf.high) %>%
+    mutate_at(c("conf.low_tmp", "conf.high_tmp"), list(~(. >= 0))) %>% # is interval terminus positive?
+    mutate(ci.significant = conf.low_tmp == conf.high_tmp,
+           styled = cell_spec(text1, color = case_when(!ci.significant ~ colours_3pal[2],
+                                                       estimate >= 0 ~ colours_3pal[3],
+                                                       estimate < 0 ~ colours_3pal[1],
+                                                       T ~ "")),
+           p.stars = case_when(p.value < 0.001 ~ "***",
+                               p.value < 0.01 ~ "**",
+                               p.value < 0.05 ~ "\U2217",
+                               p.value < 0.1 ~ ".",
+                               T ~ "")) %>%
+    select(-(conf.low_tmp:conf.high_tmp))
 }
