@@ -26,6 +26,14 @@ table {
   font-size: 80%;
 }
 
+code {
+  font-family: "Courier New";
+}
+
+.inline {
+   display: inline;
+}
+
 .center {
     display: block;
     margin-left: auto;

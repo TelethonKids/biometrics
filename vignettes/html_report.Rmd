@@ -25,6 +25,7 @@ vignette: >
 bibliography:
   - assets/bib/packages.bib
   - assets/bib/bibliography.bib
+instructions: true
 
 ---
 
@@ -32,12 +33,14 @@ bibliography:
 # Load packages and add citation information to packages.bib
 # By default, packages listed in global.dcf are ignored and environment initiation is handled by .RProfile.
 library(repmis)
-LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally"),
+LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis", "biometrics", "knitr", "kableExtra", "broom", "GGally", "AppliedPredictiveModeling", "caret", "jtools"),
             file = file.path("assets", "bib", "packages.bib"))
 recoder("assets/bib/packages.bib")
 
 # loads in template hooks
 source(file.path("assets", "R", "hooks.R"))
+source(file.path("..", "R", "scale_colour_telethonkids.R"))
+source(file.path("..", "R", "scale_fill_telethonkids.R"))
 
 ```
 
@@ -53,20 +56,22 @@ The [markdown RStudio cheat sheat is here](https://www.rstudio.com/resources/che
 
 ## Referencing
 
-Referencing important previous work and the scientific principles that underpin research is a vital aspect of any report. The default bibliography list that is used by this template is found in <code>assets/bib/bibliography.bib</code>. The author has included these references in the document for illustrative purposes [-@STEVENSON2017119]; however, they have nothing to do with anything that is written here [@CiteR; @R-lubridate].
+Referencing important previous work and the scientific principles that underpin research is a vital aspect of any report. The default bibliography list that is used by this template is found in `assets/bib/bibliography.bib`. The author has included these references in the document for illustrative purposes [-@STEVENSON2017119]; however, they have nothing to do with anything that is written here [@CiteR; @R-lubridate].
 
-Bibliographic information for R packages are automatically generated (and loaded) with LoadandCite [@R-repmis]. By default, the package bibliography is stored in <code>assets/bib/packages.bib</code>, which is overwritten on each Knit and should not be manually altered.
+Bibliographic information for R packages are automatically generated (and loaded) with LoadandCite [@R-repmis]. By default, the package bibliography is stored in `assets/bib/packages.bib`, which is overwritten on each Knit and should not be manually altered.
 
-References are automatically placed at the end of the document, so it is important that a header, such as <code>#&nbsp;References</code>, is placed at the end of your markdown document.
+References are automatically placed at the end of the document, so it is important that a header, such as <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">#&nbsp;References</span></a></code>, is placed at the end of your markdown document.
 
-## Adding R Script to Markdown
+# Adding R Script to Markdown
 R chunks are added through the following blocks of code:
 
-<code>
-\`\`\`{r chunk_name, include = FALSE}<br />
-&nbsp;&nbsp;print("Hello World!")<br />
-\`\`\`
-</code><br />
+<pre class = "sourceCode r">
+  <code class = "sourceCode r">
+    <a class = "sourceLine" id = "m1-1">```{<span class = "dt">r chunk_name</span>, <span class = "dt">include</span> = <span class = "ot">FALSE</span>}</a>
+    <a class = "sourceLine" id = "m1-2"><span class = "kw">print</span>(<span class = "st">"Hello World!"</span>)<br /><br /></a>
+    <a class = "sourceLine" id = "m1-3">```</a>
+  </code>
+</pre>
 
 The above code produces the following in the markdown document:
 ```{r hello_world, include = TRUE}
@@ -74,17 +79,17 @@ The above code produces the following in the markdown document:
 
 ```
 
-The <code>echo = FALSE</code> argument can be used if you do not want the source code to be displayed:
+The <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">echo</span> = <span class = "ot">FALSE</span></a></code> argument can be used if you do not want the source code to be displayed:
 ```{r echo_false, echo = FALSE}
   print("In this example, the source code has been hidden and only the output is displayed.")
 
 ```
 
-Output can be suppressed entirely by changing <code>include = FALSE</code>, or by removing the argument.
+Output can be suppressed entirely by changing <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">include</span> = <span class = "ot">FALSE</span></a></code>, or by removing the argument.
 
 # Methods
 
-This template is built with the ProjectTemplate package in mind. By default, all data in the "cache" directories will be loaded. Files in the data directory are note loaded by default, but can be by setting <code>data_loading = TRUE</code> in the initialisation markdown chunk. Similarly, by default <code>munge = FALSE</code> and scripts in the munge directory will not be executed.
+This template is built with the ProjectTemplate package in mind. By default, all data in the "cache" directories will be loaded. Files in the data directory are note loaded by default, but can be by setting <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">data_loading</span> = <span class = "ot">TRUE</span></a></code> in the initialisation markdown chunk. Similarly, by default <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">munge</span> = <span class = "ot">FALSE</span></a></code> and scripts in the munge directory will not be executed.
 
 R's included Iris data set will be used to illustrate how to include graphics and to use the colour palettes defined at the start of the document:
 
@@ -93,23 +98,21 @@ data(iris)
 
 ```
 
-# Results
-
-## Example Tables
-
-### Basic data
+# Tables
 
 Kable is a very simple table generator that takes input as either a matrix or data frame [@R-kableExtra]; see the [Kable documentation](https://www.rdocumentation.org/packages/kableExtra/versions/0.8.0/topics/kable_styling) for styling options available.
 
-In this template the kable formatting is applied automatically when using the chunk option <code>chunk option "table = T"</code>. By default, this template uses the <code>hover</code> style with <code>full_width = FALSE</code>. (Technical info: automatic formatting is implemented by <code>kintr::knit_hooks()</code> [@R-knitr] *via* the chunk **source** and optimal results are achieved when including the option <code>results = "hide"</code>. For the same reason, <code>eval = F</code> is included so that the chunk is not evaluated twice. The source code cannot be shown when the kable formatting is automatically applied.)
+In this template the kable formatting is applied automatically when using the chunk option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">table</span> = <span class = "ot">TRUE</span></a></code>. By default, this template uses the <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">"hover"</span></a></code> style with <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">full_width</span> = <span class = "ot">FALSE</span></a></code>. (Technical info: automatic formatting is implemented by <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">kintr::knit_hooks</span>()</a></code> [@R-knitr] *via* the chunk **source** and optimal results are achieved when including the option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">results</span> = <span class = "ot">"hide"</span></a></code>. For the same reason, <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">eval</span> = <span class = "ot">FALSE</span></a></code> is included so that the chunk is not evaluated twice. The source code cannot be shown when the kable formatting is automatically applied.)
 
 For example:
 
-<code>
-\`\`\`{r, table = T, results = "hide", eval = F}<br />
-&nbsp;&nbsp;head(iris)<br />
-\`\`\`<br />
-</code>
+<pre class = "sourceCode r">
+  <code class = "sourceCode r">
+    <a class = "sourceLine" id = "m2-1">```{<span class = "dt">r</span>, <span class = "dt">table</span> = <span class = "ot">TRUE</span>, <span class = "dt">results</span> = <span class = "st">"hide"</span>, <span class = "dt">eval</span> = <span class = "ot">FALSE</span>}</a>
+    <a class = "sourceLine" id = "m2-2"><span class = "kw">head</span>(iris)</a>
+    <a class = "sourceLine" id = "m2-3">```</a>
+  </code>
+</pre>
 
 will output:
 
@@ -126,8 +129,11 @@ head(iris) %>%
 
 ```
 
-### Model output
-The <code>broom::tidy</code> [@R-broom] function may be used to convert the output into a data frame that is compatible with kable When data is supplied from a model, which may be more appropraite for a report or publication.
+# Model output
+
+## <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">broom::tidy</span>()</a></code>
+
+The <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">broom::tidy</span>()</a></code> [@R-broom] function may be used to convert the output into a data frame that is compatible with kable When data is supplied from a model, which may be more appropraite for a report or publication.
 
 For example, the summary output of a linear model looks like:
 
@@ -140,25 +146,25 @@ summary(model)
 
 Broom defines tidying methods for extracting three kinds of statistics from an object ([see here](https://opr.princeton.edu/workshops/Downloads/2016Jan_BroomRobinson.pdf)):
 
-* tidy(): component-level statistics
-* augment(): observation-level statistics
-* glance(): model-level statistics
+* <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">tidy</span>()</a></code>: component-level statistics
+* <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">glance</span>()</a></code>: model-level statistics
+* <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">augment</span>()</a></code>: observation-level statistics
 
-**tidy():**
+**<code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">tidy</span>()</a></code>:**
 
 ```{r tidy, table = T, results = "hide", warning = F}
 tidy(model)
 
 ```
 
-**glance():**
+**<code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">glance</span>()</a></code>:**
 
 ```{r glance, table = T, results = "hide"}
 glance(model)
 
 ```
 
-**augment():**
+**<code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">augment</span>()</a></code>:**
 
 ```{r augment, table = T, results = "hide"}
 augment(model) %>%
@@ -166,21 +172,64 @@ augment(model) %>%
 
 ```
 
-## Example Plots
+## jtools
 
-The <code>GGally::ggpairs</code> function may be used to produce a visual summary of the input data:
+Two of the functions in the jtools [@R-jtools] package are useful to produce tables and figures of model output.
 
-```{r ggpairs, out.extra = 'class="img-fluid center"', message = FALSE}
-ggpairs(iris, mapping=ggplot2::aes(colour = Species), diag = list(continuous = "densityDiag"),
+```{r}
+models <- lapply(c("setosa", "versicolor", "virginica"),
+                 function(x) lm(Sepal.Length ~ Sepal.Width + Petal.Width, data = iris, subset = Species == x))
+names(models) <- c("setosa", "versicolor", "virginica")
+
+jtools::export_summs(models,
+                     error_format = "CI [{conf.low}, {conf.high}]",
+                     exp = FALSE)
+
+```
+
+```{r, out.extra = "figure", message = FALSE, warning = FALSE}
+do.call(jtools::plot_summs,
+        c(unname(models),
+          list(model.names = names(models),
+               exp = FALSE,
+               colors = unname(telethonkids_cols()[c(2, 4, 8)])))) + 
+  labs(title = "Example of plot_summs", subtitle = "Input is a list of models")
+
+```
+
+These will work for many different types of models.
+
+# Plots
+
+The <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">GGally::ggpairs()</span></a></code> function may be used to produce a visual summary of the input data:
+
+```{r ggpairs, out.extra = "figure", message = FALSE}
+ggpairs(iris,
+        mapping = ggplot2::aes(colour = Species),
+        diag = list(continuous = "densityDiag"),
         axisLabels = "show")
 
 ```
 
-<!--<mark>TO DO: Apply Telethon Kids' colour scheme to ggpairs plot.</mark>-->
+<code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">caret::featurePlot()</span></a></code> is also a useful tool to get an idea of how numeric data are related to each other:
 
-### Colour schemes
+```{r featurePlot, out.extra = "figure", message = FALSE, fig.height = 7}
+library(AppliedPredictiveModeling)
+library(caret)
 
-There are three colour schemes built into this theme: <code>scale_colour_telethonkids("light")</code>, <code>scale_colour_telethonkids("dark")</code> and <code>scale_colour_telethonkids("grey")</code>. These colour themes are implemented by adding the appropriate theme to the ggplot code:
+transparentTheme(trans = .4)
+
+featurePlot(x = iris[, 1:4], 
+            y = iris$Species, 
+            plot = "pairs",
+            ## Add a key at the top
+            auto.key = list(columns = 3))
+
+```
+
+## Colour schemes
+
+There are three colour schemes built into this theme: <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"light"</span>)</a></code>, <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"dark"</span>)</a></code> and <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"grey"</span>)</a></code>. These colour themes are implemented by adding the appropriate theme to the ggplot code:
 
 ```{r discrete_plot, out.extra = "figure"}
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
@@ -191,7 +240,7 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
 
 ```
 
-A continuous colour theme can be implemented by adding the argument <code>discrete = FALSE</code> the <code>scale_colour_telethonkids()</code>:
+A continuous colour theme can be implemented by adding the argument <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">discrete</span> = <span class = "ot">FALSE</span></a></code> the <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>()</a></code>:
 
 ```{r continuous_plot, out.extra = "figure"}
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
@@ -201,9 +250,9 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
 
 ```
 
-Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code>scale_fill_telethonkids(palette = "mixed", guide = "none")</code>.
+Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_fill_telethonkids</span>(<span class = "dt">palette</span> = <span class = "st">"mixed"</span>, <span class = "dt">guide</span> = <span class = "st">"none"</span>)</a></code>.
 
-To ensure the image is responsive on different sized screens, the code <code>out.extra = "figure"</code> should be included in the R chunk options (this calls an option hook defined in <code>hooks.R</code>).
+To ensure the image is responsive on different sized screens, the code <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">out.extra</span> = <span class = "st">"figure"</span></a></code> should be included in the R chunk options (this calls an option hook defined in `assets/R/hooks.R`).
 
 # References
 

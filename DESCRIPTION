@@ -36,7 +36,9 @@ Imports:
     repmis (>= 0.5),
     ProjectTemplate (>= 0.8.2),
     igraph (>= 1.2.2),
-    jtools (>= 2.0.1)
+    jtools (>= 2.0.1),
+    AppliedPredictiveModeling (>= 1.1-7),
+    caret (>= 6.0-84)
 Suggests:
     rmarkdown (>= 1.11)
 VignetteBuilder: knitr

@@ -84,10 +84,22 @@
       <div class="row" id="body">
         <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
         <div class="col col-lg-10 col-xl-10 translucent rounded">
+          $for(include-before)$
+            $include-before$
+          $endfor$
+          $if(toc)$
+            <span id="toc">
+              <h1>Table of Contents</h1>
+              <p>$toc$</p>
+            </span>
+          $endif$
+          $body$
+          $for(include-after)$
+            $include-after$
+          $endfor$
           $if(instructions)$
             <h1>Template Instructions</h1>
-            <p>These instructions can be disabled by changing the markdown front-matter to <code>instructions: false</code>. </p>
-            <p>By default, all assets (e.g. images, css style sheets and templates) are found in the assets directory and will need to be linked to using their path from the  markdown document directory; the final HTML output is a self contained file.</p>
+            <p>By default, all assets (e.g. images, css style sheets and templates) are found in the <code>assets</code> directory and will need to be linked to using their path from the markdown document directory; the final HTML output is a self contained file.</p>
             <h2>Logo</h2>
             <p>The logo can be changed by updating the value of <code>logo: <em>new logo</em></code> in the front-matter. The default logo is <code>assets/images/logo800.jpg</code>. </p>
             <h2>Navigation Bar</h2>
@@ -149,19 +161,6 @@
             </div>
             <div class="row vertical-spacer"></div>
           $endif$
-          $for(include-before)$
-            $include-before$
-          $endfor$
-          $if(toc)$
-            <span id="toc">
-              <h1>Table of Contents</h1>
-              <p>$toc$</p>
-            </span>
-          $endif$
-          $body$
-          $for(include-after)$
-            $include-after$
-          $endfor$
         </div>
         <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
       </div>
