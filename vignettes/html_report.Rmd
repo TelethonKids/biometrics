@@ -68,7 +68,7 @@ R chunks are added through the following blocks of code:
 <pre class = "sourceCode r">
   <code class = "sourceCode r">
     <a class = "sourceLine" id = "m1-1">```{<span class = "dt">r chunk_name</span>, <span class = "dt">include</span> = <span class = "ot">FALSE</span>}</a>
-    <a class = "sourceLine" id = "m1-2"><span class = "kw">print</span>(<span class = "st">"Hello World!"</span>)<br /><br /></a>
+    <a class = "sourceLine" id = "m1-2"><span class = "kw">print</span>(<span class = "st">"Hello World!"</span>)<br /></a>
     <a class = "sourceLine" id = "m1-3">```</a>
   </code>
 </pre>
@@ -102,14 +102,14 @@ data(iris)
 
 Kable is a very simple table generator that takes input as either a matrix or data frame [@R-kableExtra]; see the [Kable documentation](https://www.rdocumentation.org/packages/kableExtra/versions/0.8.0/topics/kable_styling) for styling options available.
 
-In this template the kable formatting is applied automatically when using the chunk option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">table</span> = <span class = "ot">TRUE</span></a></code>. By default, this template uses the <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">"hover"</span></a></code> style with <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">full_width</span> = <span class = "ot">FALSE</span></a></code>. (Technical info: automatic formatting is implemented by <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">kintr::knit_hooks</span>()</a></code> [@R-knitr] *via* the chunk **source** and optimal results are achieved when including the option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">results</span> = <span class = "ot">"hide"</span></a></code>. For the same reason, <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">eval</span> = <span class = "ot">FALSE</span></a></code> is included so that the chunk is not evaluated twice. The source code cannot be shown when the kable formatting is automatically applied.)
+In this template the kable formatting is applied automatically when using the chunk option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">table</span> = <span class = "ot">TRUE</span></a></code>. By default, this template uses the <code class = "sourceCode r"><a class = "sourceLine"><span class = "st"><q>hover</q></span></a></code> style with <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">full_width</span> = <span class = "ot">FALSE</span></a></code>. (Technical info: automatic formatting is implemented by <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">kintr::knit_hooks</span>()</a></code> [@R-knitr] *via* the chunk **source** and optimal results are achieved when including the option <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">results</span> = <span class = "st"><q>hide</q></span></a></code>. For the same reason, <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">eval</span> = <span class = "ot">FALSE</span></a></code> is included so that the chunk is not evaluated twice. The source code cannot be shown when the kable formatting is automatically applied.)
 
 For example:
 
 <pre class = "sourceCode r">
   <code class = "sourceCode r">
     <a class = "sourceLine" id = "m2-1">```{<span class = "dt">r</span>, <span class = "dt">table</span> = <span class = "ot">TRUE</span>, <span class = "dt">results</span> = <span class = "st">"hide"</span>, <span class = "dt">eval</span> = <span class = "ot">FALSE</span>}</a>
-    <a class = "sourceLine" id = "m2-2"><span class = "kw">head</span>(iris)</a>
+    <a class = "sourceLine" id = "m2-2"><span class = "kw">head</span>(iris)<br /></a>
     <a class = "sourceLine" id = "m2-3">```</a>
   </code>
 </pre>
@@ -229,7 +229,7 @@ featurePlot(x = iris[, 1:4],
 
 ## Colour schemes
 
-There are three colour schemes built into this theme: <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"light"</span>)</a></code>, <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"dark"</span>)</a></code> and <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st">"grey"</span>)</a></code>. These colour themes are implemented by adding the appropriate theme to the ggplot code:
+There are three colour schemes built into this theme: <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st"><q>light</q></span>)</a></code>, <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st"><q>dark</q></span>)</a></code> and <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_colour_telethonkids</span>(<span class = "st"><q>grey</q></span>)</a></code>. These colour themes are implemented by adding the appropriate theme to the ggplot code:
 
 ```{r discrete_plot, out.extra = "figure"}
 ggplot(iris, aes(Petal.Width, Petal.Length, color = Species)) +
@@ -250,9 +250,9 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
 
 ```
 
-Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_fill_telethonkids</span>(<span class = "dt">palette</span> = <span class = "st">"mixed"</span>, <span class = "dt">guide</span> = <span class = "st">"none"</span>)</a></code>.
+Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_fill_telethonkids</span>(<span class = "dt">palette</span> = <span class = "st"><q>mixed</q></span>, <span class = "dt">guide</span> = <span class = "st"><q>none</q></span>)</a></code>.
 
-To ensure the image is responsive on different sized screens, the code <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">out.extra</span> = <span class = "st">"figure"</span></a></code> should be included in the R chunk options (this calls an option hook defined in `assets/R/hooks.R`).
+To ensure the image is responsive on different sized screens, the code <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">out.extra</span> = <span class = "st"><q>figure</q></span></a></code> should be included in the R chunk options (this calls an option hook defined in `assets/R/hooks.R`).
 
 # References
 

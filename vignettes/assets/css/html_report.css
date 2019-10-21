@@ -28,10 +28,9 @@ table {
 
 code {
   font-family: "Courier New";
-}
-
-.inline {
-   display: inline;
+  color: #53565A;
+  font-size: 1.1em;
+  quotes: "\0022" "\0022" "\0027" "\0027";
 }
 
 .center {
