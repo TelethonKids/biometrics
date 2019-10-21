@@ -1,16 +1,15 @@
 ---
-title: "Telethon Kids Institute"
-subtitle: "Biometrics Markdown HTML Template"
+title: "Telethon Kids Institute Biometrics Markdown HTML Template"
+subtitle: "Introduction to Markdown and Some Useful Tools"
 author:
-  - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
+  - "Paul G Stevenson"
 affiliation:
-  - "<sup>1</sup>Telethon Kids Institute, Biometrics Group"
-  - "<sup>2</sup>Other Affiliation(s)"
+  - "Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 logo: assets/images/logo800.jpg
 nav_logo: assets/images/logo_plain.jpg
-header-background: green-circles-darker
-header-breakout: pms2395-breakout
+header-background: blue-triangles-darker
+header-breakout: pms370-breakout
 output:
   html_document:
     toc: true
@@ -253,6 +252,39 @@ ggplot(iris, aes(Petal.Width, Petal.Length, color = Petal.Length)) +
 Bar plots can also be 'filled' by discrete variables with differnt palettes by using <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">scale_fill_telethonkids</span>(<span class = "dt">palette</span> = <span class = "st"><q>mixed</q></span>, <span class = "dt">guide</span> = <span class = "st"><q>none</q></span>)</a></code>.
 
 To ensure the image is responsive on different sized screens, the code <code class = "sourceCode r"><a class = "sourceLine"><span class = "dt">out.extra</span> = <span class = "st"><q>figure</q></span></a></code> should be included in the R chunk options (this calls an option hook defined in `assets/R/hooks.R`).
+
+# Captions
+
+```{r, eval = FALSE}
+library(captioner)
+
+```
+
+1. Define classes of captions, e.g. figures, tables, models, boxes, etc.
+
+```{r, eval = FALSE}
+figures <- captioner(prefix = "Figure")
+tables <- captioner(prefix = "Table")
+
+```
+
+2. Define captions
+
+These should listed in the deired sequential order of the text
+
+```{r, eval = FALSE}
+tables(name = "tab1", caption = "Caption")
+figures(name = "fig1", caption = "Caption.")
+
+```
+
+3.  Cite in text with (replacing "tab1" with the relevant table/figure name:
+
+Full caption: <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">tables</span>(<span class = "st"><q>tab1</q></span>)</a></code>
+
+In-text reference (e.g. "Table 1"): <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">tables</span>(<span class = "st"><q>tab1</q></span>, <span class = "dt">display</span> = <span class = "st"><q>cite</q></span>)</a></code>
+
+Caption number only (e.g. "1"): <code class = "sourceCode r"><a class = "sourceLine"><span class = "kw">tables</span>(<span class = "st"><q>tab1</q></span>, <span class = "dt">display</span> = <span class = "st"><q>num</q></span>)</a></code>
 
 # References
 
