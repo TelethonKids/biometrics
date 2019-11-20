@@ -3,10 +3,10 @@ Telethon Kids Institute R markdown templates
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-This pakcage includes RMarkdown and ioslides templates that incorporate
+This package includes RMarkdown and ioslides templates that incorporate
 the Telethon Kid’s style guide and emulate the Institutes Web theme.
 Currently, templates are available to produce stand-alone HTML reports
-and ioslides presentations. These templates also include colour palates
+and ioslides presentations. These templates also include colour palettes
 that will automatically reproduce Telethon Kids style in R graphics. A
 number of helper functions and data-sets are also available.
 
