@@ -8,6 +8,12 @@ copy_clip(x, row.names = FALSE, col.names = TRUE, ...)
 }
 \arguments{
 \item{x}{object to be copied}
+
+\item{row.names}{default FALSE}
+
+\item{col.names}{default TRUE}
+
+\item{...}{other arguements passed to write.table}
 }
 \description{
 Function to copy data from R to the clipboard.

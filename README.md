@@ -3,22 +3,20 @@ Telethon Kids Institute R markdown templates
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-A pair of templates have been created that incorporate styling themes
-present throughout Telethon Kid’s style guide, web page and template
-documents. Currently, templates are available to produce stand-alone
-HTML reports and ioslides presentations. These templates also include
-colour palates that will automatically reproduce Telethon Kids style in
-R graphics. A number of helper functions and data-sets are also
-available.
+This pakcage includes RMarkdown and ioslides templates that incorporate
+the Telethon Kid’s style guide and emulate the Institutes Web theme.
+Currently, templates are available to produce stand-alone HTML reports
+and ioslides presentations. These templates also include colour palates
+that will automatically reproduce Telethon Kids style in R graphics. A
+number of helper functions and data-sets are also available.
 
 ## Getting started
 
 ### Installing
 
-The Telethon Kids Institute biometrics package can be installed
-    with:
+The Telethon Kids Institute biometrics package can be installed with:
 
-    devtools::install_github("TelethonKids/biometrics", build_vignettes = TRUE)
+    remotes::install_github("TelethonKids/biometrics", build_vignettes = TRUE)
 
 ### Creating an new document
 
@@ -32,6 +30,11 @@ should be followed. Some specific instructions and examples are included
 in default documents. A cheat-sheet explaining how to use markdown in R
 has been prepared by [R
 Studio](https://www.rstudio.com/resources/cheatsheets/).
+
+Specific instructions for some of the packages and functions that we use
+in our workflow are described in the package vignettes:
+
+    browseVignettes("biometrics")
 
 <p align="center">
 

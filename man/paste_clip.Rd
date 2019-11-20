@@ -6,6 +6,11 @@
 \usage{
 paste_clip(header = TRUE, ...)
 }
+\arguments{
+\item{header}{default TRUE}
+
+\item{...}{other arguements passed to read.table}
+}
 \description{
 Function to paste data from clipboard into R.
 }

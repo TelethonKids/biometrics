@@ -19,6 +19,8 @@ vignette: >
 ```{r init, include = FALSE, echo = FALSE}
 library(biometrics)
 library(knitr)
+library(ggplot2)
+library(knitr)
 
 data(iris)
 

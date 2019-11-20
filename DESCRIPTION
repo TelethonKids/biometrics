@@ -1,6 +1,6 @@
 Package: biometrics
 Title: Report Templates for the Telethon Kids Institute
-Version: 1.0.4-999
+Version: 1.0.5
 Authors@R: c(person("Paul", "Stevenson",
     email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")),
     person("Matthew", "Cooper",
@@ -38,7 +38,9 @@ Imports:
     igraph (>= 1.2.2),
     jtools (>= 2.0.1),
     AppliedPredictiveModeling (>= 1.1-7),
-    caret (>= 6.0-84)
+    caret (>= 6.0-84),
+    huxtable (>= 4.6.1),
+    ggstance (>= 0.3.3)
 Suggests:
     rmarkdown (>= 1.11)
 VignetteBuilder: knitr

@@ -14,13 +14,16 @@
 #' @return text2: (estimate; 95\% CI: lower to upper)
 #' @return text3 (for tables): estimate <br /> CI [lower, upper]
 #'
+#' @importFrom purrr map map_dfr
+#' @importFrom broom tidy
+#'
 #' @seealso \link[=format_text]{format_text()}
 #'
 #' @export
 quick_text <- function(mod_list, effects = NULL, conf.int = TRUE, exponentiate = FALSE, conf.level = 0.95, dp = 2) {
 
   map(mod_list,
-      broom::tidy,
+      tidy,
       effects = effects,
       conf.int = conf.int,
       conf.level = conf.level,
@@ -41,13 +44,15 @@ quick_text <- function(mod_list, effects = NULL, conf.int = TRUE, exponentiate =
 #' @return text2: (estimate; 95\% CI: lower to upper)
 #' @return text3 (for tables): estimate <br /> CI [lower, upper]
 #'
+#' @importFrom dplyr mutate
+#'
 #' @seealso \link[=quick_text]{quick_text()}
 #'
 #' @export
 format_text <- function(x, conf.level = 0.95, dp = 2) {
   x %>%
     biometrics::round_df(dp) %>%
-    dplyr::mutate(text1 = paste0(.data$estimate,
+    mutate(text1 = paste0(.data$estimate,
                                  " (", 100 * conf.level, "% CI: ", .data$conf.low,
                                  " to ", .data$conf.high, ")"),
                   text2 = paste0("(",

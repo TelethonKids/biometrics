@@ -4,12 +4,18 @@
 #'
 #' @param x a numeric vector
 #'
+#' @importFrom ggplot2 ggplot geom_freqpoly stat_function
+#' @importFrom stats dnorm na.omit
+#'
 #' @export
 hist2 <- function(x) {
-  dat <- tibble(x = x) %>%
-    na.omit()
+
+  ..density.. <- NULL
+
+  dat <- na.omit(tibble(x = x))
+
   ggplot(dat, aes(x = x)) +
-    geom_histogram(aes(y =..density..),
+    geom_histogram(aes(y = ..density..),
                    bins = 30,
                    colour = "black",
                    fill = "white") +

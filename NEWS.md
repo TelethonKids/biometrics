@@ -1,10 +1,10 @@
-# biometrics v1.0.4-999
+# biometrics v1.0.5
 * further updates to markdown templates
 * Added TCRC Biostatistics report template
-* Added support for knitting to a MS word template
 * Updates to biometrics HTML report vignette
 * Added some helper functions
 * Added quick_text function to format model lists for in-text reference
+* Updated default table options in hooks.R for all templates
 
 # biometrics v1.0.4
 * Updated HTML report template to better align with current workflow
