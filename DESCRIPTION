@@ -8,10 +8,7 @@ Authors@R: c(person("Paul", "Stevenson",
 Date: 2019-10-20
 Description: This package includes RMarkdown and ioslides templates that
     incorporate the Telethon Kid’s style guide and emulate the Institutes Web
-    theme. Currently, templates are available to produce stand-alone HTML
-    reports and ioslides presentations. These templates also include colour
-    palettes that will automatically reproduce Telethon Kids style in R
-    graphics. A number of helper functions and data-sets are also available.
+    theme
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
