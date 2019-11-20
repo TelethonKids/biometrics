@@ -10,7 +10,7 @@ knit_hooks$set(
       default_source_hook(x, options)
     else {
       eval(parse(text = x)) %>%
-        kable("html") %>%
+        kable("html", escape = FALSE) %>%
         kable_styling("hover", full_width = FALSE)
     }
 

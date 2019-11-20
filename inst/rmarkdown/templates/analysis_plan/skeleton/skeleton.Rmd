@@ -96,23 +96,23 @@ Project roles:
 ### Key Variables
 
 * Outcome variables (to be modelled separately)
-  - ***XXX***
-  - ***XXX***
+  - ***XXX*** (***units***)
+  - ***XXX*** (***units***)
    
 ### Primary Independent Variable
 
-* ***XXX***
+* ***XXX*** (***units***)
 
 ### Adjusting Covariates
 
-* ***XXX***
-* ***XXX***
-* ***XXX***
+* ***XXX*** (***units***)
+* ***XXX*** (***units***)
+* ***XXX*** (***units***)
 
 ## Dataset Overview
 
-* `file.xlsx` (DD MMM YYYY, provided by ***XXX***)
-* `file.sav` (DD MMM YYYY, provided by ***XXX***)
+* `file.xlsx` (YYYY-MM-DD, provided by ***XXX***)
+* `file.sav` (YYYY-MM-DD, provided by ***XXX***)
 
 ### Preliminary Data Cleaning Steps
 
@@ -156,7 +156,7 @@ Commentary around the methods and results of model creation will be provided in 
 
 # Analysis Estimate
 
-Assuming the data are tidy and clean, we estimate <mark>4-6 days of analysis time</mark> (@$875 excluding GST, per day), which does not include final result preparation time. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
+Assuming the data are tidy and clean, we estimate <mark>4-6 days of analysis time</mark> (at $875 per day, excluding GST), which does not include final result preparation time. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
 
 It would be worthwhile preparing a skeleton of the tables for the paper to make the most efficient use of the analysis time, as working through multiple iterations of possible tables (which we are happy to do if required) will increase the analysis time/cost.
 
@@ -166,7 +166,7 @@ Final table preparation and contribution to paper writing, within reason, is pro
 
 ## Reproducible Research Information
 
-This document was prepared using the software [R](https://www.r-project.org/) [@CiteR], via the [RStudio](https://www.rstudio.com/) IDE [@RStudio], and was written in [RMarkdown](https://rmarkdown.rstudio.com/) [@R-rmarkdown].
+This document was prepared using the software [R](https://www.r-project.org/) [@CiteR], *via* the [RStudio](https://www.rstudio.com/) IDE [@RStudio], and was written in [RMarkdown](https://rmarkdown.rstudio.com/) [@R-rmarkdown].
 
 ```{r echo = T}
 sessionInfo()
