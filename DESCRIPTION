@@ -5,13 +5,13 @@ Authors@R: c(person("Paul", "Stevenson",
     email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")),
     person("Matthew", "Cooper",
     email = "Matt.Cooper@telethonkids.org.au", role = c("aut")))
-Date: 2019-05-21
-Description: Templates have been created that incorporate styling
-    themes present throughout the Telethon Kids Institute style guide, web page
-    and template documents. Templates are available to produce stand-alone HTML
-    reports and ioslides presentations. These templates also include colour
-    palates that will automatically reproduce Telethon Kids style in R graphics.
-    A number of helper functions and data-sets are also available.
+Date: 2019-10-20
+Description: This pakcage includes RMarkdown and ioslides templates that incorporate
+    the Telethon Kid’s style guide and emulate the Institutes Web theme.
+    Currently, templates are available to produce stand-alone HTML reports
+    and ioslides presentations. These templates also include colour palates
+    that will automatically reproduce Telethon Kids style in R graphics. A
+    number of helper functions and data-sets are also available.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
