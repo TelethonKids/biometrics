@@ -4,8 +4,12 @@
 \alias{scale_fill_telethonkids}
 \title{Fill scale constructor for Telethon Kids colors.}
 \usage{
-scale_fill_telethonkids(palette = "main", discrete = TRUE,
-  reverse = FALSE, ...)
+scale_fill_telethonkids(
+  palette = "main",
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Character name of palette in telethonkids_palettes}

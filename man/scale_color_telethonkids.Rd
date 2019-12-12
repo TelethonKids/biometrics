@@ -4,8 +4,12 @@
 \alias{scale_color_telethonkids}
 \title{Color scale constructor for Telethon Kids colours.}
 \usage{
-scale_color_telethonkids(palette = "light", discrete = TRUE,
-  reverse = FALSE, ...)
+scale_color_telethonkids(
+  palette = "light",
+  discrete = TRUE,
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{palette}{Character name of palette in telethonkids_palettes}

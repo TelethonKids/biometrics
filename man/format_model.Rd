@@ -26,7 +26,7 @@ This function builds on `broom::tidy()` by adding formatted strings ready for us
 data(iris)
 m1 <- lm(Sepal.Length ~ Sepal.Width, data = iris)
 
-format_model(m1) \%>\% select(term, estimate, conf.low, conf.high)
+format_model(m1) %>% select(term, estimate, conf.low, conf.high)
 
 format_model(m1)$text1
 format_model(m1)$text2

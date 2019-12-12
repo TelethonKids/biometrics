@@ -2,7 +2,7 @@
 title: "Telethon Kids Institute"
 subtitle: "Ioslides Template"
 author: Paul Stevenson
-date: August 21, 2018
+date: December 12, 2019
 output:
   ioslides_presentation:
     template: assets/templates/ioslides.html

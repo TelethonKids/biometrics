@@ -21,7 +21,7 @@ For example, combine all diagnosis values for a patient that has multiple entrie
 }
 \examples{
 \dontrun{
-temp \%>\% group_by(root) \%>\%
+temp %>% group_by(root) %>%
     do(roll_up(., vars = c("diagnosis", "dagger", "ediag")))
 }
 

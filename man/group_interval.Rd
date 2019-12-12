@@ -4,15 +4,12 @@
 \alias{group_interval}
 \title{Group by date interval}
 \usage{
-group_interval(dat, buffer, start, end, .view_mat = F, .view_graph = F)
+group_interval(start, end, buffer = 0, .view_mat = F, .view_graph = F)
 }
 \arguments{
-\item{dat}{the data frame to be grouped, must be sorted by start date column}
+\item{start, end}{vectors of the start and end dates/times}
 
-\item{buffer}{the buffer interval e.g. days(14)}
-
-\item{start, end}{the column name (as a character) containing the records'
-start and end dates, respectively}
+\item{buffer}{the buffer interval e.g. days(14), defaults to 0}
 
 \item{.view_mat}{when TRUE (defult FALSE) creates an overlap matrix and applies
 View()}
@@ -29,16 +26,16 @@ Group records in a data frame by date that intervals including a buffer period.
 
 \dontrun{
 
-dat <- data_frame(
+dat <- tibble(
   name = c("Paul", "Jess", "Ben", "Josie", "Damien", "Hayley"),
   start = ymd(c("2018-05-25", "2018-05-29", NA, "2018-06-25",
     "2019-07-15", "2019-07-08")),
   end = ymd(c("2018-05-30", "2018-06-03", "2018-06-23",
     "2018-06-29", "2019-07-18", "2019-07-13")))
 
-dat <- arrange(dat, start, end)
+group_interval(dat$start, dat$end, days(2))
 
-group_interval(dat, days(2), "start", "end")
+mutate(dat, group = group_interval(start, end, days(2)))
 
 }
 

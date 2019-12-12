@@ -8,5 +8,6 @@ README.Rmd
 # Ignore data files
 /archive
 /data-raw
+/header-includes
 inst/doc
 inst/rmarkdown/templates/docx_letter

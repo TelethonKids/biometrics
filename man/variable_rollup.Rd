@@ -23,7 +23,7 @@ A single row data table.\cr\cr NAs are removed and output strings are not factor
 }
 \examples{
 \dontrun{
-data.frame(a = c(1, 2), b = c(2, 3), c = c(NA, 4)) \%>\% tbl_df -> x
+data.frame(a = c(1, 2), b = c(2, 3), c = c(NA, 4)) %>% tbl_df -> x
 data.frame(a = c(NA, NA), b = c(NA, NA), c = c(NA, NA)) -> y
 LETTERS -> z
 c(4, 3) -> s
