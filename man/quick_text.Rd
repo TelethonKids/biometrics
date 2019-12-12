@@ -4,8 +4,14 @@
 \alias{quick_text}
 \title{quick_text}
 \usage{
-quick_text(mod_list, effects = NULL, conf.int = TRUE,
-  exponentiate = FALSE, conf.level = 0.95, dp = 2)
+quick_text(
+  mod_list,
+  effects = NULL,
+  conf.int = TRUE,
+  exponentiate = FALSE,
+  conf.level = 0.95,
+  dp = 2
+)
 }
 \arguments{
 \item{mod_list}{a list of regression models}
