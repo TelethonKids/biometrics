@@ -38,8 +38,8 @@ in our workflow are described in the package vignettes:
 
 <p align="center">
 
-<img src="man/figures/ioslides.png"  width="50%" height="50%">
-<img src="man/figures/report.png"  width="50%" height="50%">
+<img src="figs/ioslides.png"  width="50%" height="50%">
+<img src="figs/report.png"  width="50%" height="50%">
 
 </p>
 
@@ -73,6 +73,6 @@ not-for-profit.
 
 <p align="center">
 
-<img src="man/figures/logo800.jpg"  width="40%" height="40%">
+<img src="figs/logo800.jpg"  width="40%" height="40%">
 
 </p>

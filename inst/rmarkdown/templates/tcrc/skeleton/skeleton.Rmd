@@ -1,5 +1,5 @@
 ---
-title: "t101XX Project Name"
+title: "t20XXX Project Name"
 subtitle: "TCRC Biostatistics Analysis"
 author:
   - "Author"
@@ -17,10 +17,6 @@ output:
     template: assets/templates/html_report.html
     css: assets/css/html_report.css
     self_contained: true
-vignette: >
-  %\VignetteIndexEntry{t101XX Unified analysis plan and report}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 bibliography:
   - assets/bib/packages.bib
   - assets/bib/bibliography.bib
@@ -30,11 +26,10 @@ bibliography:
 ```{r init, include = FALSE}
 #### Load packages and add citation information to packages.bib ----
 
-library(repmis)
-LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
+repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
                      "biometrics", "knitr", "kableExtra", "broom", "GGally",
-                     "jtools", "captioner", "rmarkdown"),
+                     "jtools", "rmarkdown"),
             file = "assets/bib/packages.bib")
 recoder("assets/bib/packages.bib")
 
@@ -127,7 +122,7 @@ There were ***XXX*** children born from ***XXX*** women over the study study int
 
 ## Pairs Plot
  
-```{r variable_matrix, out.extra = "figure", echo = F, message = F, warning = F}
+```{r, out.extra = "figure", echo = FALSE, message = FALSE, warning = FALSE}
 ggpairs(iris, # update with name of data frame, select important columns
         mapping = ggplot2::aes(colour = factor(Species), alpha = 0.6),
         diag = list(continuous = "densityDiag"),
@@ -158,11 +153,16 @@ Commentary around the methods and results of model creation will be provided in 
 
 # Analysis Estimate
 
-The Telethon Clinical Research Centre (TCRC) provides 7.5 hours of biostatistical support. A TCRC biostatistician will carry out analysis for this project and will notify the project sponsor when the analysis reaches 7.5 hours; any further analysis, should it be required, will be completed on a cost-recovery basis at a rate of $875 per day, excluding GST.
+The Telethon Clinical Research Centre (TCRC) provides 7.5 hours of biostatistical support. A TCRC biostatistician will carry out analysis for this project and will notify the project sponsor when the analysis reaches 7.5 hours; any further analysis, should it be required, will be completed on a cost-recovery basis at a rate of $875 per day, excluding GST. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
 
 # Summary of Findings
 
 ## Tables
+
+```{r, table = TRUE, results = "hide", warning = FALSE}
+head(iris)
+
+```
 
 ```{r model_1, echo = FALSE, message = FALSE, warning = FALSE}
 export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", model.names = "Iris Data", exp = FALSE)

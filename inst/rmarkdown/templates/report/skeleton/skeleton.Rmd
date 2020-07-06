@@ -1,5 +1,5 @@
 ---
-title: "t101XX Project Name"
+title: "t20XXX Project Name"
 subtitle: "Biometrics Analysis Report"
 author:
   - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
@@ -18,10 +18,6 @@ output:
     template: assets/templates/html_report.html
     css: assets/css/html_report.css
     self_contained: true
-vignette: >
-  %\VignetteIndexEntry{t101XX Analysis Report}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
 bibliography:
   - assets/bib/packages.bib
   - assets/bib/bibliography.bib
@@ -29,13 +25,12 @@ bibliography:
 ---
 
 ```{r init, include = FALSE}
+
 #### Load packages and add citation information to packages.bib ----
 
-library(repmis)
-LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
+repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
-                     "biometrics", "knitr", "kableExtra", "broom", "GGally",
-                     "jtools", "captioner", "rmarkdown"),
+                     "biometrics", "knitr", "kableExtra", "broom", "jtools", "rmarkdown"),
             file = "assets/bib/packages.bib")
 recoder("assets/bib/packages.bib")
 
@@ -62,6 +57,8 @@ load("../cache/dat.RData")
 
 # All data wrangling should be done in the munge directory, but any further data
 # manipulation can be done here.
+
+source("../R/02-demographics.R")
 
 #### Models ----
 
@@ -91,7 +88,12 @@ mods$iris_data <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 
 ## Tables
 
-```{r model_1, echo = FALSE, message = FALSE, warning = FALSE}
+```{r, table = TRUE, results = "hide", warning = FALSE}
+table_1
+
+```
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
 export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", model.names = "Iris Data", exp = FALSE)
 
 ```
@@ -100,7 +102,7 @@ export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", mode
 
 ### Raw Data
 
-```{r figure 1-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
+```{r, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
 ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Species)) +
   geom_point() +
   geom_smooth(method = "lm") +
@@ -110,7 +112,7 @@ ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Spe
 
 ### Model Outcomes
 
-```{r figure_1-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
+```{r, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
 plot_summs(mods$iris_data, model.names = "Iris Data")
 
 ```
@@ -127,47 +129,6 @@ plot_summs(mods$iris_data, model.names = "Iris Data")
 ## Conclusion
 
 ***One or 2 sentences to summarise the analysis of Research Question 1.***
-    
-# Research Question 2
-
-## Tables
-
-```{r model_2, echo = FALSE, message = FALSE, warning = FALSE}
-export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", model.names = "Iris Data", exp = FALSE)
-
-```
-
-## Figures
-
-### Raw Data
-
-```{r figure 2-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Species)) +
-  geom_point() +
-  geom_smooth(method = "lm") +
-  labs(title = "Iris Data")
-
-```
-
-### Model Outcomes
-
-```{r figure_2-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-plot_summs(mods$iris_data, model.names = "Iris Data")
-
-```
-
-## Notes
-
-* Linear regression [@CiteR]
-    - $y \sim mx + b$
-* The reported effect estimates have ***not*** been exponentiated
-* Effect estimates, 95% confidence intervals that include 0 indicated there was insufficient evidence to establish statistical significance
-* ***Key observations...***
-    - `r filter(quick_text(mods), term == "Sepal.Width")$text1`
-    
-## Conclusion
-
-***One or 2 sentences to summarise the analysis of Research Question 2.***
 
 # Commentary
 
