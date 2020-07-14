@@ -7,20 +7,16 @@ affiliation:
   - "<sup>1</sup>Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
   - "<sup>2</sup>Other Affiliation(s)"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-logo: assets/images/logo800.jpg
-nav_logo: assets/images/logo_plain.jpg
+js: ["`r biometrics::js()`"]
+logo: '`r system.file("supporting_files/images/logo800.jpg", package = "biometrics")`'
+favicon: '`r system.file("supporting_files/images/favicon.ico", package = "biometrics")`'
+nav_logo: '`r system.file("supporting_files/images/logo_plain.jpg", package = "biometrics")`'
+output: biometrics::html_report
 header-background: purple-dots-darker
 header-breakout: pms144-breakout
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    template: assets/templates/html_report.html
-    css: assets/css/html_report.css
-    self_contained: true
 bibliography:
-  - assets/bib/packages.bib
-  - assets/bib/bibliography.bib
+  - bib/packages.bib
+  - bib/bibliography.bib
 
 ---
 
@@ -32,19 +28,12 @@ repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tib
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
                      "biometrics", "knitr", "kableExtra", "broom", "GGally",
                      "jtools", "rmarkdown"),
-            file = "assets/bib/packages.bib")
-recoder("assets/bib/packages.bib")
-
-#### ProjectTemplate project initiation ----
-
-# wd <- getwd()
-# setwd("../")
-# load.project(munging = FALSE, data_loading = TRUE)
-# setwd(wd)
+            file = "bib/packages.bib")
+recoder("bib/packages.bib")
 
 #### Load template hooks ----
 
-source("assets/R/hooks.R")
+source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 #### Load helper functions ----
 
@@ -55,9 +44,6 @@ source("../R/99-helper.R")
 load("../data/dat.RData")
 
 #### Data wrangling ----
-
-# All data wrangling should be done in the munge directory, but any further data
-# manipulation can be done here.
 
 ```
 

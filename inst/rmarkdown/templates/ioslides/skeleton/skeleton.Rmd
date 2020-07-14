@@ -3,17 +3,9 @@ title: "Telethon Kids Institute"
 subtitle: "Ioslides Template"
 author: Paul Stevenson
 date: December 12, 2019
-output:
-  ioslides_presentation:
-    template: assets/templates/ioslides.html
-    logo: assets/images/logo800.jpg
-    css: assets/css/ioslides.css
-    widescreen: true
-    incremental: true
-vignette: >
-  %\VignetteIndexEntry{Telethon Kids Institute markdown ioslides template}
-  %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+favicon: '`r system.file("supporting_files/images/favicon.ico", package = "biometrics")`'
+output: biometrics::html_ioslides
+
 ---
 
 ```{r init, include = FALSE, echo = FALSE}

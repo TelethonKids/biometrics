@@ -6,20 +6,16 @@ author:
 affiliation:
   - "Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-logo: assets/images/logo800.jpg
-nav_logo: assets/images/logo_plain.jpg
+js: ["`r biometrics::js()`"]
+logo: '`r system.file("supporting_files/images/logo800.jpg", package = "biometrics")`'
+favicon: '`r system.file("supporting_files/images/favicon.ico", package = "biometrics")`'
+nav_logo: '`r system.file("supporting_files/images/logo_plain.jpg", package = "biometrics")`'
+output: biometrics::html_report
 header-background: yellow-stripes-darker
 header-breakout: pms205-breakout
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    template: assets/templates/html_report.html
-    css: assets/css/html_report.css
-    self_contained: true
 bibliography:
-  - assets/bib/packages.bib
-  - assets/bib/bibliography.bib
+  - bib/packages.bib
+  - bib/bibliography.bib
 
 ---
 
@@ -29,20 +25,13 @@ bibliography:
 repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
                      "biometrics", "knitr", "kableExtra", "broom", "GGally",
-                     "jtools", "rmarkdown"),
-            file = "assets/bib/packages.bib")
-recoder("assets/bib/packages.bib")
-
-#### ProjectTemplate project initiation ----
-
-# wd <- getwd()
-# setwd("../")
-# load.project(munging = FALSE, data_loading = TRUE)
-# setwd(wd)
+                     "jtools", "captioner", "rmarkdown"),
+            file = "bib/packages.bib")
+recoder("bib/packages.bib")
 
 #### Load template hooks ----
 
-source("assets/R/hooks.R")
+source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 #### Load helper functions ----
 
@@ -54,8 +43,7 @@ load("../data/dat.RData")
 
 #### Data wrangling ----
 
-# All data wrangling should be done in the munge directory, but any further data
-# manipulation can be done here.
+
 
 #### Models ----
 
@@ -122,7 +110,7 @@ There were ***XXX*** children born from ***XXX*** women over the study study int
 
 ## Pairs Plot
  
-```{r, out.extra = "figure", echo = FALSE, message = FALSE, warning = FALSE}
+```{r, out.extra = "figure", echo = F, message = F, warning = F}
 ggpairs(iris, # update with name of data frame, select important columns
         mapping = ggplot2::aes(colour = factor(Species), alpha = 0.6),
         diag = list(continuous = "densityDiag"),

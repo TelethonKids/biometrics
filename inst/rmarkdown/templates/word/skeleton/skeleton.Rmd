@@ -1,0 +1,54 @@
+---
+title: "Title"
+subtitle: "Sub-title"
+output: biometrics::word
+params:
+  dat: NA
+  school_id: NA
+  school_type: NA
+
+---
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(pander)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+panderOptions("table.split.table", Inf)
+panderOptions("table.style", "multiline")
+
+```
+
+[Red]{custom-style="Red"}
+
+[Underline]{custom-style="underline"}
+
+[subscript]{custom-style="Sub"}[superscript]{custom-style="Sup"}
+
+*Italic*
+
+**Bold**
+
+***Bold and Italic***
+
+Footnote^[Footnote.]
+
+* Page break:
+
+\newpage
+
+[Table 1 - Caption.]{custom-style="Cap"}
+
+```{r, echo = FALSE}
+head(iris) %>%
+  pander()
+
+```
+
+[1 ]{custom-style="Sup"}[Table footnote.]{custom-style="Footnote"}
+
+* Line break:
+
+[ ]{custom-style="Body Text"}
+

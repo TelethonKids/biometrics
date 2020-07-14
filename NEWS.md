@@ -1,3 +1,10 @@
+# biometrics v1.1.0
+* Refactored Markdown templates so that supporting files are sourced from the
+    installed package instead of copying them into the RStudio project, this
+    will substantially reduce the size of the package
+* Tidied up the repository
+* Added an RMarkdown template to create .docx files
+
 # biometrics v1.0.5
 * further updates to markdown templates
 * Added TCRC Biostatistics report template

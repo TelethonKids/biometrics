@@ -6,25 +6,20 @@ author:
 affiliation:
   - "Telethon Kids Institute, The University of Western Australia, Perth, Western Australia, Australia"
 date: "`r format(Sys.time(), '%d %B %Y')`"
-logo: assets/images/logo800.jpg
-nav_logo: assets/images/logo_plain.jpg
+js: ["`r biometrics::js()`"]
+logo: '`r system.file("supporting_files/images/logo800.jpg", package = "biometrics")`'
+favicon: '`r system.file("supporting_files/images/favicon.ico", package = "biometrics")`'
+nav_logo: '`r system.file("supporting_files/images/logo_plain.jpg", package = "biometrics")`'
+output: biometrics::html_report
 header-background: blue-triangles-darker
 header-breakout: pms370-breakout
-output:
-  html_document:
-    toc: true
-    toc_float: true
-    template: assets/templates/html_report.html
-    css: assets/css/html_report.css
-    self_contained: true
 vignette: >
   %\VignetteIndexEntry{Biometrics Markdown HTML Template}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 bibliography:
-  - assets/bib/packages.bib
-  - assets/bib/bibliography.bib
-instructions: true
+  - bib/packages.bib
+  - bib/bibliography.bib
 
 ---
 
@@ -35,14 +30,12 @@ repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr",
                              "tibble", "stringr", "forcats", "lubridate",
                              "ProjectTemplate", "repmis", "biometrics", "knitr",
                              "kableExtra", "broom", "GGally", "jtools"),
-            file = file.path("assets", "bib", "packages.bib"))
-recoder("assets/bib/packages.bib")
+            file = "bib/packages.bib")
+recoder("bib/packages.bib")
 
-# loads in template hooks
+# Loads in template hooks
 
-source(file.path("assets", "R", "hooks.R"))
-source(file.path("..", "R", "scale_colour_telethonkids.R"))
-source(file.path("..", "R", "scale_fill_telethonkids.R"))
+source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 ```
 
