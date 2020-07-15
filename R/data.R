@@ -9,13 +9,8 @@
 #'
 #' @format A data table with 18278 rows and 2 columns:
 #' \describe{
-#'   \item{\code{letters}}{character Excel column reference letters}
-#'   \item{\code{numbers}}{integer corresponding column number}
-#' }
-#'
-#' @examples
-#' \donttest{
-#'   excel_ref["ABC"]$numbers
+#'   \item{letters}{character Excel column reference letters}
+#'   \item{numbers}{integer corresponding column number}
 #' }
 "excel_ref"
 
@@ -31,11 +26,12 @@
 #'
 #' @format A data frame with 6820 rows and 5 variables:
 #' \describe{
-#'   \item{\code{id}}{character key ICD-10 codes WITHOUT decimal points}
-#'   \item{\code{name}}{character disease name}
-#'   \item{\code{disease_category}}{character disease category}
-#'   \item{\code{parent_category}}{character parent disease category}
-#'   \item{\code{disease_group}}{character Infections/notifiable}
+#'   \item{id}{character key ICD-10 codes WITHOUT decimal points}
+#'   \item{name}{character disease name}
+#'   \item{disease_category}{character disease category}
+#'   \item{parent_category}{character parent disease category}
+#'   \item{disease_group}{character Infections/notifiable}
+#'   \item{record_type}{ICD-10 or ICD-10-AM}
 #'}
 #'
 #' @source \url{http://health.gnu.org/}
@@ -55,13 +51,13 @@
 #'
 #' @format A data frame with 10680 rows and 7 variables:
 #' \describe{
-#'   \item{\code{id}}{character key ICD-10-AM codes WITHOUT decimal points}
-#'   \item{\code{name}}{character disease name}
-#'   \item{\code{disease_category}}{character disease category}
-#'   \item{\code{parent_category}}{character parent disease category}
-#'   \item{\code{disease_group}}{character Infections/notifiable}
-#'   \item{\code{record_type}}{character record type ICD-10/ICD-10-AM}
-#'   \item{\code{mapping}}{character ICD-10 equivalent to the ICD-10-AM code}
+#'   \item{id}{character key ICD-10-AM codes WITHOUT decimal points}
+#'   \item{name}{character disease name}
+#'   \item{disease_category}{character disease category}
+#'   \item{parent_category}{character parent disease category}
+#'   \item{disease_group}{character Infections/notifiable}
+#'   \item{record_type}{character record type ICD-10/ICD-10-AM}
+#'   \item{mapping}{character ICD-10 equivalent to the ICD-10-AM code}
 #'}
 #' @source \url{https://www.accd.net.au/Downloads.aspx}
 "ICD10AM"
@@ -74,8 +70,8 @@
 #'
 #' @usage data(telethonkids_colours)
 #'
-#' @format A named vector key = pantone matching system color, value = hex colour
-#'   code
+#' @format A named vector key = pantone matching system colour, value = hex
+#'     colour code
 "telethonkids_colours"
 
 #' Telethon Kids Institute Palettes
@@ -88,8 +84,8 @@
 #'
 #' @format
 #' \describe{
-#'   \item{\code{light}}{Light Colour Tone Palette}
-#'   \item{\code{dark}}{Dark Colour Tone Palette}
-#'   \item{\code{grey}}{Typography Palette}
+#'   \item{light}{Light Colour Tone Palette}
+#'   \item{dark}{Dark Colour Tone Palette}
+#'   \item{grey}{Typography Palette}
 #' }
 "telethonkids_palettes"

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="generator" content="pandoc" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    $for(author-meta)$
+      <meta name="author" content="$author-meta$" />
+    $endfor$
+    $if(date-meta)$
+      <meta name="dcterms.date" content="$date-meta$" />
+    $endif$
+    $if(keywords)$
+      <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+    $endif$
+
+    <link href="$favicon$" rel="shortcut icon" type="image/x-icon" />
+
+    <title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$ | Telethon Kids Institute</title>
+
+    $if(highlighting-css)$
+      <style type="text/css">
+        $highlighting-css$
+      </style>
+    $endif$
+
+    $for(css)$
+      <link rel="stylesheet" href="$css$">
+    $endfor$
+
+    $if(math)$
+      $math$
+    $endif$
+
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+    $if(title)$
+      <div class="container-fluid">
+        <div class="row middle $header-background$" id="header">
+          <div class="d-none d-xl-block col-xl-1"></div>
+          <div class="d-xs-none d-lg-block col-lg-3 col-xl-3">
+            <img class="img-fluid rounded d-none d-lg-block logo" src=$logo$>
+          </div>
+          <div class="col-lg-9 col-xl-7">
+            <div class="$header-breakout$ rounded header">
+              <h1 class="proxima-nova-soft-semibold white">$title$</h1>
+              $if(subtitle)$
+                <h3 class="proxima-nova-soft-medium white">$subtitle$</h3>
+              $endif$
+              $for(author)$
+                <h3 class="white">$author$</h3>
+              $endfor$
+              $for(affiliation)$
+                <h5 class="white">$affiliation$</h5>
+              $endfor$
+              $if(date)$
+                <h5 class="white">$date$</h5>
+              $endif$
+              </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-1"></div>
+        </div>
+      </div>
+    $endif$
+    <span id="nav_logo" hidden><img src=$nav_logo$ class="img-fluid nav-logo" /></span>
+    <span id="nav"></span>
+    <div class="container-fluid">
+      <div class="row" id="body">
+        <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+        <div class="col col-lg-10 col-xl-10 translucent rounded">
+          $for(include-before)$
+            $include-before$
+          $endfor$
+          $if(toc)$
+            <span id="toc">
+              <h1>Table of Contents</h1>
+              <p>$toc$</p>
+            </span>
+          $endif$
+          $body$
+          $for(include-after)$
+            $include-after$
+          $endfor$
+        </div>
+        <div class="d-none d-lg-block col-lg-1 col-xl-1"></div>
+      </div>
+      <div class="row" id="footer"></div>
+      $if(js)$
+        $for(js)$
+          <script src="$js$"></script>
+        $endfor$
+      $endif$
+      <script type="text/javascript">
+        $if(toc)$
+          $if(toc_float)$
+            navbar();
+          $endif$
+        $endif$
+        window.addEventListener("hashchange", function () {
+          window.scrollTo(window.scrollX, window.scrollY - 75);
+        });
+      </script>
+    </div>
+  </body>
+</html>

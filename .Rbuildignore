@@ -1,10 +1,5 @@
-^Meta$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-^README\.Rmd$
-^data-raw$
-^archive$
-^header-includes$
 ^\.git$
-^config$
-^scripts$
+^data-raw$
+^figs$

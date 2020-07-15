@@ -3,13 +3,8 @@ title: "Telethon Kids Institute"
 subtitle: "Ioslides Template"
 author: Paul Stevenson
 date: July 7, 2018
-output:
-  ioslides_presentation:
-    template: assets/templates/ioslides.html
-    logo: assets/images/logo800.jpg
-    css: assets/css/ioslides.css
-    widescreen: true
-    incremental: true
+favicon: '`r system.file("supporting_files/images/favicon.ico", package = "biometrics")`'
+output: biometrics::html_ioslides
 vignette: >
   %\VignetteIndexEntry{Ioslides Template}
   %\VignetteEngine{knitr::rmarkdown}
@@ -21,8 +16,6 @@ library(biometrics)
 library(knitr)
 library(ggplot2)
 library(knitr)
-
-data(iris)
 
 ```
 
@@ -95,13 +88,13 @@ include_graphics("assets/images/logo800.jpg")<br />
 </div></code>
 
 ```{r, echo = FALSE, out.extra = 'class="centre" style="width: 300px;"'}
-include_graphics("assets/images/logo800.jpg")
+include_graphics(system.file("supporting_files/images/logo800.jpg", package = "biometrics"))
 
 ```
 
 ## In-line figures
 ```{r, echo = FALSE, out.extra = 'style="float: left; width: 250px; margin: 10px;"'}
-include_graphics("assets/images/logo800.jpg")
+include_graphics(system.file("supporting_files/images/logo800.jpg", package = "biometrics"))
 
 ```
 
