@@ -18,6 +18,11 @@ The Telethon Kids Institute biometrics package can be installed with:
 
     remotes::install_github("TelethonKids/biometrics", build_vignettes = TRUE)
 
+Note, some of the path lengths are not portable and the following might
+be needed to install the package:
+
+    remotes::install_github("TelethonKids/biometrics", build_vignettes = TRUE, type = "win.binary")
+
 ### Creating an new document
 
 Once the *biometrics* package has been installed, the templates can be
