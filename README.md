@@ -44,7 +44,7 @@ in our workflow are described in the package vignettes:
 
 <img src="figs/report.png" width="50%" height="50%">
 
-</ p>
+</p>
 
 ## Authors
 
@@ -78,4 +78,4 @@ not-for-profit.
 
 <img src="inst/supporting_files/images/logo800.jpg" width="40%" height="40%">
 
-</ p>
+</p>
