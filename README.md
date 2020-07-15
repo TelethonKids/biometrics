@@ -34,14 +34,17 @@ Studio](https://www.rstudio.com/resources/cheatsheets/).
 Specific instructions for some of the packages and functions that we use
 in our workflow are described in the package vignettes:
 
-    browseVignettes("biometrics")
+    vignette("html_report", package = "biometrics")
+    vignette("ioslides", package = "biometrics")
 
 <p align="center">
 
-<img src="figs/ioslides.png"  width="50%" height="50%">
-<img src="figs/report.png"  width="50%" height="50%">
+<img src="figs/ioslides.png" width="50%" height="50%">
 
-</p>
+
+<img src="figs/report.png" width="50%" height="50%">
+
+</ p>
 
 ## Authors
 
@@ -73,6 +76,6 @@ not-for-profit.
 
 <p align="center">
 
-<img src="figs/logo800.jpg"  width="40%" height="40%">
+<img src="inst/supporting_files/images/logo800.jpg" width="40%" height="40%">
 
-</p>
+</ p>
