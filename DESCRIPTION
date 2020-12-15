@@ -1,11 +1,11 @@
 Package: biometrics
 Title: Report Templates for the Telethon Kids Institute
-Version: 1.1.0
+Version: 1.1.1
 Authors@R: c(person("Paul", "Stevenson",
     email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")),
     person("Matthew", "Cooper",
     email = "Matt.Cooper@telethonkids.org.au", role = c("aut")))
-Date: 2020-07-14
+Date: 2020-12-15
 Description: This pakcage includes RMarkdown and ioslides templates that incorporate
     the Telethon Kid’s style guide and emulate the Institutes Web theme.
     Currently, templates are available to produce stand-alone HTML reports
@@ -21,6 +21,7 @@ Imports:
     broom (>= 0.5.6),
     ggplot2 (>= 3.3.2),
     dplyr (>= 1.0.0),
+    here (>= 1.0.1),
     igraph (>= 1.2.5),
     jtools (>= 1.2.5),
     kableExtra (>= 1.1.0),
@@ -36,7 +37,6 @@ Suggests:
     stringr (>= 1.4.0),
     forcats (>= 0.5.0),
     knitr (>= 1.21),
-    GGally (>= 2.0.0),
     huxtable (>= 5.0.0),
     ggstance (>= 0.3.4),
     XML (>= 3.99-0.3)

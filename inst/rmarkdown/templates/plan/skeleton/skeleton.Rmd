@@ -27,7 +27,7 @@ bibliography:
 repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
                      "biometrics", "knitr", "kableExtra", "broom", "GGally",
-                     "jtools", "rmarkdown"),
+                     "jtools", "rmarkdown", "here"),
             file = "bib/packages.bib")
 recoder("bib/packages.bib")
 
@@ -37,11 +37,11 @@ source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 #### Load helper functions ----
 
-source("../R/99-helper.R")
+# source(here("R/99-helper.R"))
 
 #### Load data ----
 
-load("../data/dat.RData")
+# load(here("data/dat.RData"))
 
 #### Data wrangling ----
 
@@ -105,17 +105,6 @@ Project roles:
 
 There were ***XXX*** children born from ***XXX*** women over the study study interval, ***XXX*** were males that were diagnosed with ***XXX***.
 
-## Pairs Plot
- 
-```{r variable_matrix, out.extra = "figure", echo = F, message = F, warning = F}
-ggpairs(iris, # update with name of data frame, select important columns
-        mapping = ggplot2::aes(colour = factor(Species), alpha = 0.6),
-        diag = list(continuous = "densityDiag"),
-        axisLabels = "show") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-```
-
 # Actions
 
 * ***XXX*** to provide cleaned/recoded data to ***XXX***
@@ -138,7 +127,7 @@ Commentary around the methods and results of model creation will be provided in 
 
 # Analysis Estimate
 
-Assuming the data are tidy and clean, we estimate <mark>4-6 days of analysis time</mark> (at $875 per day, excluding GST), which does not include final result preparation time. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
+Assuming the data are tidy and clean, we estimate <mark>4-6 days of analysis time</mark> (at $900 per day, excluding GST), which does not include final result preparation time. Up to two Biometrics Biostatisticians to be included as authors on resulting publication(s) (assuming sufficient academic contributions are made).
 
 It would be worthwhile preparing a skeleton of the tables for the paper to make the most efficient use of the analysis time, as working through multiple iterations of possible tables (which we are happy to do if required) will increase the analysis time/cost.
 

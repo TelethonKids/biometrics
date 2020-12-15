@@ -25,7 +25,7 @@ bibliography:
 repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
                      "biometrics", "knitr", "kableExtra", "broom", "GGally",
-                     "jtools", "captioner", "rmarkdown"),
+                     "jtools", "captioner", "rmarkdown", "here"),
             file = "bib/packages.bib")
 recoder("bib/packages.bib")
 
@@ -35,11 +35,11 @@ source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 #### Load helper functions ----
 
-source("../R/99-helper.R")
+# source(here("R/99-helper.R"))
 
 #### Load data ----
 
-load("../data/dat.RData")
+# load(here("data/dat.RData"))
 
 #### Data wrangling ----
 
@@ -48,7 +48,7 @@ load("../data/dat.RData")
 #### Models ----
 
 mods <- list()
-mods$iris_data <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+mods$mtcars <- lm(mpg ~ cyl + disp, data = mtcars)
 
 ```
 
@@ -108,17 +108,6 @@ Project roles:
 
 There were ***XXX*** children born from ***XXX*** women over the study study interval, ***XXX*** were males that were diagnosed with ***XXX***.
 
-## Pairs Plot
- 
-```{r, out.extra = "figure", echo = F, message = F, warning = F}
-ggpairs(iris, # update with name of data frame, select important columns
-        mapping = ggplot2::aes(colour = factor(Species), alpha = 0.6),
-        diag = list(continuous = "densityDiag"),
-        axisLabels = "show") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-```
-
 # Actions
 
 * ***XXX*** to provide cleaned/recoded data to ***XXX***
@@ -148,12 +137,12 @@ The Telethon Clinical Research Centre (TCRC) provides 7.5 hours of biostatistica
 ## Tables
 
 ```{r, table = TRUE, results = "hide", warning = FALSE}
-head(iris)
+head(mtcars)
 
 ```
 
 ```{r model_1, echo = FALSE, message = FALSE, warning = FALSE}
-export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", model.names = "Iris Data", exp = FALSE)
+export_summs(mods$mtcars, error_format = "CI [{conf.low}, {conf.high}]", model.names = "mtcars", exp = FALSE)
 
 ```
 
@@ -162,7 +151,7 @@ export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", mode
 ### Raw Data
 
 ```{r figure 1-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Species)) +
+ggplot(mtcars, aes(x = mpg, y = disp, group = cyl, color = cyl)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(title = "Iris Data")
@@ -172,7 +161,7 @@ ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Spe
 ### Model Outcomes
 
 ```{r figure_1-1, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-plot_summs(mods$iris_data, model.names = "Iris Data")
+plot_summs(mods$mtcars, model.names = "mtcars")
 
 ```
 

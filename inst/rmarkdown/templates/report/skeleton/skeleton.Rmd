@@ -1,5 +1,5 @@
 ---
-title: "t20XXX Project Name"
+title: "t21XXX Project Name"
 subtitle: "Biometrics Analysis Report"
 author:
   - "Author&nbsp;1<sup>1</sup> and Author&nbsp;2<sup>2</sup>"
@@ -26,7 +26,8 @@ bibliography:
 
 repmis::LoadandCite(pkgs = c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble",
                      "stringr", "forcats", "lubridate", "ProjectTemplate", "repmis",
-                     "biometrics", "knitr", "kableExtra", "broom", "jtools", "rmarkdown"),
+                     "biometrics", "knitr", "kableExtra", "broom", "jtools", "rmarkdown",
+                     "here"),
             file = "bib/packages.bib")
 recoder("bib/packages.bib")
 
@@ -36,22 +37,22 @@ source(system.file("supporting_files/R/hooks.R", package = "biometrics"))
 
 #### Load helper functions ----
 
-source("../R/99-helper.R")
+# source(here("R/99-helper.R"))
 
 #### Load data ----
 
-load("../cache/dat.RData")
+# load(here("cache/dat.RData"))
 
 #### Data wrangling ----
 
-source("../R/02-demographics.R")
+
 
 #### Models ----
 
-load("../cache/mods.RData")
+# load(here("/cache/mods.RData"))
 
 mods <- list()
-mods$iris_data <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+mods$mtcars <- lm(mpg ~ cyl + disp, data = mtcars)
 
 ```
 
@@ -75,12 +76,12 @@ mods$iris_data <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
 ## Tables
 
 ```{r, table = TRUE, results = "hide", warning = FALSE}
-head(iris)
+head(mtcars)
 
 ```
 
 ```{r, echo = FALSE, message = FALSE, warning = FALSE}
-export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", model.names = "Iris Data", exp = FALSE)
+export_summs(mods$mtcars, error_format = "CI [{conf.low}, {conf.high}]", model.names = "mtcars", exp = FALSE)
 
 ```
 
@@ -89,7 +90,7 @@ export_summs(mods$iris_data, error_format = "CI [{conf.low}, {conf.high}]", mode
 ### Raw Data
 
 ```{r, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Species)) +
+ggplot(mtcars, aes(x = mpg, y = disp, group = cyl, color = cyl)) +
   geom_point() +
   geom_smooth(method = "lm") +
   labs(title = "Iris Data")
@@ -99,7 +100,7 @@ ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, group = Species, color = Spe
 ### Model Outcomes
 
 ```{r, echo = FALSE, out.extra = "figure", message = FALSE, warning = FALSE}
-plot_summs(mods$iris_data, model.names = "Iris Data")
+plot_summs(mods$mtcars, model.names = "mtcars")
 
 ```
 
@@ -110,7 +111,6 @@ plot_summs(mods$iris_data, model.names = "Iris Data")
 * The reported effect estimates have ***not*** been exponentiated
 * Effect estimates, 95% confidence intervals that include 0 indicated there was insufficient evidence to establish statistical significance
 * ***Key observations...***
-    - `r filter(quick_text(mods), term == "Sepal.Width")$text1`
     
 ## Conclusion
 
