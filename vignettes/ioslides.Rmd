@@ -9,6 +9,7 @@ vignette: >
   %\VignetteIndexEntry{Ioslides Template}
   %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
+  
 ---
 
 ```{r init, include = FALSE, echo = FALSE}

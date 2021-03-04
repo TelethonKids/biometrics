@@ -38,7 +38,7 @@ html_report <- function(toc = TRUE) {
 html_ioslides <- function() {
 
   template <- system.file("supporting_files/html/ioslides.html", package = "biometrics")
-  css <- system.file("supporting_files/07_ioslides.css", package = "biometrics")
+  css <- system.file("supporting_files/css/07_ioslides.css", package = "biometrics")
   logo <- system.file("supporting_files/images/logo800.jpg", package = "biometrics")
 
   ioslides_presentation(fig_width = 6.5,
