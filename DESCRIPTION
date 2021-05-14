@@ -23,6 +23,7 @@ Imports:
     dplyr (>= 1.0.0),
     here (>= 1.0.1),
     igraph (>= 1.2.5),
+    janitor (>= 2.1.0),
     jtools (>= 1.2.5),
     kableExtra (>= 1.1.0),
     lubridate (>= 1.7.9),

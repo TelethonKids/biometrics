@@ -130,6 +130,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #'
 #' @param d REDCap (data frame)
 #' @param dict REDCap data dictionary (data frame)
+#' @param numeric_date (default FALSE) set to TRUE if MS Excel has _helpfully_ converted to a numeric date
 #'
 #' @return cleaned data frame
 #'
@@ -140,6 +141,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' @importFrom purrr map_lgl
 #' @importFrom labelled set_variable_labels
 #' @importFrom lubridate dmy mdy ymd dmy_hm mdy_hm ymd_hm dmy_hms mdy_hms ymd_hms
+#' @importFrom janitor excel_numeric_to_date
 #'
 #' @examples
 #' \dontrun{
@@ -157,7 +159,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' }
 #'
 #' @export
-clean_REDCap <- function(d, dict) {
+clean_REDCap <- function(d, dict, numeric_date = FALSE) {
 
   dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d", ""),] # remove items from dictionary that aren't in the dataset
 
@@ -166,18 +168,24 @@ clean_REDCap <- function(d, dict) {
               across(starts_with(paste0(dict[map_lgl(dict$`Field Type` == "checkbox", isTRUE),]$`Variable / Field Name`, "___")), ~as.logical(as.numeric(.))),
               across(dict[map_lgl(dict$`Field Type` %in% c("dropdown", "radio"), isTRUE),]$`Variable / Field Name`, factor_convert, d = d, dict = dict),
 
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_dmy", isTRUE),]$`Variable / Field Name`, dmy),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_mdy", isTRUE),]$`Variable / Field Name`, mdy),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_ymd", isTRUE),]$`Variable / Field Name`, ymd),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_dmy", isTRUE),]$`Variable / Field Name`, dmy_hm),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_mdy", isTRUE),]$`Variable / Field Name`, mdy_hm),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_ymd", isTRUE),]$`Variable / Field Name`, ymd_hm),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_dmy", isTRUE),]$`Variable / Field Name`, dmy_hms),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_mdy", isTRUE),]$`Variable / Field Name`, mdy_hms),
-              across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_ymd", isTRUE),]$`Variable / Field Name`, ymd_hms),
               across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "integer", isTRUE),]$`Variable / Field Name`, as.integer),
               across(dict[grepl("^number((?!comma).)*$", dict$`Text Validation Type OR Show Slider Number`, perl = TRUE),]$`Variable / Field Name`, as.numeric), # starts with "number", does not contain "comma"
               across(dict[grepl("^number.*comma.*$", dict$`Text Validation Type OR Show Slider Number`),]$`Variable / Field Name`, ~as.numeric(sub(",", ".", .x)))) # starts with "number", does contain "comma"
+
+  if (numeric_date) {
+    d <- mutate(d, across(dict[grepl("^date.*$", dict$`Text Validation Type OR Show Slider Number`, perl = TRUE),]$`Variable / Field Name`, ~excel_numeric_to_date(as.numeric(.))))
+  } else {
+    d <- mutate(d,
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_dmy", isTRUE),]$`Variable / Field Name`, dmy),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_mdy", isTRUE),]$`Variable / Field Name`, mdy),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "date_ymd", isTRUE),]$`Variable / Field Name`, ymd),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_dmy", isTRUE),]$`Variable / Field Name`, dmy_hm),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_mdy", isTRUE),]$`Variable / Field Name`, mdy_hm),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_ymd", isTRUE),]$`Variable / Field Name`, ymd_hm),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_dmy", isTRUE),]$`Variable / Field Name`, dmy_hms),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_mdy", isTRUE),]$`Variable / Field Name`, mdy_hms),
+                across(dict[map_lgl(dict$`Text Validation Type OR Show Slider Number` == "datetime_seconds_ymd", isTRUE),]$`Variable / Field Name`, ymd_hms))
+  }
 
   d <- set_variable_labels(d, .labels = variable_labels(d, dict))
 
