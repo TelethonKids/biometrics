@@ -8,6 +8,9 @@
 library(biometrics)
 library(dplyr)
 library(data.table)
+library(labelled)
+library(lubridate)
+library(readr)
 library(XML)
 
 #### Excel reference ----
@@ -163,6 +166,37 @@ telethonkids_palettes <- list(
   `grey` = telethonkids_cols("Cool Grey 5", "Cool Grey 7", "Cool Grey 9", "Cool Grey 11")
 )
 
+#### REDCap clean test data
+
+clean_REDCap_dat <- read_csv(file = "data-raw/REDCap_test_data.csv", col_types = cols(.default = "c"))
+clean_REDCap_dat_dictionary <- read_csv(file = "data-raw/REDCap_dictionary.csv", col_types = cols(.default = "c"))
+
+clean_REDCap_validation <- tibble(id1 = as.character(1:2),
+                                  yesno1 = c(FALSE, TRUE),
+                                  checkbox1___1 = c(FALSE, TRUE),
+                                  checkbox1___2 = c(TRUE, FALSE),
+                                  dropdown1 = factor(c("Dropdown 1", "Dropdown 2"), levels = c("Dropdown 1", "Dropdown 2")),
+                                  radio1 = factor(c("Radio 1", "Radio 2"), levels = c("Radio 1", "Radio 2")),
+                                  date_dmy1 = rep(dmy("16/02/1985"), 2),
+                                  date_mdy1 = rep(dmy("16/02/1985"), 2),
+                                  date_ymd1 = rep(dmy("16/02/1985"), 2),
+                                  datetime_dmy1 = c(dmy_hm("16/02/1985 12:01 AM"), dmy_hm("16/02/1985 12:01 PM")),
+                                  datetime_mdy1 = c(dmy_hm("16/02/1985 12:01 AM"), dmy_hm("16/02/1985 12:01 PM")),
+                                  datetime_ymd1 = c(dmy_hm("16/02/1985 12:01 AM"), dmy_hm("16/02/1985 12:01 PM")),
+                                  datetime_seconds_dmy1 = c(dmy_hms("16/02/1985 12:01:01 AM"), dmy_hms("16/02/1985 12:01:01 PM")),
+                                  datetime_seconds_mdy1 = c(dmy_hms("16/02/1985 12:01:01 AM"), dmy_hms("16/02/1985 12:01:01 PM")),
+                                  datetime_seconds_ymd1 = c(dmy_hms("16/02/1985 12:01:01 AM"), dmy_hms("16/02/1985 12:01:01 PM")),
+                                  integer1 = rep(1L, 2),
+                                  number1 = rep(1.5, 2),
+                                  number_comma_decimal1 = rep(1.5, 2),
+                                  number_1dp1 = rep(1.5, 2),
+                                  number_1dp_comma_decimal1 = rep(1.5, 2))
+var_label(clean_REDCap_validation) <- toupper(letters[1:20])
+
+clean_REDCap_dat <- as_tibble(clean_REDCap_dat)
+attr(clean_REDCap_dat, "spec") <- NULL
+attr(clean_REDCap_dat_dictionary, "spec") <- NULL
+
 #### save ----
 
 usethis::use_data(excel_ref, overwrite = TRUE)
@@ -170,3 +204,4 @@ usethis::use_data(ICD10, overwrite = TRUE)
 usethis::use_data(ICD10AM, overwrite = TRUE)
 usethis::use_data(telethonkids_colours, overwrite = TRUE)
 usethis::use_data(telethonkids_palettes, overwrite = TRUE)
+save(clean_REDCap_dat, clean_REDCap_dat_dictionary, clean_REDCap_validation, file = "tests/resources/clean_REDCap.RData")
