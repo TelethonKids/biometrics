@@ -165,6 +165,7 @@ clean_REDCap <- function(d, dict, numeric_date = FALSE) {
 
   d <- mutate(d,
               across(dict[map_lgl(dict$`Field Type` == "yesno", isTRUE),]$`Variable / Field Name`, ~as.logical(as.numeric(.x))),
+              across(dict[map_lgl(dict$`Field Type` == "calc", isTRUE),]$`Variable / Field Name`, as.numeric),
               across(starts_with(paste0(dict[map_lgl(dict$`Field Type` == "checkbox", isTRUE),]$`Variable / Field Name`, "___")), ~as.logical(as.numeric(.))),
               across(dict[map_lgl(dict$`Field Type` %in% c("dropdown", "radio"), isTRUE),]$`Variable / Field Name`, factor_convert, d = d, dict = dict),
 
