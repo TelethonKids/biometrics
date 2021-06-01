@@ -161,7 +161,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' @export
 clean_REDCap <- function(d, dict, numeric_date = FALSE) {
 
-  dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d", ""),] # remove items from dictionary that aren't in the dataset
+  dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset
 
   d <- mutate(d,
               across(dict[map_lgl(dict$`Field Type` == "yesno", isTRUE),]$`Variable / Field Name`, ~as.logical(as.numeric(.x))),
