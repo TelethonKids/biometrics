@@ -28,15 +28,29 @@ test_that("checkbox_labels", {
 
 test_that("variable_labels", {
 
-  dat <- tibble(var = 1)
-  dictionary <- tibble(`Variable / Field Name` = "var", `Field Label` = "Label")
+  dat <- tibble(var = 1, var2___1 = 1, var2___2 = 0)
+  dictionary <- tibble(`Variable / Field Name` = c("var", "var2"),
+                       `Field Label` = c("Label for field 'Var'", NA),
+                       `Field Type` = c(NA, "checkbox"),
+                       `Choices, Calculations, OR Slider Labels` = c(NA, "1, First checkbox label | 2, Second checkbox label"))
 
-  expect_equal(variable_labels(dat, dictionary), "Label")
+  expect_equal(labelled::var_label(variable_labels(dat, dictionary)),
+               list(var = "Label for field 'Var'",
+                    var2___1 = "First checkbox label",
+                    var2___2 = "Second checkbox label"))
+
+})
+
+test_that("yesno_vars", {
+
+  dat <- tibble(var = factor(c("Yes", "Yes", "No", "Yes"), levels = c("Yes", "No")))
+
+  expect_equal(yesno_vars(dat), "var")
 
 })
 
 test_that("clean_REDCap", {
 
-  expect_equal(clean_REDCap(clean_REDCap_dat, clean_REDCap_dat_dictionary), clean_REDCap_validation)
+  expect_equal(clean_REDCap(clean_REDCap_dat, clean_REDCap_dat_dictionary, yesno_to_bool = TRUE), clean_REDCap_validation)
 
 })

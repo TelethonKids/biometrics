@@ -221,32 +221,87 @@ checkbox_labels <- function(x, dict) {
 #' variable_labels
 #'
 #' Apply variable labels to a data frame per the REDCap data dictionary. If
-#' there is no variable label associated with a column then is lable will be the
+#' there is no variable label associated with a column then is label will be the
 #' same as the column's name.
 #'
 #' @param d REDCap import
 #' @param dict REDCap data dictionary
 #'
-#' @return character vector (length `ncol(d)`) of REDCap Field Labels per the data dictionary
+#' @return data frame with variable labels
 #'
-#' @importFrom purrr map_chr
+#' @importFrom purrr map_chr map_lgl
+#' @importFrom labelled set_variable_labels
 #'
 #' @examples
 #' \dontrun{
 #'
-#' dat <- tibble(var = 1)
+#' dat <- tibble(var = 1, var2___1 = 1, var2___2 = 0)
+#' dictionary <- tibble(`Variable / Field Name` = c("var", "var2"),
+#'                      `Field Label` = c("Label for field 'Var'", NA),
+#'                      `Field Type` = c(NA, "checkbox"),
+#'                      `Choices, Calculations, OR Slider Labels` =
+#'                        c(NA, "1, First checkbox label | 2, Second checkbox label"))
 #'
-#' dictionary <- tibble(`Variable / Field Name` = "var", `Field Label` = "Label")
-#'
-#' dat <- labelled::set_variable_labels(dat, .labels = variable_labels(dat, dictionary))
+#' dat <- variable_labels(dat, dictionary)
+#' View(dat)
 #'
 #' }
 #'
 #' @export
-variable_labels <- function(d, dict) map_chr(names(d),
-                                             ~ifelse(.x %in% dict$`Variable / Field Name`,
-                                                     dict[dict$`Variable / Field Name` == .x,]$`Field Label`,
-                                                     .x), dict = dict)
+variable_labels <- function(d, dict) {
+
+  dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset
+
+  x <- map_chr(names(d),
+          ~ifelse(.x %in% dict$`Variable / Field Name`,
+                  dict[dict$`Variable / Field Name` == .x,]$`Field Label`,
+                  .x), dict = dict)
+
+  d <- set_variable_labels(d, .labels = x)
+
+  # Apply checkbox labels
+
+  for (i in dict[map_lgl(dict$`Field Type` == "checkbox", isTRUE),]$`Variable / Field Name`) {
+    d <- set_variable_labels(d, .labels = checkbox_labels(i, dict))
+  }
+
+  d
+
+}
+
+#' yesno_vars
+#'
+#' @param d a data frame object
+#'
+#' @return a character vector of colulumn that are factors with levels: `c("Yes", "No")`
+#'
+#' @importFrom purrr map_lgl
+#'
+#' @examples
+#'   \dontrun{
+#'
+#' dat <- tibble(var = factor(c("Yes", "Yes", "No", "Yes"), levels = c("Yes", "No")))
+#'
+#' yesno_vars(dat)
+#'
+#' mutate(dat, across(yesno_vars(dat), ~case_when(. == "Yes" ~ TRUE, . == "No" ~ FALSE, TRUE ~ NA)))
+#'
+#' }
+#'
+#' @export
+yesno_vars <- function(d) {
+  o <- map_lgl({{d}}, function(x) {
+    if ( !is.factor(x) )
+      return(FALSE)
+    if ( length(levels(x)) != 2 )
+      return(FALSE)
+    if ( all(levels(x) == c("Yes", "No")) )
+      return(TRUE)
+    FALSE
+  })
+  names(o[which(o)])
+
+}
 
 #' clean_REDCap
 #'
@@ -256,6 +311,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' @param d REDCap (data frame)
 #' @param dict REDCap data dictionary (data frame)
 #' @param numeric_date (default FALSE) set to TRUE if MS Excel has _helpfully_ converted to a numeric date
+#' @param yesno_to_bool (default FALSE) convert factors with levels `c("Yes", "No")` to logical objects?
 #'
 #' @return cleaned data frame
 #'
@@ -263,8 +319,6 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' @importFrom dplyr mutate across
 #' @importFrom magrittr `%>%`
 #' @importFrom tidyselect starts_with
-#' @importFrom purrr map_lgl
-#' @importFrom labelled set_variable_labels
 #' @importFrom lubridate ymd ymd_hm ymd_hms hm ms
 #' @importFrom janitor excel_numeric_to_date
 #'
@@ -284,12 +338,12 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' }
 #'
 #' @export
-clean_REDCap <- function(d, dict, numeric_date = FALSE) {
+clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE) {
 
   dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset
 
   d <- mutate(d,
-              across(dict[map_lgl(dict$`Field Type` == "yesno", isTRUE),]$`Variable / Field Name`, ~as.logical(as.numeric(.x))),
+              across(dict[map_lgl(dict$`Field Type` == "yesno", isTRUE),]$`Variable / Field Name`, factor, c("1", "0"), c("Yes", "No")),
               across(dict[map_lgl(dict$`Field Type` == "calc", isTRUE),]$`Variable / Field Name`, as.numeric),
               across(starts_with(paste0(dict[map_lgl(dict$`Field Type` == "checkbox", isTRUE),]$`Variable / Field Name`, "___")), ~as.logical(as.numeric(.))),
               across(dict[map_lgl(dict$`Field Type` %in% c("dropdown", "radio"), isTRUE),]$`Variable / Field Name`, factor_convert, d = d, dict = dict),
@@ -309,13 +363,9 @@ clean_REDCap <- function(d, dict, numeric_date = FALSE) {
                 across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time_mm_ss$"), isTRUE),]$`Variable / Field Name`, ms))
   }
 
-  d <- set_variable_labels(d, .labels = variable_labels(d, dict))
+  if (yesno_to_bool)
+    d <- mutate(d, across(yesno_vars(d), ~case_when(. == "Yes" ~ TRUE, . == "No" ~ FALSE, TRUE ~ NA)))
 
-  # Apply checkbox labels
+  variable_labels(d, dict)
 
-  for (i in dict[map_lgl(dict$`Field Type` == "checkbox", isTRUE),]$`Variable / Field Name`) {
-    d <- set_variable_labels(d, .labels = checkbox_labels(i, dict))
-  }
-
-  d
 }
