@@ -312,6 +312,7 @@ yesno_vars <- function(d) {
 #' @param dict REDCap data dictionary (data frame)
 #' @param numeric_date (default FALSE) set to TRUE if MS Excel has _helpfully_ converted to a numeric date
 #' @param yesno_to_bool (default FALSE) convert factors with levels `c("Yes", "No")` to logical objects?
+#' @param quiet (default FALSE) pass quiet argument to lubridate functions
 #'
 #' @return cleaned data frame
 #'
@@ -338,7 +339,7 @@ yesno_vars <- function(d) {
 #' }
 #'
 #' @export
-clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE) {
+clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE, quiet = FALSE) {
 
   dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset
 
@@ -356,11 +357,11 @@ clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE) {
     d <- mutate(d, across(dict[grepl("^date.*$", dict$`Text Validation Type OR Show Slider Number`, perl = TRUE),]$`Variable / Field Name`, ~excel_numeric_to_date(as.numeric(.))))
   } else {
     d <- mutate(d,
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_"), isTRUE),]$`Variable / Field Name`, ymd),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_(?!seconds_)"), isTRUE),]$`Variable / Field Name`, ymd_hm),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_"), isTRUE),]$`Variable / Field Name`, ymd_hms),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time$"), isTRUE),]$`Variable / Field Name`, hm),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time_mm_ss$"), isTRUE),]$`Variable / Field Name`, ms))
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_"), isTRUE),]$`Variable / Field Name`, ymd, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_(?!seconds_)"), isTRUE),]$`Variable / Field Name`, ymd_hm, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_"), isTRUE),]$`Variable / Field Name`, ymd_hms, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time$"), isTRUE),]$`Variable / Field Name`, hm, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time_mm_ss$"), isTRUE),]$`Variable / Field Name`, ms, quiet = quiet))
   }
 
   if (yesno_to_bool)
