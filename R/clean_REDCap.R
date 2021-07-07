@@ -320,7 +320,7 @@ yesno_vars <- function(d) {
 #' @importFrom dplyr mutate across
 #' @importFrom magrittr `%>%`
 #' @importFrom tidyselect starts_with
-#' @importFrom lubridate ymd ymd_hm ymd_hms hm ms
+#' @importFrom lubridate ymd mdy dmy ymd_hm mdy_hm dmy_hm ymd_hms mdy_hms dmy_hms hm ms
 #' @importFrom janitor excel_numeric_to_date
 #'
 #' @examples
@@ -357,9 +357,18 @@ clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE, q
     d <- mutate(d, across(dict[grepl("^date.*$", dict$`Text Validation Type OR Show Slider Number`, perl = TRUE),]$`Variable / Field Name`, ~excel_numeric_to_date(as.numeric(.))))
   } else {
     d <- mutate(d,
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_"), isTRUE),]$`Variable / Field Name`, ymd, quiet = quiet),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_(?!seconds_)"), isTRUE),]$`Variable / Field Name`, ymd_hm, quiet = quiet),
-                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_"), isTRUE),]$`Variable / Field Name`, ymd_hms, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_ymd"), isTRUE),]$`Variable / Field Name`, ymd, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_mdy"), isTRUE),]$`Variable / Field Name`, mdy, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^date_dmy"), isTRUE),]$`Variable / Field Name`, dmy, quiet = quiet),
+
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_ymd"), isTRUE),]$`Variable / Field Name`, ymd_hm, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_mdy"), isTRUE),]$`Variable / Field Name`, mdy_hm, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_dmy"), isTRUE),]$`Variable / Field Name`, dmy_hm, quiet = quiet),
+
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_ymd"), isTRUE),]$`Variable / Field Name`, ymd_hms, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_mdy"), isTRUE),]$`Variable / Field Name`, mdy_hms, quiet = quiet),
+                across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^datetime_seconds_dmy"), isTRUE),]$`Variable / Field Name`, dmy_hms, quiet = quiet),
+
                 across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time$"), isTRUE),]$`Variable / Field Name`, hm, quiet = quiet),
                 across(dict[map_lgl(str_detect(dict$`Text Validation Type OR Show Slider Number`, "^time_mm_ss$"), isTRUE),]$`Variable / Field Name`, ms, quiet = quiet))
   }
