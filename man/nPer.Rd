@@ -9,19 +9,16 @@ nPer(vec, intGroup, dp = 1)
 \arguments{
 \item{vec}{numeric vector}
 
-\item{intGroup}{xxxx}
+\item{intGroup}{the response to be searched for (integer, character string, or vector of responses)}
 
 \item{dp}{(default 1)}
 }
 \value{
-xxxx
+object of class character, in the form "N (XX.X%)"
 }
 \description{
-Printing N and percentage
+A helper function for use in descriptive statistics tables.
 }
-\examples{
-\dontrun{
-  nPer(xxx)
-}
-
+\details{
+Prints N and percentage for categorical variables (accepts vector of responses)
 }

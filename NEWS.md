@@ -1,3 +1,6 @@
+# biometrics v1.2.1
+* Added a number of new functions, and updated/improved help documentation for others.
+
 # biometrics v1.1.0
 * Refactored Markdown templates so that supporting files are sourced from the
     installed package instead of copying them into the RStudio project, this
