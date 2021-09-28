@@ -9,6 +9,7 @@
 #'
 #' @examples
 #' roundf(mtcars$wt, 2)
+#' }
 #'
 #' @export
 

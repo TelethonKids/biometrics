@@ -17,7 +17,3 @@ object of class character"
 \description{
 A function to keep trailing zeroes when rounding numbers.
 }
-\examples{
-roundf(mtcars$wt, 2)
-
-}
