@@ -1,11 +1,11 @@
 Package: biometrics
 Title: Report Templates and general use functions - Telethon Kids Institute, Biometrics Team
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: c(person("Matthew", "Cooper",
     email = "Matt.Cooper@telethonkids.org.au", role = c("aut")),
     person("Paul", "Stevenson",
     email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")))
-Date: 2021-09-24
+Date: 2022-07-29
 Description: This pakcage includes RMarkdown and ioslides templates that incorporate
     the Telethon Kid’s style guide and emulate the Institutes Web theme.
     Currently, templates are available to produce stand-alone HTML reports
@@ -16,7 +16,7 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 4.0.0)
+    R (>= 4.2.0)
 Imports:
     broom (>= 0.5.6),
     ggplot2 (>= 3.3.2),
@@ -47,5 +47,5 @@ Suggests:
     XML (>= 3.99-0.3),
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Config/testthat/edition: 3

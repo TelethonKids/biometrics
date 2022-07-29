@@ -13,9 +13,12 @@
 #' @examples
 #' table(iris$Species)
 #'
+#' \dontrun{
 #' nPer(iris$Species, "setosa")
+#'
 #' nPer(iris$Species, c("versicolor", "virginica"))
-#'   nPer(xxx)
+#'
+#' nPer(xxx)
 #' }
 #'
 #' @export

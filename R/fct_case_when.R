@@ -14,9 +14,11 @@
 #'
 #' @return A vector of length 1 or n, of class factor, matching the length of the logical input or output vectors. Inconsistent lengths or types will generate an error.
 #'
-#' @importFrom stats sd
+#' @import dplyr
 #'
 #' @examples
+#'
+#'\dontrun{
 #'
 #'   x <- 1:50
 #'   case_when(
@@ -32,7 +34,8 @@
 #'     x %% 7 == 0 ~ "buzz",
 #'     TRUE ~ "no fizz buzz"
 #'   ) %>% table
-#' }
+#'
+#'}
 #'
 #' @export
 #'

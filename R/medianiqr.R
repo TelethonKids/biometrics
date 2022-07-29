@@ -8,7 +8,8 @@
 #'
 #' @return object of class character, in the form "XX.XX (XX.XX, XX.XX)"
 #'
-#' @importFrom stats sd
+#' @importFrom stats sd quantile
+#'
 #'
 #' @examples
 #'   medianiqr(mtcars$mpg)

@@ -1,4 +1,4 @@
-#' glm.rr
+#' glm_rr
 #'
 #' Returns summary table output for a glm model, taking care of exponentiating the coefficients and confidence intervals
 #'
@@ -23,7 +23,7 @@
 #' }
 #'
 #' @export
-glm.rr <- function(mod, digits = 2) {
+glm_rr <- function(mod, digits = 2) {
 
   if (mod$family$family == "binomial") {
     LABEL <- "OR"

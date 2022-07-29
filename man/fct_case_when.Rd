@@ -23,3 +23,25 @@ A vector of length 1 or n, of class factor, matching the length of the logical i
 \description{
 Essentially the same as dplyr::case_when but the variable is of class factor, ordered based on the order entered into the case_when statement
 }
+\examples{
+
+\dontrun{
+
+  x <- 1:50
+  case_when(
+    x \%\% 35 == 0 ~ "fizz buzz",
+    x \%\% 5 == 0 ~ "fizz",
+    x \%\% 7 == 0 ~ "buzz",
+    TRUE ~ "no fizz buzz"
+  ) \%>\% table
+
+  fct_case_when(
+    x \%\% 35 == 0 ~ "fizz buzz",
+    x \%\% 5 == 0 ~ "fizz",
+    x \%\% 7 == 0 ~ "buzz",
+    TRUE ~ "no fizz buzz"
+  ) \%>\% table
+
+}
+
+}

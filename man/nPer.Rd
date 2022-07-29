@@ -22,3 +22,15 @@ A helper function for use in descriptive statistics tables.
 \details{
 Prints N and percentage for categorical variables (accepts vector of responses)
 }
+\examples{
+table(iris$Species)
+
+\dontrun{
+nPer(iris$Species, "setosa")
+
+nPer(iris$Species, c("versicolor", "virginica"))
+
+nPer(xxx)
+}
+
+}
