@@ -1,5 +1,5 @@
 function navbar() {
-  var x = document.getElementById("toc").innerHTML.replace(/(\r\n\t|\n|\r\t)/gm, "").replace(/>\s+</g, "><");
+  var x = document.getElementById("toc").innerHTML.replace(/(\r\n\t|\n|\r\t)/gm, " ").replace(/>\s+</g, "><");
   document.getElementById("toc").innerHTML = "";
   var img = document.getElementById("nav_logo").innerHTML;
 	var parser = new DOMParser();
