@@ -25,6 +25,5 @@ create_REDCap_dictionary <- function(x, dictionary) {
     filter(`Variable / Field Name` %in% names) %>%
     arrange(factor(`Variable / Field Name`, levels = names)) %>%
     mutate(across(everything(), ~ifelse(is.na(.), "", as.character(.))))
-
   output
 }
