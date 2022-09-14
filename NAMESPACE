@@ -3,6 +3,7 @@
 export(checkbox_labels)
 export(clean_REDCap)
 export(copy_clip)
+export(create_REDCap_dictionary)
 export(factor_convert)
 export(factor_table)
 export(fct_case_when)
