@@ -16,7 +16,7 @@ text
 A function to generate a data dictionary for a REDCap dataset.
 }
 \examples{
-\dontrun {
+\dontrun{
 questionnaire_dictionary <- exportMeta(redcap_connection)
 create_REDCap_dictionary(questionnaire_year1, questionnaire_dictionary)
 }
