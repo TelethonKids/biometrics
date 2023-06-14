@@ -1,11 +1,9 @@
 Package: biometrics
 Title: Report Templates and general use functions - Telethon Kids Institute, Biometrics Team
-Version: 1.2.2
+Version: 1.2.3
 Authors@R: c(person("Matthew", "Cooper",
-    email = "Matt.Cooper@telethonkids.org.au", role = c("aut")),
-    person("Paul", "Stevenson",
-    email = "Paul.Stevenson@telethonkids.org.au", role = c("aut", "cre")))
-Date: 2022-07-29
+    email = "Matt.Cooper@telethonkids.org.au", role = c("aut", "cre")))
+Date: 2023-06-14
 Description: This pakcage includes RMarkdown and ioslides templates that incorporate
     the Telethon Kid’s style guide and emulate the Institutes Web theme.
     Currently, templates are available to produce stand-alone HTML reports
@@ -19,15 +17,18 @@ Depends:
     R (>= 4.1.0)
 Imports:
     broom (>= 0.5.6),
-    ggplot2 (>= 3.3.2),
     dplyr (>= 1.0.0),
+    GGally (>= 2.1.2),
+    ggplot2 (>= 3.3.2),
     here (>= 1.0.1),
+    huxtable (>= 5.5.0),
     igraph (>= 1.2.5),
     janitor (>= 2.1.0),
     jtools (>= 1.2.5),
     kableExtra (>= 1.1.0),
     lubridate (>= 1.7.9),
     magrittr (>= 2.0.1),
+    ProjectTemplate (>= 0.10.3),
     purrr (>= 0.3.4),
     repmis (>= 0.5),
     rmarkdown (>= 2.3),
@@ -35,6 +36,7 @@ Imports:
     tibble (>= 3.0.1),
     tidyr (>= 1.1.0),
     tidyselect (>= 1.1.0),
+    tidyverse (>= 2.0.0),
     labelled (>= 2.8.0),
     withr (>= 2.4.2)
 Suggests:
@@ -47,5 +49,5 @@ Suggests:
     XML (>= 3.99-0.3),
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3
