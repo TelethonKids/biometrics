@@ -18,7 +18,8 @@
 #'
 #' @examples
 #' \dontrun{ factor_table("0, No | 1, Yes") }
-
+#'
+#' @export
 factor_table <- function(x, rows = "\\|", cols = ",") {
 
   key <- NULL
@@ -51,8 +52,7 @@ factor_table <- function(x, rows = "\\|", cols = ",") {
 #'
 #' }
 #'
-
-
+#' @export
 factor_convert <- function(x, d, dict) {
   y <- factor_table(dict[dict$`Variable / Field Name` == cur_column(),]$`Choices, Calculations, OR Slider Labels`)
   factor(x, levels = y$key, labels = y$value)
@@ -81,7 +81,7 @@ factor_convert <- function(x, d, dict) {
 #'
 #' }
 #'
-
+#' @export
 checkbox_labels <- function(x, dict) {
 
   d <- factor_table(dict[dict$`Variable / Field Name` == x,]$`Choices, Calculations, OR Slider Labels`) %>%
@@ -117,7 +117,7 @@ checkbox_labels <- function(x, dict) {
 #'
 #' }
 #'
-
+#' @export
 variable_labels <- function(d, dict) map_chr(names(d),
                                              ~ifelse(.x %in% dict$`Variable / Field Name`,
                                                      dict[dict$`Variable / Field Name` == .x,]$`Field Label`,
@@ -144,7 +144,7 @@ variable_labels <- function(d, dict) map_chr(names(d),
 #' @examples
 #' \dontrun{ factor_table("0, No | 1, Yes") }
 #'
-
+#' @export
 factor_table <- function(x, rows = "\\|", cols = ",") {
 
   key <- NULL
@@ -177,7 +177,7 @@ factor_table <- function(x, rows = "\\|", cols = ",") {
 #'
 #' }
 #'
-
+#' @export
 factor_convert <- function(x, d, dict) {
   y <- factor_table(dict[dict$`Variable / Field Name` == cur_column(),]$`Choices, Calculations, OR Slider Labels`)
   factor(x, levels = y$key, labels = y$value)
@@ -206,7 +206,7 @@ factor_convert <- function(x, d, dict) {
 #'
 #' }
 #'
-
+#' @export
 checkbox_labels <- function(x, dict) {
 
   d <- factor_table(dict[dict$`Variable / Field Name` == x,]$`Choices, Calculations, OR Slider Labels`) %>%
@@ -247,7 +247,7 @@ checkbox_labels <- function(x, dict) {
 #'
 #' }
 #'
-
+#' @export
 variable_labels <- function(d, dict) {
 
   dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset
@@ -288,7 +288,7 @@ variable_labels <- function(d, dict) {
 #'
 #' }
 #'
-
+#' @export
 yesno_vars <- function(d) {
   o <- map_lgl({{d}}, function(x) {
     if ( !is.factor(x) )
@@ -318,7 +318,7 @@ yesno_vars <- function(d) {
 #'
 #' @importFrom stringr str_replace str_detect
 #' @importFrom dplyr mutate across
-#' @import magrittr
+#' @importFrom magrittr `%>%`
 #' @importFrom tidyselect starts_with
 #' @importFrom lubridate ymd mdy dmy ymd_hm mdy_hm dmy_hm ymd_hms mdy_hms dmy_hms hm ms
 #' @importFrom janitor excel_numeric_to_date
@@ -338,7 +338,7 @@ yesno_vars <- function(d) {
 #'
 #' }
 #'
-
+#' @export
 clean_REDCap <- function(d, dict, numeric_date = FALSE, yesno_to_bool = FALSE, quiet = FALSE) {
 
   dict <- dict[dict$`Variable / Field Name` %in% str_replace(names(d), "___\\d+", ""),] # remove items from dictionary that aren't in the dataset

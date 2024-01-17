@@ -27,6 +27,7 @@ factor_table
 }
 \examples{
 \dontrun{ factor_table("0, No | 1, Yes") }
+
 \dontrun{ factor_table("0, No | 1, Yes") }
 
 }
