@@ -7,7 +7,7 @@
 #'
 #' @return A table (either `tibble` or `kable` based)
 #'
-#' @importFrom magrittr "%>%"
+#' @import magrittr
 #' @importFrom kableExtra kable_styling
 #'
 #' @examples
@@ -19,7 +19,7 @@
 #'   print_gbs()
 #' }
 #'
-#' @export
+
 # Transpose the output of a group_by %>% summarise for table generation, with the option to kable the output
 print_gbs <- function(x, kable = F) {
   x <- data.frame(t(x))

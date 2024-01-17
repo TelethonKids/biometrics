@@ -10,6 +10,8 @@ contingency_table(vec1, vec2, dp = 2)
 \item{vec1}{a vector - should be discrete values}
 
 \item{vec2}{a vector - should be discrete values}
+
+\item{dp}{number of decimal places in proportion}
 }
 \value{
 object of class matrix
