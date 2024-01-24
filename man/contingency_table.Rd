@@ -20,6 +20,5 @@ object of class matrix
 returns a frequency table of two vectors with both counts and proportions.
 }
 \examples{
-#'
 \dontrun{ contingency_table(mtcars$gear, mtcars$cyl) }#'
 }

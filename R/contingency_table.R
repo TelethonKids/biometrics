@@ -8,7 +8,7 @@
 #'
 #' @return object of class matrix
 #'
-#' @examples#'
+#' @examples
 #' \dontrun{ contingency_table(mtcars$gear, mtcars$cyl) }#'
 #' @export
 
