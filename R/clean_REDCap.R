@@ -318,7 +318,7 @@ yesno_vars <- function(d) {
 #'
 #' @importFrom stringr str_replace str_detect
 #' @importFrom dplyr mutate across
-#' @importFrom magrittr `%>%`
+#' @importFrom magrittr %>%
 #' @importFrom tidyselect starts_with
 #' @importFrom lubridate ymd mdy dmy ymd_hm mdy_hm dmy_hm ymd_hms mdy_hms dmy_hms hm ms
 #' @importFrom janitor excel_numeric_to_date

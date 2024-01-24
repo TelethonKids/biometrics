@@ -7,7 +7,7 @@
 #'
 #' @return A table (either `tibble` or `kable` based)
 #'
-#' @importFrom magrittr "%>%"
+#' @importFrom magrittr %>%
 #' @importFrom kableExtra kable_styling
 #'
 #' @examples
