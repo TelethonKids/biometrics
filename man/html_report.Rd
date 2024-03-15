@@ -4,10 +4,12 @@
 \alias{html_report}
 \title{html_report}
 \usage{
-html_report(toc = TRUE)
+html_report(toc = TRUE, fold = FALSE)
 }
 \arguments{
 \item{toc}{default to TRUE to show menu bar}
+
+\item{fold}{default to FALSE for collapsed code chunks}
 }
 \description{
 Remove pandoc configuration from .Rmd.

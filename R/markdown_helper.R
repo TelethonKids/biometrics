@@ -10,14 +10,16 @@ js <- function() paste0(list.files(paste(system.file(package = "biometrics"), "s
 #' Remove pandoc configuration from .Rmd.
 #'
 #' @param toc default to TRUE to show menu bar
+#' @param fold default to FALSE for collapsed code chunks
 #'
 #' @importFrom rmarkdown html_document
 #'
 #' @export
-html_report <- function(toc = TRUE) {
+html_report <- function(toc = TRUE, fold = FALSE) {
 
   template <- system.file("supporting_files/html/html_report.html", package = "biometrics")
   css <- list.files(paste(system.file(package = "biometrics"), "supporting_files", "css", sep = "/"), full.names = TRUE)
+  codefold = ifelse(fold, "hide", "show")
 
   html_document(fig_width = 6.5,
                 fig_height = 4,
@@ -25,7 +27,8 @@ html_report <- function(toc = TRUE) {
                 toc_float = TRUE,
                 self_contained = TRUE,
                 template = template,
-                css = css)
+                css = css,
+                code_folding = codefold)
 }
 
 #' html_ioslides
