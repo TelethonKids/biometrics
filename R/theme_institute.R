@@ -1,8 +1,43 @@
-#' theme_institute
-#
-#' Applies themes and colour schemes for universal ggplot2 formatting within the
-#' biostatistics team. Barlow Semi Condensed Font Family can be downloaded
-#' through Google Fonts'
+#' Apply Institute Theme to ggplot2 Plots
+#'
+#' This function applies a custom theme to ggplot2 plots, incorporating specific fonts and colors to align with the institute's visual identity.
+#'
+#' @details The function determines the operating system and selects appropriate font names for Windows or other systems. It applies a minimal theme with custom settings for plot title, axis title, and strip text, using the 'Barlow Semi Condensed' font family. It also adjusts color scales using the 'viridis' package.
+#'
+#' @return A list of ggplot2 theme elements and scale adjustments.
+#'
+#' @examples
+#' \dontrun{
+#' # Install the required fonts first (see below)
+#' # Example usage with ggplot2
+#' library(ggplot2)
+#' library(viridis)
+#'
+#' p <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+#'   geom_point() +
+#'   theme_institute()
+#'
+#' print(p)
+#' }
+#'
+#' @note To use this theme, you need to have the 'Barlow Semi Condensed' font family installed on your system.
+#'
+#' @section Installing Fonts:
+#' To install the 'Barlow Semi Condensed' font family:
+#'
+#' 1. **Windows**:
+#'    - Download the fonts from [Google Fonts](https://fonts.google.com/specimen/Barlow+Semi+Condensed).
+#'    - Install the following font files:
+#'      - `BarlowSemiCondensed-ExtraBold.ttf`
+#'      - `BarlowSemiCondensed-Medium.ttf`
+#'    - Using the extrafont package, run font_import() followed by loadfonts(device = "win")
+#'
+#' 2. **Mac OS and Linux**:
+#'    - Download the fonts from [Google Fonts](https://fonts.google.com/specimen/Barlow+Semi+Condensed).
+#'    - Install the following font files:
+#'      - `BarlowSemiCondensed-Bold.ttf`
+#'      - `BarlowSemiCondensed-Medium.ttf`
+#'
 #' @export
 theme_institute <- function() {
   os <- Sys.info()[["sysname"]]
