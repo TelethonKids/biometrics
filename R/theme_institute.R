@@ -2,7 +2,8 @@
 #
 #' Applies themes and colour schemes for universal ggplot2 formatting within the
 #' biostatistics team. Barlow Semi Condensed Font Family can be downloaded
-#' through Google Fonts
+#' through Google Fonts'
+#' @export
 theme_institute <- function() {
   os <- Sys.info()[["sysname"]]
 

@@ -5,7 +5,7 @@
 \title{theme_institute
 Applies themes and colour schemes for universal ggplot2 formatting within the
 biostatistics team. Barlow Semi Condensed Font Family can be downloaded
-through Google Fonts}
+through Google Fonts'}
 \usage{
 theme_institute()
 }
@@ -13,5 +13,5 @@ theme_institute()
 theme_institute
 Applies themes and colour schemes for universal ggplot2 formatting within the
 biostatistics team. Barlow Semi Condensed Font Family can be downloaded
-through Google Fonts
+through Google Fonts'
 }
