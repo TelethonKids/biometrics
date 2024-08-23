@@ -4,7 +4,12 @@
 \alias{theme_institute}
 \title{Apply Institute Theme to ggplot2 Plots}
 \usage{
-theme_institute()
+theme_institute(
+  base_size = 11,
+  base_family = "Barlow Semi Condensed",
+  base_line_size = base_size/22,
+  base_rect_size = base_size/22
+)
 }
 \value{
 A list of ggplot2 theme elements and scale adjustments.
@@ -43,7 +48,7 @@ To install the 'Barlow Semi Condensed' font family:
 library(ggplot2)
 library(viridis)
 
-p <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+p <- ggplot(mtcars, aes(x = mpg, y = wt, fill = factor(cyl))) +
   geom_point() +
   theme_institute()
 

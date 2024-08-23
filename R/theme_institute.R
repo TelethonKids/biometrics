@@ -13,7 +13,7 @@
 #' library(ggplot2)
 #' library(viridis)
 #'
-#' p <- ggplot(mtcars, aes(x = mpg, y = cyl)) +
+#' p <- ggplot(mtcars, aes(x = mpg, y = wt, fill = factor(cyl))) +
 #'   geom_point() +
 #'   theme_institute()
 #'
@@ -39,7 +39,8 @@
 #'      - `BarlowSemiCondensed-Medium.ttf`
 #'
 #' @export
-theme_institute <- function() {
+theme_institute <- function(base_size = 11, base_family = "Barlow Semi Condensed",
+                            base_line_size = base_size/22, base_rect_size = base_size/22) {
   os <- Sys.info()[["sysname"]]
 
   font1 <- ifelse(os == "Windows",
@@ -51,7 +52,10 @@ theme_institute <- function() {
                   "BarlowSemiCondensed-Medium")
 
   list(
-    theme_minimal(base_family = "Barlow Semi Condensed") +
+    theme_minimal(base_family = "Barlow Semi Condensed",
+                  base_size = base_size,
+                  base_line_size = base_line_size,
+                  base_rect_size = base_rect_size) +
     theme(panel.grid.minor = element_blank(),
           plot.title = element_text(
             family = font1
