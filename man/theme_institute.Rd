@@ -48,7 +48,7 @@ To install the 'Barlow Semi Condensed' font family:
 library(ggplot2)
 library(viridis)
 
-p <- ggplot(mtcars, aes(x = mpg, y = wt, fill = factor(cyl))) +
+p <- ggplot(mtcars, aes(x = mpg, y = wt, col = factor(cyl))) +
   geom_point() +
   theme_institute()
 
