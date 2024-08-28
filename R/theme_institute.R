@@ -67,8 +67,8 @@ theme_institute <- function(base_size = 11, base_family = "Barlow Semi Condensed
             family = font1,
             size = rel(1), hjust = 0
           ),
-          plot.background = element_rect(fill = "white"),
-          strip.background = element_rect(fill = "grey80", color = NA)),
+          plot.background = element_rect(fill = "white", colour = "white"),
+          strip.background = element_rect(fill = "grey80", colour = NA)),
     scale_colour_viridis_d(option = "plasma", end = 0.85),
     scale_fill_viridis_d(option = "plasma", end = 0.85)
   )
