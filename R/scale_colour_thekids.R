@@ -9,7 +9,7 @@
 #' @import ggplot2
 #'
 #' @export
-scale_color_thekids <- function(palette = "light", discrete = TRUE, reverse = FALSE, ...) {
+scale_color_thekids <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
   pal <- thekids_pal(palette = palette, reverse = reverse)
 
   if (discrete) {

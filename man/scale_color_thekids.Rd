@@ -4,7 +4,7 @@
 \alias{scale_color_thekids}
 \title{Color scale constructor for The Kids colours.}
 \usage{
-scale_color_thekids(palette = "light", discrete = TRUE, reverse = FALSE, ...)
+scale_color_thekids(palette = "primary", discrete = TRUE, reverse = FALSE, ...)
 }
 \arguments{
 \item{palette}{Character name of palette in thekids_palettes. Options are "primary", "tint50" and "typography"}

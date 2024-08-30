@@ -7,7 +7,7 @@
 #'            scale_fill_gradientn(), used respectively when discrete is TRUE or FALSE
 #'
 #' @export
-scale_fill_thekids <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
+scale_fill_thekids <- function(palette = "primary", discrete = TRUE, reverse = FALSE, ...) {
   pal <- thekids_pal(palette = palette, reverse = reverse)
 
   if (discrete) {
