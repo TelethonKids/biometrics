@@ -89,3 +89,35 @@
 #'   \item{grey}{Typography Palette}
 #' }
 "telethonkids_palettes"
+
+#' The Kids colours
+#'
+#' Hex codes for the The Kids colours per the 2024 Brand Style Guide.
+#'
+#' @docType data
+#'
+#' @usage data(thekids_colours)
+#'
+#' @format A named vector key = pantone matching system colour, value = hex
+#'     colour code
+"thekids_colours"
+
+#' The Kids Palettes
+#'
+#' The Kids colour palettes per the 2024 Brand Style Guide.
+#'
+#' @docType data
+#'
+#' @usage data(thekids_palettes)
+#'
+#' @format
+#' \describe{
+#'   \item{primary}{Primary Colours Palette}
+#'   \item{tint50}{50 Tint Palette}
+#'   \item{grey}{Typography Palette}
+#' }
+"thekids_palettes"
+
+
+
+

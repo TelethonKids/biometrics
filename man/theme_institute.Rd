@@ -8,8 +8,35 @@ theme_institute(
   base_size = 11,
   base_family = "Barlow Semi Condensed",
   base_line_size = base_size/22,
-  base_rect_size = base_size/22
+  base_rect_size = base_size/22,
+  scale_colour_type = "discrete",
+  scale_fill_type = "discrete",
+  colour_theme = "viridis",
+  fill_theme = "viridis",
+  rev_colour = F,
+  rev_fill = F
 )
+}
+\arguments{
+\item{base_size}{The base font size, given in points. Default is 11.}
+
+\item{base_family}{The base font family used for the text. Default is `"Barlow Semi Condensed"`.}
+
+\item{base_line_size}{The base size for line elements (e.g., axis lines, grid lines). Calculated as `base_size/22` by default.}
+
+\item{base_rect_size}{The base size for rect elements (e.g., plot background, legend keys). Calculated as `base_size/22` by default.}
+
+\item{scale_colour_type}{Type of scale used for colours. Should be either `"discrete"` or `"continuous"`. Default is `"discrete"`.}
+
+\item{scale_fill_type}{Type of scale used for fills. Should be either `"discrete"` or `"continuous"`. Default is `"discrete"`.}
+
+\item{colour_theme}{Colour palette to use for colour scales. Must be one of `"viridis"`,`"thekids"`,`"thekids_tint"`,`"thekids_grey"`. Default is `"viridis"`.}
+
+\item{fill_theme}{Colour palette to use for fill scales. Must be one of `"viridis"`,`"thekids"`,`"thekids_tint"`,`"thekids_grey"`. Default is `"viridis"`.}
+
+\item{rev_colour}{Logical. Should the colour palette be reversed? Default is `FALSE`.}
+
+\item{rev_fill}{Logical. Should the fill palette be reversed? Default is `FALSE`.}
 }
 \value{
 A list of ggplot2 theme elements and scale adjustments.
@@ -53,6 +80,12 @@ p <- ggplot(mtcars, aes(x = mpg, y = wt, col = factor(cyl))) +
   theme_institute()
 
 print(p)
+
+p2 <- gplot(mtcars, aes(x = factor(cyl), y = wt, fill = factor(cyl))) +
+  geom_col() +
+  theme_institute(fill_theme = "thekids_tint", rev_fill = T)
+
+print(p2)
 }
 
 }
