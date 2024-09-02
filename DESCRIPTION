@@ -14,7 +14,8 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.1.0),
+    extrafont (>= 0.1)
 Imports:
     broom (>= 0.5.6),
     dplyr (>= 1.0.0),
