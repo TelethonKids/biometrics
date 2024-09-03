@@ -1,15 +1,12 @@
 Package: biometrics
-Title: Report Templates and general use functions - Telethon Kids Institute, Biometrics Team
+Title: General Use Functions - The Kids Research Institute Australia, Biostatistics Team
 Version: 1.2.3
 Authors@R: c(person("Matthew", "Cooper",
     email = "Matt.Cooper@telethonkids.org.au", role = c("aut", "cre")))
 Date: 2023-06-14
-Description: This pakcage includes RMarkdown and ioslides templates that incorporate
-    the Telethon Kid’s style guide and emulate the Institutes Web theme.
-    Currently, templates are available to produce stand-alone HTML reports
-    and ioslides presentations. These templates also include colour palates
-    that will automatically reproduce Telethon Kids style in R graphics. A
-    number of helper functions and data-sets are also available.
+Description: This package includes RMarkdown and ioslides templates that incorporate
+    the The Kid’s style guide and emulate the Institutes Web theme.
+    A number of helper functions and data-sets are also available.
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
