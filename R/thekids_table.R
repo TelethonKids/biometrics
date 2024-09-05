@@ -99,6 +99,8 @@ thekids_table <- function(x,
       fontsize(part = "header", size = font.size.header) %>%
       color(color = "white", part = "header") %>%
       color(color = "#111921", part = "body") %>%
+      hline_top(part = "all") %>%
+      hline_bottom() %>%
       autofit()
   }
 }
