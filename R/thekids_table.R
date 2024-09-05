@@ -1,14 +1,17 @@
-#' Themed table output
+#' The Kids themed table output
 #'
-#' Using flextable (as this originated with a focus on word documents), this applies theming to table output in line with The Kids branding
+#' Using flextable (as this originated with a focus on word documents), this applies The Kids branding as a theme to table output, include the use of the Barlow font.
 #'
-#' @param start,end vectors of the start and end dates/times
-#' @param buffer the buffer interval e.g. days(14), defaults to 0
-#' @param .view_mat when TRUE (defult FALSE) creates an overlap matrix and applies
-#'   View()
-#' @param .view_graph when TRUE (default FALSE) plots the graph of crouped records
+#' It also has default settings which produce a relatively compact table, to avoid reports becoming excessively lengthy.
 #'
-#' @return an integer vector of group numbers
+#' @param x a table, typically a data.frame, tibble, or output from gtsummary
+#' @param font.size the font size for text in the body of the table, defaults to 8 (passed throught to set_flextable_defaults)
+#' @param font.size.header the font size for text in the header of the table, defaults to 10
+#' @param line.spacing line spacing for the table, defaults to 1.5 (passed throught to set_flextable_defaults)
+#' @param padding padding around all four sides of the text within the cell, defaults to 2 (passed throught to set_flextable_defaults)
+#' @param colour a colour platte from The Kids branding, options include "Saffron", "Pumpkin", "Teal", "DarkTeal", "CelestialBlue", "AzurBlue", "MidnightBlue", or "CoolGrey", defaults to 'CoolGrey'
+#'
+#' @return a flextable class object that will display in both html and word output
 #'
 #' @import tidyverse flextable
 #'
@@ -24,11 +27,11 @@
 #'
 
 thekids_table <- function(x,
-                            font.size = 8,
-                            font.size.header = 10,
-                            line.spacing = 1.5,
-                            padding = 2,
-                            colour = "CoolGrey"){
+                          font.size = 8,
+                          font.size.header = 10,
+                          line.spacing = 1.5,
+                          padding = 2,
+                          colour = "CoolGrey"){
 
   if(!colour %in% names(thekids_palettes$primary)){
     stop("The colour you have provided is not in the list. Please select from: Saffron, Pumpkin, Teal, DarkTeal, CelestialBlue, AzurBlue, MidnightBlue, or CoolGrey")
@@ -83,10 +86,19 @@ thekids_table <- function(x,
     big.mark="",
     table.layout="autofit")
 
-  x %>%
-    flextable() %>%
-    fontsize(part = "header", size = font.size.header) %>%
-    color(color = "white", part = "header") %>%
-    color(color = "#111921", part = "body") %>%
-    autofit()
+  if(any(class(x) == "gtsummary")){
+    x %>%
+      as_flex_table() %>%
+      fontsize(part = "header", size = font.size.header) %>%
+      color(color = "white", part = "header") %>%
+      color(color = "#111921", part = "body") %>%
+      autofit()
+  } else {
+    x %>%
+      flextable() %>%
+      fontsize(part = "header", size = font.size.header) %>%
+      color(color = "white", part = "header") %>%
+      color(color = "#111921", part = "body") %>%
+      autofit()
+  }
 }

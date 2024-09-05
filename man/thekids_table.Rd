@@ -2,7 +2,7 @@
 % Please edit documentation in R/thekids_table.R
 \name{thekids_table}
 \alias{thekids_table}
-\title{Themed table output}
+\title{The Kids themed table output}
 \usage{
 thekids_table(
   x,
@@ -14,20 +14,26 @@ thekids_table(
 )
 }
 \arguments{
-\item{start, end}{vectors of the start and end dates/times}
+\item{x}{a table, typically a data.frame, tibble, or output from gtsummary}
 
-\item{buffer}{the buffer interval e.g. days(14), defaults to 0}
+\item{font.size}{the font size for text in the body of the table, defaults to 8 (passed throught to set_flextable_defaults)}
 
-\item{.view_mat}{when TRUE (defult FALSE) creates an overlap matrix and applies
-View()}
+\item{font.size.header}{the font size for text in the header of the table, defaults to 10}
 
-\item{.view_graph}{when TRUE (default FALSE) plots the graph of crouped records}
+\item{line.spacing}{line spacing for the table, defaults to 1.5 (passed throught to set_flextable_defaults)}
+
+\item{padding}{padding around all four sides of the text within the cell, defaults to 2 (passed throught to set_flextable_defaults)}
+
+\item{colour}{a colour platte from The Kids branding, options include "Saffron", "Pumpkin", "Teal", "DarkTeal", "CelestialBlue", "AzurBlue", "MidnightBlue", or "CoolGrey", defaults to 'CoolGrey'}
 }
 \value{
-an integer vector of group numbers
+a flextable class object that will display in both html and word output
 }
 \description{
-Using flextable (as this originated with a focus on word documents), this applies theming to table output in line with The Kids branding
+Using flextable (as this originated with a focus on word documents), this applies The Kids branding as a theme to table output, include the use of the Barlow font.
+}
+\details{
+It also has default settings which produce a relatively compact table, to avoid reports becoming excessively lengthy.
 }
 \examples{
 
