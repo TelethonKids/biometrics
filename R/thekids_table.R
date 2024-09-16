@@ -27,10 +27,10 @@
 #'
 
 thekids_table <- function(x,
-                          font.size = 8,
-                          font.size.header = 10,
+                          font.size = 11,
+                          font.size.header = 12,
                           line.spacing = 1.5,
-                          padding = 2,
+                          padding = 2.5,
                           colour = "CoolGrey"){
 
   if(!colour %in% names(thekids_palettes$primary)){
